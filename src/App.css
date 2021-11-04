@@ -1,0 +1,30 @@
+/* Global */
+* {
+}
+/* ************* LOGIN PAGE ******************** */
+
+/* ************* MAIN PAGE ******************** */
+.mainBody {
+}
+.mainBody h1 {
+  text-align: center;
+}
+.sliderContainer {
+  margin: 0 auto;
+  border: 2px solid black;
+  border-radius: 15px;
+  padding: 35px;
+  width: 65%;
+}
+.carousel {
+  width: 70%;
+}
+.savedItem {
+  border: 2px solid black;
+  border-radius: 18px;
+  text-align: center;
+  width: 55%;
+  margin: 0 auto;
+}
+
+/* ************* RECIPE PAGE ******************** */
