@@ -12,11 +12,16 @@ bp = flask.Blueprint("bp", __name__, template_folder="./build")
 
 @bp.route("/")
 def main():
-    print("ENTEREDD MAIN FUNCRTION!!", file=sys.stderr)
+    print("ENTEREDD MAIN FUNCTION!!", file=sys.stderr)
     # data = json.dumps()
     return flask.render_template(
         "index.html",
     )
+
+
+@bp.route("/recipeResult")
+def results():
+    return flask.jsonify("Test")
 
 
 app.register_blueprint(bp)
