@@ -1,17 +1,19 @@
+"""Initializes and provides routing for the app"""
+import os
+import sys
 import flask
-import os, sys, json, random, base64, requests
 from dotenv import load_dotenv, find_dotenv
-from flask_sqlalchemy import SQLAlchemy
 
-# load_dotenv(find_dotenv())
+load_dotenv(find_dotenv())
 
-app = flask.Flask(__name__, static_folder="./build/static")
+APP = flask.Flask(__name__, static_folder="./build/static")
 
-bp = flask.Blueprint("bp", __name__, template_folder="./build")
+BP = flask.Blueprint("bp", __name__, template_folder="./build")
 
 
-@bp.route("/")
+@BP.route("/")
 def main():
+    """Loads main index.html page"""
     print("ENTEREDD MAIN FUNCRTION!!", file=sys.stderr)
     # data = json.dumps()
     return flask.render_template(
@@ -19,10 +21,10 @@ def main():
     )
 
 
-app.register_blueprint(bp)
+APP.register_blueprint(BP)
 
 if __name__ == "__main__":
-    app.run(
+    APP.run(
         host=os.getenv("IP", "0.0.0.0"),
-        port=int(os.getenv("PORT", 8081)),
+        port=os.getenv("PORT", "8081"),
     )
