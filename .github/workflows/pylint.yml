@@ -1,6 +1,13 @@
 name: Pylint
 
-on: [push]
+on:
+  # Trigger testing only when a push or pull is made to the main branch
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
   build:
