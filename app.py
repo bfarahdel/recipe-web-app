@@ -1,27 +1,29 @@
-import os, sys
+"""Initializes and provides routing for the app"""
+import os
+import sys
 import flask
 from dotenv import load_dotenv, find_dotenv
 
 load_dotenv(find_dotenv())
 
-app = flask.Flask(__name__, static_folder="./build/static")
+APP = flask.Flask(__name__, static_folder="./build/static")
+
+BP = flask.Blueprint("bp", __name__, template_folder="./build")
 
 
-bp = flask.Blueprint("bp", __name__, template_folder="./build")
-
-
-@bp.route("/")
+@BP.route("/")
 def main():
-    print("ENTERED MAIN FUNCTION!!", file=sys.stderr)
+    """Loads main index.html page"""
+    print("ENTEREDD MAIN FUNCRTION!!", file=sys.stderr)
     return flask.render_template(
         "index.html",
     )
 
 
-app.register_blueprint(bp)
+APP.register_blueprint(BP)
 
 if __name__ == "__main__":
-    app.run(
+    APP.run(
         host=os.getenv("IP", "0.0.0.0"),
-        port=int(os.getenv("PORT", 8081)),
+        port=os.getenv("PORT", "8081"),
     )
