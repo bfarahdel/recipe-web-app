@@ -1,12 +1,9 @@
 /* Global */
-* {
-}
+
 /* ************* LOGIN PAGE ******************** */
 
 /* ************* MAIN PAGE ******************** */
 
-.mainBody {
-}
 .mainBody h1 {
   text-align: center;
 }
@@ -45,7 +42,6 @@
 .resultList {
   width: 60%;
   margin: 0 auto;
-  /* border: 1px solid black; */
 }
 .resultItem {
   border-top: 2px solid black;

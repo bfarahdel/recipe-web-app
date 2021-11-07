@@ -1,27 +1,21 @@
+import os, sys
 import flask
-import os, sys, json, random, base64, requests
 from dotenv import load_dotenv, find_dotenv
-from flask_sqlalchemy import SQLAlchemy
 
-# load_dotenv(find_dotenv())
+load_dotenv(find_dotenv())
 
 app = flask.Flask(__name__, static_folder="./build/static")
+
 
 bp = flask.Blueprint("bp", __name__, template_folder="./build")
 
 
 @bp.route("/")
 def main():
-    print("ENTEREDD MAIN FUNCTION!!", file=sys.stderr)
-    # data = json.dumps()
+    print("ENTERED MAIN FUNCTION!!", file=sys.stderr)
     return flask.render_template(
         "index.html",
     )
-
-
-@bp.route("/recipeResult")
-def results():
-    return flask.jsonify("Test")
 
 
 app.register_blueprint(bp)
