@@ -4,6 +4,7 @@ import {
 import { Link, Outlet } from 'react-router-dom';
 
 function Header() {
+  // Test data to mimick data from API
   const testData = [
     {
       name: 'PIZZA',
@@ -18,6 +19,7 @@ function Header() {
       calories: 203,
     },
   ];
+  // Renders each Drop downn item for the favorites tab as Links
   const renderFavs = () => testData.map((fav) => (
     <NavDropdown.Item as="li" href="">
       <div className="resultItem" >
@@ -35,7 +37,6 @@ function Header() {
   return (
     <div>
       <Navbar collapseOnSelect bg="light" expand="xl" className="navBar">
-        {/* <Container fluid> */}
           <Navbar.Brand href="#" className="navTitle">
             <h1>
             RECIPE FINDER
