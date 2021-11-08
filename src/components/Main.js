@@ -1,4 +1,5 @@
 import { Link, Outlet } from 'react-router-dom';
+import ListGroup from 'react-bootstrap/ListGroup';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -37,15 +38,17 @@ const Main = () => {
     */
   const renderResults = () => testData.map((recipe) => (
     <div>
+      <ListGroup.Item as="li">
         <div className="resultItem" >
-            <Link
-            to={`/recipeResults/${recipe.name}`}
-            key={recipe.name}
-            >
-                {recipe.name}
-            </Link>
-        </div>
+              <Link
+              to={`/recipeResults/${recipe.name}`}
+              key={recipe.name}
+              >
+                  {recipe.name}
+              </Link>
+          </div>
         <Outlet/>
+      </ListGroup.Item>
     </div>
   ));
 
@@ -65,7 +68,9 @@ const Main = () => {
         </div>
 
         <div className="resultList">
-                {renderResults()}
+          <ListGroup as="ol" numbered>
+            {renderResults()}
+          </ListGroup>
         </div>
     </div>
   );

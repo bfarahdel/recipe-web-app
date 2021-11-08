@@ -7,10 +7,29 @@
 .mainBody h1 {
   text-align: center;
 }
+.justify {
+  width: 60%;
+  margin: 0 auto;
+}
+.navbar {
+  font-size: 30px;
+  font-weight: bolder;
+}
+.navTitle h1 {
+  font-size: 50px;
+  font-weight: bolder;
+  margin-left: 55px;
+}
+.navLink {
+  height: 100%;
+  /* border: 1px solid black; */
+  margin-right: 60px;
+}
 .sliderContainer {
   margin: 0 auto;
   border: 2px solid black;
   border-radius: 15px;
+  margin-top: 85px;
   padding: 45px;
   width: 55%;
 }
@@ -44,8 +63,6 @@
   margin: 0 auto;
 }
 .resultItem {
-  border-top: 2px solid black;
-  padding: 20px;
   text-align: center;
   background-color: white;
   font-size: 20px;
