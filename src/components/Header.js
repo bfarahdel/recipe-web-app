@@ -1,6 +1,7 @@
 import {
   Navbar, Nav, NavDropdown,
 } from 'react-bootstrap';
+import { Link, Outlet } from 'react-router-dom';
 
 function Header() {
   const testData = [
@@ -17,9 +18,18 @@ function Header() {
       calories: 203,
     },
   ];
-
   const renderFavs = () => testData.map((fav) => (
-    <NavDropdown.Item as="li" href="">{fav.name}</NavDropdown.Item>
+    <NavDropdown.Item as="li" href="">
+      <div className="resultItem" >
+        <Link
+        to={`/recipeResults/${fav.name}`}
+        key={fav.name}
+        >
+            {fav.name}
+        </Link>
+      </div>
+      <Outlet/>
+    </NavDropdown.Item>
   ));
 
   return (
