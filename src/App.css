@@ -1,11 +1,9 @@
 /* Global */
-* {
-}
+
 /* ************* LOGIN PAGE ******************** */
 
 /* ************* MAIN PAGE ******************** */
-.mainBody {
-}
+
 .mainBody h1 {
   text-align: center;
 }
@@ -13,8 +11,8 @@
   margin: 0 auto;
   border: 2px solid black;
   border-radius: 15px;
-  padding: 35px;
-  width: 65%;
+  padding: 45px;
+  width: 55%;
 }
 .carousel {
   width: 70%;
@@ -23,8 +21,35 @@
   border: 2px solid black;
   border-radius: 18px;
   text-align: center;
+  background-color: white;
   width: 55%;
   margin: 0 auto;
+}
+.searchBar {
+  margin: 0 auto;
+  width: 85%;
+  height: 110px;
+  margin-top: 115px;
+}
+.searchBar input {
+  width: 100%;
+  background-color: white;
+  height: 85px;
+  font-size: 19px;
+  text-align: center;
+  border-radius: 15px;
+}
+.resultList {
+  width: 60%;
+  margin: 0 auto;
+}
+.resultItem {
+  border-top: 2px solid black;
+  padding: 20px;
+  text-align: center;
+  background-color: white;
+  font-size: 20px;
+  font-weight: bolder;
 }
 
 /* ************* RECIPE PAGE ******************** */

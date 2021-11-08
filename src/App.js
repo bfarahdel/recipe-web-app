@@ -1,25 +1,22 @@
+/*
+Each page has been broken down into seperate components
+in order to user React Router
+*/
+
 import './App.css';
-import Slider from 'react-slick';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
+import { Routes, Route } from 'react-router-dom';
+import RecipePage from './components/RecipePage';
+import RecipeInfo from './components/RecipeInfo';
+import Main from './components/Main';
 
 function App() {
-  const renderSlides = () => [1, 2, 3, 4, 5, 6, 7, 8].map((num) => (
-      <div className="carousel">
-        <div className="savedItem">
-          <h3>Slide {num}</h3>
-        </div>
-      </div>
-  ));
-
   return (
-    <div className="mainBody">
-
-      <h1>  RECIPE FINDER </h1>
-      <div className="sliderContainer">
-        <Slider slidesToShow={3} dots={true}>{renderSlides()}</Slider>
-      </div>
-    </div>
+      <Routes>
+        <Route path='/' element={<Main />}/>
+        <Route path='recipeResults' element={<RecipePage />}>
+          <Route path=':recipeName' element={<RecipeInfo />}/>
+        </Route>
+      </Routes>
   );
 }
 

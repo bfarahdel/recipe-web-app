@@ -15,7 +15,6 @@ BP = flask.Blueprint("bp", __name__, template_folder="./build")
 def main():
     """Loads main index.html page"""
     print("ENTEREDD MAIN FUNCRTION!!", file=sys.stderr)
-    # data = json.dumps()
     return flask.render_template(
         "index.html",
     )
