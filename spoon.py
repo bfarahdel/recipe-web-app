@@ -36,6 +36,7 @@ class Spoon:
     def complex_search(self, query: str):
         """Returns a dictionary with the recipe titles and related images based on query"""
         search_results = {}
+        ids = []
         titles = []
         images = []
 
@@ -51,9 +52,11 @@ class Spoon:
 
         # Extract recipe titles and images
         for recipe in results:
+            ids.append(recipe["id"])
             titles.append(recipe["title"])
             images.append(recipe["image"])
 
+        search_results["id"] = ids
         search_results["title"] = titles
         search_results["image"] = images
         return search_results
