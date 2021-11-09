@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Link, Outlet } from 'react-router-dom';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Slider from 'react-slick';
@@ -30,12 +31,27 @@ const Main = () => {
       calories: 203,
     },
   ];
-    /*
-    Displays the top recipe results to user
+  const [favorites, setFavorites] = useState([]);
+  const [currSearch, setSearch] = useState([]);
 
-    The url for each recipe page will be unique followed by
-    the some attribute (name)
-    */
+  function addFav(favId) {
+    const favList = [...favorites];
+    favList.push(favId);
+    setFavorites(favList);
+  }
+
+  // function deleteId(favId) {
+  //   const favList = [...favorites];
+  //   favList.splice(favId, 1);
+  //   setFavorites(favList);
+  // }
+
+  /*
+  Displays the top recipe results to user
+
+  The url for each recipe page will be unique followed by
+  the some attribute (name)
+  */
   const renderResults = () => testData.map((recipe) => (
     <div>
       <ListGroup.Item as="li">
@@ -52,9 +68,24 @@ const Main = () => {
     </div>
   ));
 
+  function submitSearch(recipeName) {
+    fetch('/addRecipe', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ recipeName }),
+    }).then((response) => response.json()).then((data) => {
+      console.log(data);
+    });
+    // setTimeout(() => { window.location.reload(false); }, 2400);
+  }
+
+  // const args = JSON.parse(document.getElementById('data').text);
+
   return (
     <div className="mainBody">
-
+        {/* <h1>{args.recipeName[0]}</h1> */}
         <Header />
 
         <div className="sliderContainer">
@@ -62,9 +93,23 @@ const Main = () => {
         </div>
 
         <div className="searchBar">
-            <form action="">
-            <input type="text" placeholder=" SEARCH RECIPES......." />
-            </form>
+            {/* <form action=""> */}
+              <input
+              type="text"
+              placeholder=" SEARCH RECIPES......."
+              value={currSearch}
+              onChange={(e) => {
+                setSearch(e.target.value);
+              }}
+            onKeyPress={(e) => {
+              if (e.key === 'Enter') {
+                addFav(currSearch);
+                setSearch('');
+                submitSearch(currSearch);
+              }
+            }}
+            />
+            {/* </form> */}
         </div>
 
         <div className="resultList">

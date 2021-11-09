@@ -35,6 +35,14 @@ const RecipePage = () => {
     </div>
   ));
 
+  const renderInstructions = () => testData.map((ing) => (
+    <div>
+      <ListGroup.Item as="li">
+        {ing.name}
+      </ListGroup.Item>
+    </div>
+  ));
+
   return (
     <div className="recipeBody">
       <Header />
@@ -65,10 +73,10 @@ const RecipePage = () => {
         <div className="ingContainer">
           <Card variant="ing">
             <Card.Header>
-              INGREDIENTS
+              INSTRUCTIONS
             </Card.Header>
             <ListGroup variant="flush">
-              {renderIngrediets()}
+              {renderInstructions()}
             </ListGroup>
           </Card>
         </div>
