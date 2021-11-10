@@ -16,40 +16,68 @@ BP = flask.Blueprint("bp", __name__, template_folder="./build")
 @BP.route("/")
 def main():
     """Loads main index.html page"""
-    print("ENTEREDD MAIN FUNCRTION!!", file=sys.stderr)
-    # (recipeNames, recipeImgs) = searchRecipe()
 
-    # DATA = {
-    #     "recipeNames": recipeNames,
-    #     "recipeImgs": recipeImgs
-    # }
-    # data = json.dumps(DATA)
+    print("ENTEREDD MAIN FUNCRTION!!", file=sys.stderr)
+
+    try:
+        searched = searchRecipe()
+        recipeIds = searched["recipeIds"]
+        recipeNames = searched["recipeNames"]
+        recipeImgs = searched["recipeImgs"]
+    except Exception:
+        print("NONE exception", file=sys.stderr)
+        recipeIds = [123]
+        recipeNames = [""]
+        recipeImgs = ["imgurl"]
+        print("id: ", recipeIds, file=sys.stderr)
+
+    DATA = {
+        "recipeIds": recipeIds,
+        "recipeNames": recipeNames,
+        "recipeImgs": recipeImgs,
+    }
+
+    data = json.dumps(DATA)
+
     return flask.render_template(
         "index.html",
-        # data=data,
+        data=data,
     )
 
 
 @BP.route("/addRecipe", methods=["POST"])
 def searchRecipe():
     """Returns a list of recipe names"""
+    try:
+        recipe = str(flask.request.json.get("recipe"))
+    except Exception:
+        recipe = ""
+        print("NONEEEE, default values given", file=sys.stderr)
 
-    recipe = str(flask.request.json.get("recipeName"))
+    # recipe = str(flask.request.json.get("recipeName"))
     print("RECIPEEE NAMEEEE ", recipe, file=sys.stderr)
     searchResults = Spoon().complex_search(recipe)
     print("SEARCH RESULTS", searchResults, file=sys.stderr)
-    recipeNames = []
-    recipeImg = []
-    for title in range(0, 5):
-        recipeNames.append(searchResults["title"][title])
 
-    for img in range(0, 5):
-        recipeImg.append(searchResults["image"][img])
+    recipeIds = []
+    recipeNames = []
+    recipeImgs = []
+
+    for id in range(0, 5):
+        recipeIds.append(searchResults["id"][id])
+        recipeNames.append(searchResults["title"][id])
+        recipeImgs.append(searchResults["image"][id])
 
     print("TOP 5 RECIPES", recipeNames, file=sys.stderr)
-    print("TOP 5 IMG URL", recipeImg, file=sys.stderr)
+    print("TOP 5 IMG URL", recipeImgs, file=sys.stderr)
 
-    return (recipeNames, recipeImg)
+    recipeInfo = {
+        "recipeIds": recipeIds,
+        "recipeNames": recipeNames,
+        "recipeImgs": recipeImgs,
+    }
+
+    return recipeInfo
 
 
 APP.register_blueprint(BP)

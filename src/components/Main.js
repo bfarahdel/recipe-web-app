@@ -6,9 +6,13 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Header from './Header';
 
-const Main = () => {
-// renders each individual slide/recipe inside the Slider component
-// and maps it based off of array
+function Main(props) {
+  // if (JSON.parse(document.getElementById('data').text)):
+  const { ids, names, imgs } = props;
+
+  console.log('(MAIN JS) PROPS id:', ids, 'names', names, 'imgs: ', imgs);
+  // renders each individual slide/recipe inside the slider component
+  // and maps it based off of array
   const renderSlides = () => [1, 2, 3, 4, 5, 6, 7, 8].map((num) => (
     <div className="carousel">
       <div className="savedItem">
@@ -16,23 +20,13 @@ const Main = () => {
       </div>
     </div>
   ));
+  // const testData = ['pizza', 'pizza2', 'pizza3', 'pizza4'];
 
-  const testData = [
-    {
-      name: 'PIZZA',
-      calores: 550,
-    },
-    {
-      name: 'NY PIZZA',
-      calories: 200,
-    },
-    {
-      name: 'DEEP DISH PIZZA',
-      calories: 203,
-    },
-  ];
   const [favorites, setFavorites] = useState([]);
   const [currSearch, setSearch] = useState([]);
+  const [recipeIds, setIds] = useState([]);
+  const [recipeNames, setNames] = useState([]);
+  const [recipeImgs, setImgs] = useState([]);
 
   function addFav(favId) {
     const favList = [...favorites];
@@ -40,6 +34,7 @@ const Main = () => {
     setFavorites(favList);
   }
 
+  console.log('Current states - ', recipeIds, recipeNames, recipeImgs);
   // function deleteId(favId) {
   //   const favList = [...favorites];
   //   favList.splice(favId, 1);
@@ -52,15 +47,15 @@ const Main = () => {
   The url for each recipe page will be unique followed by
   the some attribute (name)
   */
-  const renderResults = () => testData.map((recipe) => (
+  const renderResults = () => names.map((recipe) => (
     <div>
       <ListGroup.Item as="li">
         <div className="resultItem" >
               <Link
-              to={`/recipeResults/${recipe.name}`}
-              key={recipe.name}
+              to={`/recipeResults/${recipe}`}
+              key={recipe}
               >
-                  {recipe.name}
+                  {recipe}
               </Link>
           </div>
         <Outlet/>
@@ -74,11 +69,17 @@ const Main = () => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ recipeName }),
+      body: JSON.stringify({ recipe: recipeName }),
     }).then((response) => response.json()).then((data) => {
-      console.log(data);
+      setIds(data.recipeIds);
+      setNames(data.recipeNames);
+      setImgs(data.recipeImgs);
+
+      console.log('(data) NAMES-  ', data.recipeNames);
+      // console.log('ids-  ', data.recipeIds);
+      // console.log('img-  ', data.recipeImgs);
     });
-    // setTimeout(() => { window.location.reload(false); }, 2400);
+    setTimeout(() => { window.location.reload(false); }, 2400);
   }
 
   // const args = JSON.parse(document.getElementById('data').text);
@@ -119,6 +120,6 @@ const Main = () => {
         </div>
     </div>
   );
-};
+}
 
 export default Main;
