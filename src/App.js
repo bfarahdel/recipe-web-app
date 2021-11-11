@@ -11,13 +11,22 @@ import Main from './components/Main';
 
 function App() {
   const args = JSON.parse(document.getElementById('data').text);
-  const { recipeIds, recipeNames, recipeImgs } = args;
-  console.log('(APP JS) ARGUMENTS AREEEE -', recipeIds, recipeNames, recipeImgs);
-  // ids={recipeIds} names={recipeNames} imgs={recipeImgs}
+  const {
+    recipeIds,
+    recipeNames,
+    recipeImgs,
+    recipeIng,
+    recipeInstr,
+  } = args;
+  console.log('(APP JS) ARGUMENTS AREEEE -', recipeIds,
+    recipeNames,
+    recipeImgs,
+    recipeIng,
+    recipeInstr);
   return (
       <Routes>
-        <Route path='/' element= {<Main ids={recipeIds} names={recipeNames} imgs={recipeImgs}/> }/>
-        <Route path='recipeResults' element={<RecipePage />}>
+        <Route path='/' element= {<Main ids={recipeIds} names={recipeNames} imgs={recipeImgs} /> }/>
+        <Route path='recipeResults' element={<RecipePage ing={recipeIng} instr={recipeInstr} />}>
           <Route path=':recipeName' element={<RecipeInfo />}/>
         </Route>
       </Routes>

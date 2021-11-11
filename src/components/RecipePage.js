@@ -4,41 +4,27 @@ import { Heart } from 'react-bootstrap-icons';
 import { ListGroup, Card } from 'react-bootstrap';
 import Header from './Header';
 
-const RecipePage = () => {
+const RecipePage = (props) => {
   const params = useParams();
 
-  const testData = [
-    {
-      name: 'sauce',
-      calores: 550,
-    },
-    {
-      name: 'cheese',
-      calories: 200,
-    },
-    {
-      name: 'dough',
-      calories: 203,
-    },
-  ];
-    /*
-    Displays the top recipe results to user
+  /*
+  Displays the top recipe results to user
 
-    The url for each recipe page will be unique followed by
-    the some attribute (name)
-    */
-  const renderIngrediets = () => testData.map((ing) => (
+  The url for each recipe page will be unique followed by
+  the some attribute (name)
+  */
+  const renderIngrediets = () => props.ing.map((ing) => (
     <div>
       <ListGroup.Item as="li">
-        {ing.name}
+        {ing}
       </ListGroup.Item>
     </div>
   ));
 
-  const renderInstructions = () => testData.map((ing) => (
+  const renderInstructions = () => props.instr.map((instr) => (
     <div>
       <ListGroup.Item as="li">
-        {ing.name}
+        {instr}
       </ListGroup.Item>
     </div>
   ));

@@ -26,6 +26,8 @@ function Main(props) {
   const [recipeIds, setIds] = useState([]);
   const [recipeNames, setNames] = useState([]);
   const [recipeImgs, setImgs] = useState([]);
+  const [recipeInstr, setInstr] = useState([]);
+  const [recipeIng, setIng] = useState([]);
 
   function addFav(favId) {
     const favList = [...favorites];
@@ -37,6 +39,9 @@ function Main(props) {
   console.log('RECIPE IMGS - ', recipeImgs);
 
   console.log('RECIPE IDS - ', recipeIds);
+
+  console.log('RECIPE Instr - ', recipeInstr);
+  console.log('RECIPE IDS - ', recipeIng);
 
   // function deleteId(favId) {
   //   const favList = [...favorites];
@@ -79,6 +84,8 @@ function Main(props) {
       setIds(data.recipeIds);
       setNames(data.recipeNames);
       setImgs(data.recipeImgs);
+      setInstr(data.recipeInstructions);
+      setIng(data.recipeIng);
 
       console.log('(data) IDS-  ', data.recipeIds);
       console.log('(data) NAMES-  ', data.recipeNames);
