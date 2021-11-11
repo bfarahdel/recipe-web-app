@@ -1,8 +1,8 @@
 """Initializes and provides routing for the app"""
 import os
+import json
 import sys
 import flask
-import json
 from dotenv import load_dotenv, find_dotenv
 from spoon import Spoon
 
@@ -20,28 +20,28 @@ def main():
     print("ENTEREDD MAIN FUNCRTION!!", file=sys.stderr)
 
     try:
-        searched = searchRecipe()
-        recipeIds = searched["recipeIds"]
-        recipeNames = searched["recipeNames"]
-        recipeImgs = searched["recipeImgs"]
-        recipeIng = searched["recipeIng"]
-        recipeInstr = searched["recipeInstructions"]
-    except Exception:
+        searched = search_recipe()
+        recipe_ids = searched["recipe_ids"]
+        recipe_names = searched["recipe_names"]
+        recipe_imgs = searched["recipe_imgs"]
+        recipe_ing = searched["recipe_ing"]
+        recipe_instr = searched["recipe_instructions"]
+    except Exception:  # pylint: disable=broad-except
         print("NONE exception", file=sys.stderr)
-        recipeIds = [123]
-        recipeNames = [""]
-        recipeImgs = ["imgurl"]
-        print("id: ", recipeIds, file=sys.stderr)
+        recipe_ids = [123]
+        recipe_names = [""]
+        recipe_imgs = ["imgurl"]
+        print("id: ", recipe_ids, file=sys.stderr)
 
-    DATA = {
-        "recipeIds": recipeIds,
-        "recipeNames": recipeNames,
-        "recipeImgs": recipeImgs,
-        "recipeIng": recipeIng,
-        "recipeInstr": recipeInstr,
+    data_info = {
+        "recipe_ids": recipe_ids,
+        "recipe_names": recipe_names,
+        "recipe_imgs": recipe_imgs,
+        "recipe_ing": recipe_ing,
+        "recipe_instr": recipe_instr,
     }
 
-    data = json.dumps(DATA)
+    data = json.dumps(data_info)
 
     return flask.render_template(
         "index.html",
@@ -49,48 +49,50 @@ def main():
     )
 
 
-@BP.route("/addRecipe", methods=["POST"])
-def searchRecipe():
+@BP.route("/add_recipe", methods=["POST"])
+def search_recipe():
     """Returns a json of recipe info"""
     try:
         recipe = str(flask.request.json.get("recipe"))
-    except Exception:
+    except Exception:  # pylint: disable=broad-except
         recipe = ""
         print("NONEEEE, default values given", file=sys.stderr)
 
     print("RECIPEEE NAME ", recipe, file=sys.stderr)
-    searchResults = Spoon().complex_search(recipe)
-    print("SEARCH RESULTS", searchResults, file=sys.stderr)
+    search_results = Spoon().complex_search(recipe)
+    print("SEARCH RESULTS", search_results, file=sys.stderr)
 
-    recipeIds = []
-    recipeNames = []
-    recipeImgs = []
-    recipeInstructions = []
-    recipeIng = []
+    recipe_ids = []
+    recipe_names = []
+    recipe_imgs = []
+    recipe_instructions = []
+    recipe_ing = []
 
-    for id in range(0, 5):
-        recipeIds.append(searchResults["id"][id])
-        instructions_ing = Spoon().ingredients_instructions(searchResults["id"][id])
-        recipeInstructions.append(instructions_ing["instructions"])
-        recipeIng.append(instructions_ing["ingredients"])
-        recipeNames.append(searchResults["title"][id])
-        recipeImgs.append(searchResults["image"][id])
+    for recipe in range(0, 5):
+        recipe_ids.append(search_results["id"][recipe])
+        instructions_ing = Spoon().ingredients_instructions(
+            search_results["id"][recipe]
+        )
+        recipe_instructions.append(instructions_ing["instructions"])
+        recipe_ing.append(instructions_ing["ingredients"])
+        recipe_names.append(search_results["title"][recipe])
+        recipe_imgs.append(search_results["image"][recipe])
 
-    recipeInfo = {
-        "recipeIds": recipeIds,
-        "recipeNames": recipeNames,
-        "recipeImgs": recipeImgs,
-        "recipeInstructions": recipeInstructions,
-        "recipeIng": recipeIng,
+    recipe_info = {
+        "recipe_ids": recipe_ids,
+        "recipe_names": recipe_names,
+        "recipe_imgs": recipe_imgs,
+        "recipe_instructions": recipe_instructions,
+        "recipe_ing": recipe_ing,
     }
 
-    flask.jsonify({"recipeNames": recipeNames})
-    flask.jsonify({"recipeImgs": recipeImgs})
-    flask.jsonify({"recipeIds": recipeImgs})
-    flask.jsonify({"recipeInstructions": recipeInstructions})
-    flask.jsonify({"recipeIng": recipeIng})
+    flask.jsonify({"recipe_names": recipe_names})
+    flask.jsonify({"recipe_imgs": recipe_imgs})
+    flask.jsonify({"recipe_ids": recipe_imgs})
+    flask.jsonify({"recipe_instructions": recipe_instructions})
+    flask.jsonify({"recipe_ing": recipe_ing})
 
-    return recipeInfo
+    return recipe_info
 
 
 APP.register_blueprint(BP)
