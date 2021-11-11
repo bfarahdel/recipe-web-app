@@ -7,26 +7,25 @@ import 'slick-carousel/slick/slick-theme.css';
 import Header from './Header';
 
 function Main(props) {
-  // if (JSON.parse(document.getElementById('data').text)):
   const { ids, names, imgs } = props;
 
   console.log('(MAIN JS) PROPS id:', ids, 'names', names, 'imgs: ', imgs);
+
   // renders each individual slide/recipe inside the slider component
-  // and maps it based off of array
+  // and maps it based off of favortes
   const renderSlides = () => [1, 2, 3, 4, 5, 6, 7, 8].map((num) => (
     <div className="carousel">
       <div className="savedItem">
-          <h3>Slide {num}</h3>
+          <h3>FAV {num}</h3>
       </div>
     </div>
   ));
-  // const testData = ['pizza', 'pizza2', 'pizza3', 'pizza4'];
 
   const [favorites, setFavorites] = useState([]);
   const [currSearch, setSearch] = useState([]);
-  // const [recipeIds, setIds] = useState([]);
+  const [recipeIds, setIds] = useState([]);
   const [recipeNames, setNames] = useState([]);
-  // const [recipeImgs, setImgs] = useState([]);
+  const [recipeImgs, setImgs] = useState([]);
 
   function addFav(favId) {
     const favList = [...favorites];
@@ -35,6 +34,10 @@ function Main(props) {
   }
 
   console.log('RECIPE NAMES - ', recipeNames);
+  console.log('RECIPE IMGS - ', recipeImgs);
+
+  console.log('RECIPE IDS - ', recipeIds);
+
   // function deleteId(favId) {
   //   const favList = [...favorites];
   //   favList.splice(favId, 1);
@@ -43,9 +46,7 @@ function Main(props) {
 
   /*
   Displays the top recipe results to user
-
-  The url for each recipe page will be unique followed by
-  the some attribute (name)
+  The url for each recipe page will be unique url/$recipeName
   */
   const renderResults = () => recipeNames.map((recipe) => (
     <div>
@@ -63,6 +64,8 @@ function Main(props) {
     </div>
   ));
 
+  // Fetch function used to retreive the information from the
+  // searched recipe
   function submitSearch(recipeName) {
     fetch('/addRecipe', {
       method: 'POST',
@@ -71,22 +74,20 @@ function Main(props) {
       },
       body: JSON.stringify({ recipe: recipeName }),
     }).then((response) => response.json()).then((data) => {
-      // setIds(data.recipeIds);
+      // Sets all of the recipe info states
+
+      setIds(data.recipeIds);
       setNames(data.recipeNames);
-      // setImgs(data.recipeImgs);
+      setImgs(data.recipeImgs);
 
+      console.log('(data) IDS-  ', data.recipeIds);
       console.log('(data) NAMES-  ', data.recipeNames);
-      // console.log('ids-  ', data.recipeIds);
-      // console.log('img-  ', data.recipeImgs);
+      console.log('(data) IMGS-  ', data.recipeImgs);
     });
-    // setTimeout(() => { window.location.reload(false); }, 2400);
   }
-
-  // const args = JSON.parse(document.getElementById('data').text);
 
   return (
     <div className="mainBody">
-        {/* <h1>{args.recipeName[0]}</h1> */}
         <Header />
 
         <div className="sliderContainer">
@@ -94,7 +95,6 @@ function Main(props) {
         </div>
 
         <div className="searchBar">
-            {/* <form action=""> */}
               <input
               type="text"
               placeholder=" SEARCH RECIPES......."
@@ -110,7 +110,6 @@ function Main(props) {
               }
             }}
             />
-            {/* </form> */}
         </div>
 
         <div className="resultList">
