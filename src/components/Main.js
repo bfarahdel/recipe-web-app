@@ -24,9 +24,9 @@ function Main(props) {
 
   const [favorites, setFavorites] = useState([]);
   const [currSearch, setSearch] = useState([]);
-  const [recipeIds, setIds] = useState([]);
+  // const [recipeIds, setIds] = useState([]);
   const [recipeNames, setNames] = useState([]);
-  const [recipeImgs, setImgs] = useState([]);
+  // const [recipeImgs, setImgs] = useState([]);
 
   function addFav(favId) {
     const favList = [...favorites];
@@ -34,7 +34,7 @@ function Main(props) {
     setFavorites(favList);
   }
 
-  console.log('Current states - ', recipeIds, recipeNames, recipeImgs);
+  console.log('RECIPE NAMES - ', recipeNames);
   // function deleteId(favId) {
   //   const favList = [...favorites];
   //   favList.splice(favId, 1);
@@ -47,7 +47,7 @@ function Main(props) {
   The url for each recipe page will be unique followed by
   the some attribute (name)
   */
-  const renderResults = () => names.map((recipe) => (
+  const renderResults = () => recipeNames.map((recipe) => (
     <div>
       <ListGroup.Item as="li">
         <div className="resultItem" >
@@ -71,15 +71,15 @@ function Main(props) {
       },
       body: JSON.stringify({ recipe: recipeName }),
     }).then((response) => response.json()).then((data) => {
-      setIds(data.recipeIds);
+      // setIds(data.recipeIds);
       setNames(data.recipeNames);
-      setImgs(data.recipeImgs);
+      // setImgs(data.recipeImgs);
 
       console.log('(data) NAMES-  ', data.recipeNames);
       // console.log('ids-  ', data.recipeIds);
       // console.log('img-  ', data.recipeImgs);
     });
-    setTimeout(() => { window.location.reload(false); }, 2400);
+    // setTimeout(() => { window.location.reload(false); }, 2400);
   }
 
   // const args = JSON.parse(document.getElementById('data').text);

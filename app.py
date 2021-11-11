@@ -18,6 +18,7 @@ def main():
     """Loads main index.html page"""
 
     print("ENTEREDD MAIN FUNCRTION!!", file=sys.stderr)
+    # variiables need to be pulled fromm DB and not ran w the function again
 
     try:
         searched = searchRecipe()
@@ -76,6 +77,7 @@ def searchRecipe():
         "recipeNames": recipeNames,
         "recipeImgs": recipeImgs,
     }
+    flask.jsonify({"recipeNames": recipeNames})
 
     return recipeInfo
 
