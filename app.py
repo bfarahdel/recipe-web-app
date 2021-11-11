@@ -1,3 +1,7 @@
+"""
+This file is just used to run the application 
+
+"""
 from vars import APP
 import os
 

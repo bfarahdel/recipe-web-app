@@ -1,4 +1,10 @@
-import flask, os
+"""
+
+This file has all the configurations for flask, database and login
+
+"""
+import flask
+import os
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from dotenv import load_dotenv, find_dotenv

@@ -1,4 +1,11 @@
-from vars import APP, db, bcrypt
+"""
+
+This file has all the route definitions
+
+"""
+from vars import APP
+from vars import db
+from vars import bcrypt
 import flask
 from flask import redirect, url_for
 from flask_login import login_user, current_user, login_required, logout_user
@@ -56,10 +63,7 @@ def login_post():
         if is_correct_password:
             login_user(user)
             return flask.redirect(flask.url_for("bp.main"))
-        else:
-            return flask.jsonify(
-                {"status": 401, "reason": "Username or Password Error"}
-            )
+        return flask.jsonify({"status": 401, "reason": "Username or Password Error"})
     else:
         return flask.jsonify({"status": 401, "reason": "Username or Password Error"})
 
