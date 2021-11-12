@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Link, Outlet } from 'react-router-dom';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Slider from 'react-slick';
@@ -5,46 +6,62 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Header from './Header';
 
-const Main = () => {
-// renders each individual slide/recipe inside the Slider component
-// and maps it based off of array
+function Main(props) {
+  const { ids, names, imgs } = props;
+
+  console.log('(MAIN JS) PROPS id:', ids, 'names', names, 'imgs: ', imgs);
+
+  // renders each individual slide/recipe inside the slider component
+  // and maps it based off of favortes
   const renderSlides = () => [1, 2, 3, 4, 5, 6, 7, 8].map((num) => (
     <div className="carousel">
       <div className="savedItem">
-          <h3>Slide {num}</h3>
+          <h3>FAV {num}</h3>
       </div>
     </div>
   ));
 
-  const testData = [
-    {
-      name: 'PIZZA',
-      calores: 550,
-    },
-    {
-      name: 'NY PIZZA',
-      calories: 200,
-    },
-    {
-      name: 'DEEP DISH PIZZA',
-      calories: 203,
-    },
-  ];
-    /*
-    Displays the top recipe results to user
+  const [favorites, setFavorites] = useState([]);
+  const [currSearch, setSearch] = useState([]);
+  const [recipeIds, setIds] = useState([]);
+  const [recipeNames, setNames] = useState([]);
+  const [recipeImgs, setImgs] = useState([]);
+  const [recipeInstr, setInstr] = useState([]);
+  const [recipeIng, setIng] = useState([]);
 
-    The url for each recipe page will be unique followed by
-    the some attribute (name)
-    */
-  const renderResults = () => testData.map((recipe) => (
+  function addFav(favId) {
+    const favList = [...favorites];
+    favList.push(favId);
+    setFavorites(favList);
+  }
+
+  console.log('RECIPE NAMES - ', recipeNames);
+  console.log('RECIPE IMGS - ', recipeImgs);
+
+  console.log('RECIPE IDS - ', recipeIds);
+
+  console.log('RECIPE Instr - ', recipeInstr);
+  console.log('RECIPE IDS - ', recipeIng);
+
+  // function deleteId(favId) {
+  //   const favList = [...favorites];
+  //   favList.splice(favId, 1);
+  //   setFavorites(favList);
+  // }
+
+  /*
+  Displays the top recipe results to user
+  The url for each recipe page will be unique url/$recipeName
+  */
+  const renderResults = () => recipeNames.map((recipe) => (
     <div>
       <ListGroup.Item as="li">
         <div className="resultItem" >
               <Link
-              to={`/recipeResults/${recipe.name}`}
-              key={recipe.name}
+              to={`/recipeResults/${recipe}`}
+              key={recipe}
               >
-                  {recipe.name}
+                  {recipe}
               </Link>
           </div>
         <Outlet/>
@@ -52,9 +69,32 @@ const Main = () => {
     </div>
   ));
 
+  // Fetch function used to retreive the information from the
+  // searched recipe
+  function submitSearch(recipeName) {
+    fetch('/add_recipe', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ recipe: recipeName }),
+    }).then((response) => response.json()).then((data) => {
+      // Sets all of the recipe info states
+
+      setIds(data.recipe_ids);
+      setNames(data.recipe_names);
+      setImgs(data.recipe_imgs);
+      setInstr(data.recipe_instructions);
+      setIng(data.recipe_ing);
+
+      console.log('(data) IDS-  ', data.recipe_ids);
+      console.log('(data) NAMES-  ', data.recipe_names);
+      console.log('(data) IMGS-  ', data.recipe_imgs);
+    });
+  }
+
   return (
     <div className="mainBody">
-
         <Header />
 
         <div className="sliderContainer">
@@ -62,9 +102,21 @@ const Main = () => {
         </div>
 
         <div className="searchBar">
-            <form action="">
-            <input type="text" placeholder=" SEARCH RECIPES......." />
-            </form>
+              <input
+              type="text"
+              placeholder=" SEARCH RECIPES......."
+              value={currSearch}
+              onChange={(e) => {
+                setSearch(e.target.value);
+              }}
+            onKeyPress={(e) => {
+              if (e.key === 'Enter') {
+                addFav(currSearch);
+                setSearch('');
+                submitSearch(currSearch);
+              }
+            }}
+            />
         </div>
 
         <div className="resultList">
@@ -74,6 +126,6 @@ const Main = () => {
         </div>
     </div>
   );
-};
+}
 
 export default Main;
