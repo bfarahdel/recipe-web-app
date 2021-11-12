@@ -35,7 +35,7 @@ class Recipe(db.Model):
     json_field = db.Column(JSON)
 
     def __repr__(self):
-        return f"<Artist {self.username}>"
+        return f"<Recipe {self.username}, {self.json_field}>"
 
 
 db.create_all()
