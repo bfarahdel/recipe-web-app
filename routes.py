@@ -37,6 +37,7 @@ def signup():
 
 @APP.route("/signup", methods=["POST"])
 def signup_post():
+    email = flask.request.form.get("email")
     username = flask.request.form.get("username")
     password = flask.request.form.get("password")
     pw_hash = bcrypt.generate_password_hash(password).decode("utf-8")
@@ -44,7 +45,7 @@ def signup_post():
     if user:
         pass
     else:
-        user = User(username=username, password=pw_hash)
+        user = User(username=username, password=pw_hash, email=email)
         db.session.add(user)
         db.session.commit()
 
@@ -53,19 +54,19 @@ def signup_post():
 
 @APP.route("/login", methods=["POST"])
 def login_post():
-    username = flask.request.form.get("username")
+    email = flask.request.form.get("email")
     password = flask.request.form.get("password")
 
-    user = User.query.filter_by(username=username).first()
+    user = User.query.filter_by(email=email).first()
 
     if user:
         is_correct_password = bcrypt.check_password_hash(user.password, password)
         if is_correct_password:
             login_user(user)
             return flask.redirect(flask.url_for("bp.main"))
-        return flask.jsonify({"status": 401, "reason": "Username or Password Error"})
+        return flask.jsonify({"status": 401, "reason": "Email or Password Error"})
     else:
-        return flask.jsonify({"status": 401, "reason": "Username or Password Error"})
+        return flask.jsonify({"status": 401, "reason": "Email or Password Error"})
 
 
 @APP.route("/login")
