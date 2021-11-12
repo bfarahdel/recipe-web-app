@@ -26,8 +26,8 @@ function Main(props) {
   const [recipeIds, setIds] = useState([]);
   const [recipeNames, setNames] = useState([]);
   const [recipeImgs, setImgs] = useState([]);
-  const [recipeInstr, setInstr] = useState([]);
-  const [recipeIng, setIng] = useState([]);
+  // const [recipeInstr, setInstr] = useState([]);
+  // const [recipeIng, setIng] = useState([]);
 
   function addFav(favId) {
     const favList = [...favorites];
@@ -40,8 +40,8 @@ function Main(props) {
 
   console.log('RECIPE IDS - ', recipeIds);
 
-  console.log('RECIPE Instr - ', recipeInstr);
-  console.log('RECIPE IDS - ', recipeIng);
+  // console.log('RECIPE Instr - ', recipeInstr);
+  // console.log('RECIPE IDS - ', recipeIng);
 
   // function deleteId(favId) {
   //   const favList = [...favorites];
@@ -72,7 +72,7 @@ function Main(props) {
   // Fetch function used to retreive the information from the
   // searched recipe
   function submitSearch(recipeName) {
-    fetch('/addRecipe', {
+    fetch('/add_recipe', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -81,15 +81,15 @@ function Main(props) {
     }).then((response) => response.json()).then((data) => {
       // Sets all of the recipe info states
 
-      setIds(data.recipeIds);
-      setNames(data.recipeNames);
-      setImgs(data.recipeImgs);
-      setInstr(data.recipeInstructions);
-      setIng(data.recipeIng);
+      setIds(data.recipe_ids);
+      setNames(data.recipe_names);
+      setImgs(data.recipe_imgs);
+      // setInstr(data.recipe_instructions);
+      // setIng(data.recipe_ing);
 
-      console.log('(data) IDS-  ', data.recipeIds);
-      console.log('(data) NAMES-  ', data.recipeNames);
-      console.log('(data) IMGS-  ', data.recipeImgs);
+      console.log('(data) IDS-  ', data.recipe_ids);
+      console.log('(data) NAMES-  ', data.recipe_names);
+      console.log('(data) IMGS-  ', data.recipe_imgs);
     });
   }
 

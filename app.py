@@ -88,7 +88,7 @@ def search_recipe():
 
     flask.jsonify({"recipe_names": recipe_names})
     flask.jsonify({"recipe_imgs": recipe_imgs})
-    flask.jsonify({"recipe_ids": recipe_imgs})
+    flask.jsonify({"recipe_ids": recipe_ids})
     flask.jsonify({"recipe_instructions": recipe_instructions})
     flask.jsonify({"recipe_ing": recipe_ing})
 
