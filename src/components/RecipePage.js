@@ -1,11 +1,73 @@
-import React from 'react';
 import { useParams } from 'react-router-dom';
+import Button from 'react-bootstrap/Button';
+import { Heart } from 'react-bootstrap-icons';
+import { ListGroup, Card } from 'react-bootstrap';
+import Header from './Header';
 
-const RecipePage = () => {
+const RecipePage = (props) => {
   const params = useParams();
-  return (
+
+  /*
+  Displays the top recipe results to user
+
+  The url for each recipe page will be unique followed by
+  the some attribute (name)
+  */
+  const renderIngrediets = () => props.ing.map((ing) => (
     <div>
-        <h2>RECIPE PAGE {params.recipeName}</h2>
+      <ListGroup.Item as="li">
+        {ing}
+      </ListGroup.Item>
+    </div>
+  ));
+
+  const renderInstructions = () => props.instr.map((instr) => (
+    <div>
+      <ListGroup.Item as="li">
+        {instr}
+      </ListGroup.Item>
+    </div>
+  ));
+
+  return (
+    <div className="recipeBody">
+      <Header />
+      <h2 className="recipeTitle">RECIPE PAGE {params.recipeName}</h2>
+      <div className="leftSide">
+        <div class="btnContainer">
+          <Button variant="outline-dark" className="favBtn">
+            <Heart /> Add To Favs
+          </Button>
+        </div>
+        <div className="embed-responsive embed-responsive-16by9 ytContainer">
+          <iframe title="Embeds Page" className="embed-responsive-item yt" src="https://www.youtube.com/embed/v674KOxKVLVg"
+            allowfullscreen></iframe>
+        </div>
+      </div>
+
+      <div className="rightSide">
+        <div className="ingContainer">
+          <Card variant="ing">
+            <Card.Header>
+              INGREDIENTS
+            </Card.Header>
+            <ListGroup variant="flush">
+              {renderIngrediets()}
+            </ListGroup>
+          </Card>
+        </div>
+        <div className="ingContainer">
+          <Card variant="ing">
+            <Card.Header>
+              INSTRUCTIONS
+            </Card.Header>
+            <ListGroup variant="flush">
+              {renderInstructions()}
+            </ListGroup>
+          </Card>
+        </div>
+      </div>
+
     </div>
   );
 };
