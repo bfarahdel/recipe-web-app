@@ -27,7 +27,7 @@ function App() {
       <Routes>
         <Route path='/' element= {<Main ids={recipeIds} names={recipeNames} imgs={recipeImgs} /> }/>
         <Route path='recipeResults' element={<RecipePage ing={recipeIng} instr={recipeInstr} />}>
-          <Route path=':recipeName' element={<RecipeInfo />}/>
+          <Route path=':recipeName/:recipeIng/:recipeInstr' element={<RecipeInfo />}/>
         </Route>
       </Routes>
   );

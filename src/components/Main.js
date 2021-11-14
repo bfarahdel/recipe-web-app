@@ -48,20 +48,44 @@ function Main(props) {
   //   favList.splice(favId, 1);
   //   setFavorites(favList);
   // }
-
+  const dataInfo = {
+    recipe: [{
+      recipeName: recipeNames[0],
+      recipeIng: recipeIng[0],
+      recipeInst: recipeInstr[0],
+    }],
+  };
+  console.log('INFO', dataInfo);
+  // dataInfo.recipe.push({
+  //   recipeName: 'recipeNames[i]',
+  //   recipeIng: 'recipeIng[i]',
+  //   recipeInst: 'recipeInstr[i]',
+  // });
+  // console.log('INFO PARSED', JSON.parse(dataInfo));
+  // eslint-disable-next-line no-plusplus
+  for (let i = 1; i < 5; i++) {
+    dataInfo.recipe.push({
+      recipeName: recipeNames[i],
+      recipeIng: recipeIng[i],
+      recipeInstr: recipeInstr[i],
+    });
+  }
+  console.log('INFO', dataInfo);
+  // const dataMap = new Map(Object.entries(dataInfo));
+  // console.log('DATA MAP ', dataMap);
   /*
   Displays the top recipe results to user
   The url for each recipe page will be unique url/$recipeName
   */
-  const renderResults = () => recipeNames.map((recipe) => (
+  const renderResults = () => dataInfo.recipe.map((recipe) => (
     <div>
       <ListGroup.Item as="li">
         <div className="resultItem" >
               <Link
-              to={`/recipeResults/${recipe}`}
-              key={recipe}
+              to={`/recipeResults/${recipe.recipeName}/${recipe.recipeIng}/${recipe.recipeInstr}`}
+              key={recipe.recipeName}
               >
-                  {recipe}
+                  {recipe.recipeName}
               </Link>
           </div>
         <Outlet/>
