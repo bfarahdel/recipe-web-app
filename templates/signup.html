@@ -1,0 +1,16 @@
+<html>
+
+<head></head>
+
+<body>
+    <h1>Sign up!</h1>
+    <form method="POST" action="/signup">
+        <input class="input is-large" type="text" name="username" placeholder="Your Username" autofocus="">
+        <input class="input is-large" type="text" name="email" placeholder="Your Email" autofocus="">
+        <input class="input is-large" type="text" name="password" placeholder="Your Password" autofocus="">
+        <input type="submit" value="Submit">
+    </form>
+    <a href={{ url_for('login') }}>Log In</a>
+</body>
+
+</html>
