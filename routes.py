@@ -7,46 +7,52 @@ from vars import APP
 from vars import db
 from vars import bcrypt
 import flask
-from flask import redirect, url_for
+from flask import redirect, url_for, flash, render_template
 from flask_login import login_user, current_user, login_required, logout_user
 from models import Recipe, User
 import sys
 import json
 from spoon import Spoon
+from forms import registrationForm, loginForm
 
 BP = flask.Blueprint("bp", __name__, template_folder="./build")
 
 
-@BP.route("/")
+@BP.route("/", methods=["GET", "POST"])
 def main():
     """Loads main index.html page"""
 
     print("ENTEREDD MAIN FUNCRTION!!", file=sys.stderr)
 
-    searched = search_recipe()
-    recipe_ids = searched["recipe_ids"]
-    recipe_names = searched["recipe_names"]
-    recipe_imgs = searched["recipe_imgs"]
-    recipe_ing = searched["recipe_ing"]
-    recipe_instr = searched["recipe_instructions"]
+    if current_user.is_authenticated:
 
-    data_info = {
-        "recipeIds": recipe_ids,
-        "recipeNames": recipe_names,
-        "recipeImgs": recipe_imgs,
-        "recipeIng": recipe_ing,
-        "recipeInstr": recipe_instr,
-    }
+        searched = search_recipe()
+        recipe_ids = searched["recipe_ids"]
+        recipe_names = searched["recipe_names"]
+        recipe_imgs = searched["recipe_imgs"]
+        recipe_ing = searched["recipe_ing"]
+        recipe_instr = searched["recipe_instructions"]
 
-    data = json.dumps(data_info)
+        data_info = {
+            "recipeIds": recipe_ids,
+            "recipeNames": recipe_names,
+            "recipeImgs": recipe_imgs,
+            "recipeIng": recipe_ing,
+            "recipeInstr": recipe_instr,
+        }
 
-    return flask.render_template(
-        "index.html",
-        data=data,
-    )
+        data = json.dumps(data_info)
+
+        return flask.render_template(
+            "index.html",
+            data=data,
+        )
+    else:
+        print("User not logged in")
+        return flask.redirect(flask.url_for("login_post"))
 
 
-@BP.route("/add_recipe", methods=["POST"])
+@BP.route("/add_recipe", methods=["GET", "POST"])
 def search_recipe():
     """Returns a json of recipe info"""
     try:
@@ -93,51 +99,48 @@ def search_recipe():
 APP.register_blueprint(BP)
 
 
-@APP.route("/signup")
-def signup():
-    return flask.render_template("signup.html")
-
-
-@APP.route("/signup", methods=["POST"])
+@APP.route("/signup", methods=["GET", "POST"])
 def signup_post():
-    email = flask.request.form.get("email")
-    username = flask.request.form.get("username")
-    password = flask.request.form.get("password")
-    pw_hash = bcrypt.generate_password_hash(password).decode("utf-8")
-    user = User.query.filter_by(username=username).first()
-    if user:
-        pass
-    else:
-        user = User(username=username, password=pw_hash, email=email)
+    if current_user.is_authenticated:
+        return redirect(url_for("bp.main"))
+    form = registrationForm()
+    if form.validate_on_submit():
+        user = User(
+            username=form.username.data,
+            email=form.email.data,
+            password=bcrypt.generate_password_hash(form.password.data).decode("utf-8"),
+        )
         db.session.add(user)
         db.session.commit()
+        flash("Your account is now created and you can log in below", "success")
+        return redirect(url_for("login_post"))
+    return render_template("signup.html", form=form)
 
-    return flask.redirect(flask.url_for("login"))
 
-
-@APP.route("/login", methods=["POST"])
+@APP.route("/login", methods=["GET", "POST"])
 def login_post():
-    email = flask.request.form.get("email")
-    password = flask.request.form.get("password")
+    if current_user.is_authenticated:
+        return redirect(url_for("bp.main"))
+    form = loginForm()
 
-    user = User.query.filter_by(email=email).first()
+    if form.validate_on_submit():
+        user = User.query.filter_by(email=form.email.data).first()
+        if user:
+            is_correct_password = bcrypt.check_password_hash(
+                user.password, form.password.data
+            )
+            if is_correct_password:
+                login_user(user)
+                return redirect(url_for("bp.main"))
+            else:
+                flash("Incorrect password", "error")
+        else:
+            flash("User does not exist", "error")
 
-    if user:
-        is_correct_password = bcrypt.check_password_hash(user.password, password)
-        if is_correct_password:
-            login_user(user)
-            return flask.redirect(flask.url_for("bp.main"))
-        return flask.jsonify({"status": 401, "reason": "Email or Password Error"})
-    else:
-        return flask.jsonify({"status": 401, "reason": "Email or Password Error"})
-
-
-@APP.route("/login")
-def login():
-    return flask.render_template("login.html")
+    return render_template("login.html", form=form)
 
 
 @APP.route("/logout")
 def logout():
     logout_user()
-    return redirect(url_for("login"))
+    return redirect(url_for("login_post"))
