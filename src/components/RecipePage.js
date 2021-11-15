@@ -1,7 +1,9 @@
+import { useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import { Heart } from 'react-bootstrap-icons';
 import { ListGroup, Card } from 'react-bootstrap';
+import { GlobalContext } from '../context/GlobalState';
 import Header from './Header';
 
 const RecipePage = () => {
@@ -10,6 +12,7 @@ const RecipePage = () => {
   const parsedIng = params.recipeIng.split(',');
   const parsedInstr = params.recipeInstr.split(',');
 
+  const { addRecipe } = useContext(GlobalContext);
   /*
   Displays the top recipe results to user
 
@@ -38,7 +41,7 @@ const RecipePage = () => {
       <h2 className="recipeTitle">RECIPE PAGE {params.recipeName}</h2>
       <div className="leftSide">
         <div class="btnContainer">
-          <Button variant="outline-dark" className="favBtn">
+          <Button variant="outline-dark" className="favBtn" onClick ={() => addRecipe(params.recipeName) }>
             <Heart /> Add To Favs
           </Button>
         </div>
