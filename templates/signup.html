@@ -3,14 +3,69 @@
 <head></head>
 
 <body>
+    {% for mesg in get_flashed_messages() %}
+    <spam>{{ mesg }}</spam>
+    {% endfor %}
+
     <h1>Sign up!</h1>
-    <form method="POST" action="/signup">
-        <input class="input is-large" type="text" name="username" placeholder="Your Username" autofocus="">
-        <input class="input is-large" type="text" name="email" placeholder="Your Email" autofocus="">
-        <input class="input is-large" type="text" name="password" placeholder="Your Password" autofocus="">
-        <input type="submit" value="Submit">
+
+    <form method="POST" action="">
+        {{ form.hidden_tag() }}
+        <fieldset class="field">
+            <div>
+                {{ form.username.label }}
+                {% if form.username.errors %}
+                {{ form.username(class="border") }}
+                <div>
+                    <div class="error">
+                        {% for error in form.username.errors %}
+                        <span> {{ error }}</span>
+                        {% endfor%}
+                    </div>
+                </div>
+                {% else %}
+                {{ form.username(class="border") }}
+                {% endif %}
+            </div>
+
+            <div>
+                {{ form.email.label }}
+                {% if form.email.errors %}
+                {{ form.email(class="border") }}
+                <div>
+                    <div class="error">
+                        {% for error in form.email.errors %}
+                        <span> {{ error }}</span>
+                        {% endfor%}
+                    </div>
+                </div>
+                {% else %}
+                {{ form.email(class="border") }}
+                {% endif %}
+            </div>
+
+            <div>
+                {{ form.password.label }}
+                {% if form.password.errors %}
+                {{ form.password(class="border") }}
+                <div>
+                    <div class="error">
+                        {% for error in form.password.errors %}
+                        <span class="error"> {{ error }}</span>
+                        {% endfor%}
+                    </div>
+                </div>
+                {% else %}
+                {{ form.password(class="border") }}
+                {% endif %}
+            </div>
+
+        </fieldset>
+        <div class="field">
+            {{ form.submit(class = "button") }}
+        </div>
     </form>
-    <a href={{ url_for('login') }}>Log In</a>
+    <a href={{ url_for('login_post') }}>Log In</a>
 </body>
 
 </html>

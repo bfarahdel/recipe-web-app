@@ -3,13 +3,49 @@
 <head></head>
 
 <body>
+    {% for mesg in get_flashed_messages() %}
+    <spam>{{ mesg }}</spam>
+    {% endfor %}
+
     <h1>Log In</h1>
-    <form method="POST" action="/login">
-        <input type="text" name="email" placeholder="Your Email">
-        <input type="text" name="password" placeholder="Your Password">
-        <input type="submit" value="Submit">
+
+    <form method="POST" action="">
+        {{ form.hidden_tag() }}
+        <fieldset class="field">
+            <div>
+                {{ form.email.label }}
+                {% if form.email.errors %}
+                {{ form.email(class="border") }}
+                <div>
+                    <div class="error">
+                        {% for error in form.email.errors %}
+                        <span> {{ error }}</span>
+                        {% endfor%}
+                    </div>
+                </div>
+                {% else %}
+                {{ form.email(class="border") }}
+                {% endif %}
+            </div>
+            <div>
+                {{ form.password.label }}
+                {% if form.password.errors %}
+                {{ form.password(class="border") }}
+                <div class="error">
+                    {% for error in form.password.errors %}
+                    <span> {{ error }}</span>
+                    {% endfor%}
+                </div>
+                {% else %}
+                {{ form.password(class="border") }}
+                {% endif %}
+            </div>
+        </fieldset>
+        <div class="field">
+            {{ form.submit(class="button") }}
+        </div>
     </form>
-    <a href={{ url_for('signup') }}>Sign Up</a>
+    <a href={{ url_for('signup_post') }}>Sign Up</a>
 </body>
 
 </html>
