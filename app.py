@@ -1,9 +1,9 @@
 """
-This file is just used to run the application 
+This file is just used to run the application
 
 """
-from vars import APP
 import os
+from vars import APP
 
 if __name__ == "__main__":
     APP.run(

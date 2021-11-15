@@ -43,25 +43,38 @@ function Main(props) {
   console.log('RECIPE Instr - ', recipeInstr);
   console.log('RECIPE IDS - ', recipeIng);
 
-  // function deleteId(favId) {
-  //   const favList = [...favorites];
-  //   favList.splice(favId, 1);
-  //   setFavorites(favList);
-  // }
+  const dataInfo = {
+    recipe: [{
+      recipeName: recipeNames[0],
+      recipeIng: recipeIng[0],
+      recipeInst: recipeInstr[0],
+    }],
+  };
+  console.log('INFO', dataInfo);
+
+  // eslint-disable-next-line no-plusplus
+  for (let i = 1; i < 5; i++) {
+    dataInfo.recipe.push({
+      recipeName: recipeNames[i],
+      recipeIng: recipeIng[i],
+      recipeInstr: recipeInstr[i],
+    });
+  }
+  console.log('INFO', dataInfo);
 
   /*
   Displays the top recipe results to user
   The url for each recipe page will be unique url/$recipeName
   */
-  const renderResults = () => recipeNames.map((recipe) => (
+  const renderResults = () => dataInfo.recipe.map((recipe) => (
     <div>
       <ListGroup.Item as="li">
         <div className="resultItem" >
               <Link
-              to={`/recipeResults/${recipe}`}
-              key={recipe}
+              to={`/recipeResults/${recipe.recipeName}/${recipe.recipeIng}/${recipe.recipeInstr}`}
+              key={recipe.recipeName}
               >
-                  {recipe}
+                  {recipe.recipeName}
               </Link>
           </div>
         <Outlet/>
