@@ -1,16 +1,34 @@
 <html>
+    <head> 
+        <link rel="stylesheet" href={{ url_for('static', filename='style.css') }}/>
+        <script src="https://kit.fontawesome.com/c7f3da47f3.js" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <h1>RECIPE FINDER</h1>
+        <div class="container1">
+            <div class="login-box">
+                <h2>SIGNUP</h2>
+                <form method="POST" action="/signup">
+                    <div class="input-box">
+                        <i class="far fa-user"></i>
+                        <input type="text" name="username" placeholder="    Username..." class="form-control" autofocus="">
+                    </div>
+                    <div class="input-box">
+                        <i class="fas fa-lock"></i>
+                        <input type="text" name="password" placeholder="     Password..." class="form-control" autofocus="">
+                    </div>
+                </form>
+                    <div>   
+                       <font size ="3">Already a user? <a href={{ url_for('login') }}>Log In</a> </font>
+                    </div>
+                    <div class="login-button">
+                            <input type="submit" value="SIGNUP" class="login-button">
+                           
+                     </div>
+                
+            </div>
+           
+        </div>
 
-<head></head>
-
-<body>
-    <h1>Sign up!</h1>
-    <form method="POST" action="/signup">
-        <input class="input is-large" type="text" name="username" placeholder="Your Username" autofocus="">
-        <input class="input is-large" type="text" name="email" placeholder="Your Email" autofocus="">
-        <input class="input is-large" type="text" name="password" placeholder="Your Password" autofocus="">
-        <input type="submit" value="Submit">
-    </form>
-    <a href={{ url_for('login') }}>Log In</a>
-</body>
-
+    </body>
 </html>

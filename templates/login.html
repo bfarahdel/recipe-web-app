@@ -1,15 +1,35 @@
 <html>
 
-<head></head>
+<head>
+    <link rel="stylesheet" href={{ url_for('static', filename='style.css') }}/>
+    <script src="https://kit.fontawesome.com/c7f3da47f3.js" crossorigin="anonymous"></script>
+</head>
 
 <body>
-    <h1>Log In</h1>
-    <form method="POST" action="/login">
-        <input type="text" name="email" placeholder="Your Email">
-        <input type="text" name="password" placeholder="Your Password">
-        <input type="submit" value="Submit">
-    </form>
-    <a href={{ url_for('signup') }}>Sign Up</a>
+    <h1>RECIPE FINDER</h1>
+    <div class="container1">
+        <div class="login-box">
+            <h2>LOGIN</h2>
+            <form method="POST" action="/login"></form>
+                <div class="input-box">
+                    <i class="far fa-user"></i>
+                    <input type="text" name="username" placeholder="   Username..." class="form-control">
+                </div>
+                <div class="input-box">
+                    <i class="fas fa-lock"></i>
+                    <input type="text" name="password" placeholder="   Password..." class="form-control">
+                </div>
+                </form>
+                <div>   
+                   <font size ="3">Not a user? <a href={{ url_for('signup') }}>Sign Up</a></font>
+                </div>
+                    <div class="login-button">
+                        <input type="submit" value="LOGIN" class="login-button">
+                    </div>
+            
+        </div>
+       
+    </div>
 </body>
 
 </html>
