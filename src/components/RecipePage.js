@@ -14,7 +14,7 @@ const RecipePage = () => {
   Displays the top recipe results to user
 
   The url for each recipe page will be unique followed by
-  the some attribute (name)
+  the some attributme (name)
   */
   const renderIngredients = () => parsedIng.map((ing) => (
     <div>

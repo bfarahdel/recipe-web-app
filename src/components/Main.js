@@ -43,11 +43,6 @@ function Main(props) {
   console.log('RECIPE Instr - ', recipeInstr);
   console.log('RECIPE IDS - ', recipeIng);
 
-  // function deleteId(favId) {
-  //   const favList = [...favorites];
-  //   favList.splice(favId, 1);
-  //   setFavorites(favList);
-  // }
   const dataInfo = {
     recipe: [{
       recipeName: recipeNames[0],
@@ -56,12 +51,7 @@ function Main(props) {
     }],
   };
   console.log('INFO', dataInfo);
-  // dataInfo.recipe.push({
-  //   recipeName: 'recipeNames[i]',
-  //   recipeIng: 'recipeIng[i]',
-  //   recipeInst: 'recipeInstr[i]',
-  // });
-  // console.log('INFO PARSED', JSON.parse(dataInfo));
+
   // eslint-disable-next-line no-plusplus
   for (let i = 1; i < 5; i++) {
     dataInfo.recipe.push({
@@ -71,8 +61,7 @@ function Main(props) {
     });
   }
   console.log('INFO', dataInfo);
-  // const dataMap = new Map(Object.entries(dataInfo));
-  // console.log('DATA MAP ', dataMap);
+
   /*
   Displays the top recipe results to user
   The url for each recipe page will be unique url/$recipeName
