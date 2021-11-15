@@ -1,39 +1,39 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { Link, Outlet } from 'react-router-dom';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import { GlobalContext } from '../context/GlobalState';
+
 import Header from './Header';
 
 function Main(props) {
   const { ids, names, imgs } = props;
-
+  let { favList } = useContext(GlobalContext);
+  if (favList.length < 1) {
+    favList = ['ADD A RECIPE'];
+  }
   console.log('(MAIN JS) PROPS id:', ids, 'names', names, 'imgs: ', imgs);
+  console.log(' MAINNNN FAV LIST ', favList);
 
+  const test = favList;
   // renders each individual slide/recipe inside the slider component
   // and maps it based off of favortes
-  const renderSlides = () => [1, 2, 3, 4, 5, 6, 7, 8].map((num) => (
+  const renderSlides = () => test.map((fav) => (
     <div className="carousel">
       <div className="savedItem">
-          <h3>FAV {num}</h3>
+          <h3> {fav}</h3>
       </div>
     </div>
   ));
 
-  const [favorites, setFavorites] = useState([]);
   const [currSearch, setSearch] = useState([]);
   const [recipeIds, setIds] = useState([]);
   const [recipeNames, setNames] = useState([]);
   const [recipeImgs, setImgs] = useState([]);
   const [recipeInstr, setInstr] = useState([]);
   const [recipeIng, setIng] = useState([]);
-
-  function addFav(favId) {
-    const favList = [...favorites];
-    favList.push(favId);
-    setFavorites(favList);
-  }
 
   console.log('RECIPE NAMES - ', recipeNames);
   console.log('RECIPE IMGS - ', recipeImgs);
@@ -47,7 +47,7 @@ function Main(props) {
     recipe: [{
       recipeName: recipeNames[0],
       recipeIng: recipeIng[0],
-      recipeInst: recipeInstr[0],
+      recipeInstr: recipeInstr[0],
     }],
   };
   console.log('INFO', dataInfo);
@@ -124,7 +124,6 @@ function Main(props) {
               }}
             onKeyPress={(e) => {
               if (e.key === 'Enter') {
-                addFav(currSearch);
                 setSearch('');
                 submitSearch(currSearch);
               }

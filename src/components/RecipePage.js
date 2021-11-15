@@ -12,7 +12,9 @@ const RecipePage = () => {
   const parsedIng = params.recipeIng.split(',');
   const parsedInstr = params.recipeInstr.split(',');
 
-  const { addRecipe } = useContext(GlobalContext);
+  const { favList, addRecipe } = useContext(GlobalContext);
+
+  console.log('RECIPE PAGE FAV ', favList);
   /*
   Displays the top recipe results to user
 
@@ -37,7 +39,7 @@ const RecipePage = () => {
 
   return (
     <div className="recipeBody">
-      <Header />
+      <Header fav={favList} />
       <h2 className="recipeTitle">RECIPE PAGE {params.recipeName}</h2>
       <div className="leftSide">
         <div class="btnContainer">

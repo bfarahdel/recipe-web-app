@@ -3,24 +3,30 @@ import {
 } from 'react-bootstrap';
 import { Link, Outlet } from 'react-router-dom';
 
-function Header() {
+function Header(props) {
+  let favList = [];
   // Test data to mimick data from API
-  const testData = [
-    {
-      name: 'PIZZA',
-      calores: 550,
-    },
-    {
-      name: 'NY PIZZA',
-      calories: 200,
-    },
-    {
-      name: 'DEEP DISH PIZZA',
-      calories: 203,
-    },
-  ];
+  if ((props.fav) === undefined) {
+    favList = ['ADD A RECIPE'];
+  } else {
+    favList = props.fav;
+  }
+  // const testData = [
+  //   {
+  //     name: 'PIZZA',
+  //     calores: 550,
+  //   },
+  //   {
+  //     name: 'NY PIZZA',
+  //     calories: 200,
+  //   },
+  //   {
+  //     name: 'DEEP DISH PIZZA',
+  //     calories: 203,
+  //   },
+  // ];
   // Renders each Drop downn item for the favorites tab as Links
-  const renderFavs = () => testData.map((fav) => (
+  const renderFavs = () => favList.map((fav) => (
     <NavDropdown.Item as="li" href="">
       <div className="resultItem" >
 
@@ -39,18 +45,20 @@ function Header() {
   return (
     <div>
       <Navbar collapseOnSelect bg="light" expand="xl" className="navBar">
-          <Navbar.Brand href="#" className="navTitle">
+        <Link to='/'>
+          <Navbar.Brand className="navTitle">
             <h1>
             RECIPE FINDER
             </h1>
           </Navbar.Brand>
+        </Link>
             <Navbar.Text expand='lg' className="justify">
               <Nav
                 className="me-auto my-2 my-lg-3 alignRight"
                 style={{ maxHeight: '170px' }}
                 navbarScroll
               >
-                <Nav.Link href="" className="navLink">HOME</Nav.Link>
+                <Nav.Link href="/" className="navLink">HOME</Nav.Link>
                 <NavDropdown title="FAVS" className="navLink" id="navbarScrollingDropdown">
                   {renderFavs()}
                 </NavDropdown>
