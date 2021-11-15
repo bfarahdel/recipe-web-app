@@ -23,12 +23,14 @@ function Header() {
   const renderFavs = () => testData.map((fav) => (
     <NavDropdown.Item as="li" href="">
       <div className="resultItem" >
+
         <Link
         to={`/recipeResults/${fav.name}`}
         key={fav.name}
         >
             {fav.name}
         </Link>
+
       </div>
       <Outlet/>
     </NavDropdown.Item>
