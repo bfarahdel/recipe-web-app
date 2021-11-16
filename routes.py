@@ -123,8 +123,8 @@ def signup_post():
         if USERNAME != None and EMAIL != None:
             u = Validation(USERNAME)
             e = Validation(EMAIL)
-            u.validation_username()
-            e.validation_email()
+            print("Username validation: ", u.validation_username())
+            print("Email validation: ", e.validation_email())
 
     return render_template("signup.html", form=form)
 
