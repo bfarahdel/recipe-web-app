@@ -4,19 +4,21 @@
 class Validation:
     """Validates if the user used the correct login credentials"""
 
-    def __init__(self, word):
-        self.word = word
+    def __init__(self, validate) -> None:
+        self.validate = validate
 
-    def validation_email(self):
+    def validation_email(self, user_in):
         """Validates the user's email"""
-        if self.word.find("@") == -1:
-            return False
+        if self.validate:
+            if user_in.find("@") == -1:
+                return False
+            return True
+        return False
 
-        return True
-
-    def validation_username(self):
+    def validation_username(self, user_in):
         """Validates the user's username"""
-        if len(self.word) > 10:
-            return False
-
-        return True
+        if self.validate:
+            if len(user_in) < 2 or len(user_in) > 20:
+                return False
+            return True
+        return False
