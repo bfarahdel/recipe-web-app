@@ -17,12 +17,13 @@ function Main(props) {
   console.log('(MAIN JS) PROPS id:', ids, 'names', names, 'imgs: ', imgs);
   console.log(' MAINNNN FAV LIST ', favList);
 
-  const test = favList;
+  const checkData = (data) => console.log('SLIDE DATA ', data);
   // renders each individual slide/recipe inside the slider component
   // and maps it based off of favortes
-  const renderSlides = () => test.map((fav) => (
+  const renderSlides = () => favList.map((fav) => (
     <div className="carousel">
       <div className="savedItem">
+          {checkData(fav)}
           <h3> {fav}</h3>
       </div>
     </div>
@@ -108,7 +109,7 @@ function Main(props) {
 
   return (
     <div className="mainBody">
-        <Header />
+        <Header fav = {favList} />
 
         <div className="sliderContainer">
             <Slider slidesToShow={3} dots={true}>{renderSlides()}</Slider>

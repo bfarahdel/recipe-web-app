@@ -11,6 +11,7 @@ function Header(props) {
   } else {
     favList = props.fav;
   }
+  console.log('HEADER PROPS ', props.fav, 'HEADER FAV LIST', favList);
   // const testData = [
   //   {
   //     name: 'PIZZA',
@@ -26,7 +27,7 @@ function Header(props) {
   //   },
   // ];
   // Renders each Drop downn item for the favorites tab as Links
-  const renderFavs = () => favList.map((fav) => (
+  const renderFavs = () => props.fav.map((fav) => (
     <NavDropdown.Item as="li" href="">
       <div className="resultItem" >
 
@@ -58,13 +59,13 @@ function Header(props) {
                 style={{ maxHeight: '170px' }}
                 navbarScroll
               >
-                <Nav.Link href="/" className="navLink">HOME</Nav.Link>
+                <Link to="/" className="navLink">HOME</Link>
                 <NavDropdown title="FAVS" className="navLink" id="navbarScrollingDropdown">
                   {renderFavs()}
                 </NavDropdown>
-                <Nav.Link href="#" className="navLink">
+                <Link to="/" className="navLink">
                   PROFILE
-                </Nav.Link>
+                </Link>
               </Nav>
             </Navbar.Text>
       </Navbar>
