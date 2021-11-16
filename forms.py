@@ -6,11 +6,16 @@ from models import User, Recipe
 from flask_login import current_user
 
 
+def correct_email(form, field):
+    if field.data.find("@") == -1:
+        raise ValidationError("This is not a valid email")
+
+
 class registrationForm(FlaskForm):
     username = StringField(
         "Username", validators=[DataRequired(), Length(min=2, max=20)]
     )
-    email = EmailField("Email", validators=[DataRequired()])
+    email = StringField("Email", validators=[DataRequired(), correct_email])
     password = PasswordField(
         "Password", validators=[DataRequired(), Length(min=6, max=12)]
     )

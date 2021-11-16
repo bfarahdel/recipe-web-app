@@ -7,13 +7,14 @@ from vars import APP
 from vars import db
 from vars import bcrypt
 import flask
-from flask import redirect, url_for, flash, render_template
+from flask import redirect, url_for, flash, render_template, request
 from flask_login import login_user, current_user, login_required, logout_user
 from models import Recipe, User
 import sys
 import json
 from spoon import Spoon
 from forms import registrationForm, loginForm
+from validations import Validation
 
 BP = flask.Blueprint("bp", __name__, template_folder="./build")
 
@@ -104,6 +105,7 @@ def signup_post():
     if current_user.is_authenticated:
         return redirect(url_for("bp.main"))
     form = registrationForm()
+
     if form.validate_on_submit():
         user = User(
             username=form.username.data,
@@ -114,6 +116,16 @@ def signup_post():
         db.session.commit()
         flash("Your account is now created and you can log in below", "success")
         return redirect(url_for("login_post"))
+    else:
+        USERNAME = form.username.data
+        EMAIL = form.email.data
+
+        if USERNAME != None and EMAIL != None:
+            u = Validation(True)
+            e = Validation(True)
+            print("Username validation: ", u.validation_username(USERNAME))
+            print("Email validation: ", e.validation_email(EMAIL))
+
     return render_template("signup.html", form=form)
 
 
