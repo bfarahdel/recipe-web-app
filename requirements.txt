@@ -5,5 +5,6 @@ testresources
 psycopg2-binary
 Flask-SQLAlchemy==2.1
 flask_login
+flask_bcrypt
 WTForms==2.3.3
 Flask-WTF==0.15.1

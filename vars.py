@@ -13,7 +13,7 @@ from flask_bcrypt import Bcrypt
 load_dotenv(find_dotenv())
 
 APP = flask.Flask(__name__, static_folder="./build/static")
-APP.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///test.db"
+APP.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("DATABASE_URL")
 APP.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 APP.secret_key = os.getenv("secret_key")
 
