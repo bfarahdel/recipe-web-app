@@ -13,7 +13,7 @@ from vars import db
 from vars import bcrypt
 from models import User
 from spoon import Spoon
-from forms import registrationForm, loginForm
+from forms import RegistrationForm, LoginForm
 from validations import Validation
 
 BP = flask.Blueprint("bp", __name__, template_folder="./build")
@@ -105,7 +105,7 @@ def signup_post():
     """This function deals with sign_up page"""
     if current_user.is_authenticated:
         return redirect(url_for("bp.main"))
-    form = registrationForm()
+    form = RegistrationForm()
 
     if form.validate_on_submit():
         user = User(
@@ -135,7 +135,7 @@ def login_post():
     """This function deals with login page"""
     if current_user.is_authenticated:
         return redirect(url_for("bp.main"))
-    form = loginForm()
+    form = LoginForm()
 
     if form.validate_on_submit():
         user = User.query.filter_by(  # pylint: disable=E1101
