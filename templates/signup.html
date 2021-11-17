@@ -1,23 +1,125 @@
 <html>
 
 <head>
+    <style>
+        body{
+    margin: 0;
+    padding: 0;
+    font-family: Work Sans;
+    background-color:lightgray;
+}
 
+
+h1{
+    padding-top: 40px;
+    color: black;
+    text-align: center;
+    font-family: work sans;
+    font-weight: bold;
+    font-size: 50;
+
+}
+h2{
+    color:black;
+    text-align: center;
+}
+.container1{
+    display: flex;
+    flex-direction:  column;
+    align-items: center;
+    justify-content: center;
+   
+    height: 100%;
+    width: 100%;
+   
+
+
+}
+
+.login-box{
+    background-color:lightgray;
+    padding-top: 2px;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    width: 600px;
+    height: 400;
+    font-size:25px;
+    border-radius: 10px;
+    font-family: Work Sans;
+    font: bold;
+    
+    box-shadow: 0 0 9px black;
+    
+}
+.input-box{
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-content: center;
+    align-items: center;
+   
+
+   
+}
+input[type ="text"].form-control{
+    font-size: 16;
+    outline: none;
+    border:none;
+    width: 60% ;
+   
+    border-radius: 20px;
+    padding: 16px;
+    border-radius: 2-x;
+    transition: all 0.3s ease;
+   
+   
+    
+    }
+
+    
+ .login-button input{
+    outline: none;
+    border:none;
+    align-items: center;
+    align-content: center;
+    width: 500px;
+    background-color: black;
+    color: #FFF;
+    padding: 20px;
+    display: block;
+    font-size: 20;
+    box-shadow: 0 0 9px black;
+   
+}
+
+.input-box i{
+    margin: 15 100 -100px -160px;
+    position: absolute;
+}
+    </style>
+    <script src="https://kit.fontawesome.com/c7f3da47f3.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
     {% for mesg in get_flashed_messages() %}
     <spam>{{ mesg }}</spam>
     {% endfor %}
-
-    <h1>Sign up!</h1>
+    <h1>RECIPE FINDER</h1>
+    <div class="container1">
+        <div class="login-box">
+            <h2>SIGNUP</h2>
 
     <form method="POST" action="">
         {{ form.hidden_tag() }}
-        <fieldset class="field">
+        <fieldset class="">
             <div>
-                {{ form.username.label }}
+                <i class="far fa-user"></i>
+                {{ form.username.label(class="form-control") }}
                 {% if form.username.errors %}
-                {{ form.username(class="border") }}
+                {{ form.username(class="form-control") }}
                 <div>
                     <div class="error">
                         {% for error in form.username.errors %}
@@ -26,14 +128,15 @@
                     </div>
                 </div>
                 {% else %}
-                {{ form.username(class="border") }}
+                {{ form.username(class="") }}
                 {% endif %}
             </div>
 
             <div>
-                {{ form.email.label }}
+                <i class="far fa-user"></i>
+                {{ form.email.label(class = "form-control") }}
                 {% if form.email.errors %}
-                {{ form.email(class="border") }}
+                {{ form.email(class="form-control") }}
                 <div>
                     <div class="error">
                         {% for error in form.email.errors %}
@@ -42,14 +145,15 @@
                     </div>
                 </div>
                 {% else %}
-                {{ form.email(class="border") }}
+                {{ form.email(class="form-control") }}
                 {% endif %}
             </div>
 
             <div>
-                {{ form.password.label }}
+                <i class="fas fa-lock"></i>
+                {{ form.password.label(class ="form-control") }}
                 {% if form.password.errors %}
-                {{ form.password(class="border") }}
+                {{ form.password(class="form-control") }}
                 <div>
                     <div class="error">
                         {% for error in form.password.errors %}
@@ -58,16 +162,19 @@
                     </div>
                 </div>
                 {% else %}
-                {{ form.password(class="border") }}
+                {{ form.password(class="form-control") }}
                 {% endif %}
             </div>
 
         </fieldset>
-        <div class="field">
-            {{ form.submit(class = "button") }}
+        <font size ="3">Already a user? <a href={{ url_for('login_post') }}>Log In</a> </font>
+        <div class="login-button">
+            {{ form.submit(class = "login-button") }}
         </div>
     </form>
-    <a href={{ url_for('login_post') }}>Log In</a>
+     </div>
+           
+    </div>
 </body>
 
 </html>

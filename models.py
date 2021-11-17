@@ -1,7 +1,11 @@
 "This is models"
+from sqlalchemy.dialects.postgresql import JSON
 from flask_login import UserMixin
 from vars import db, login_manager
-from sqlalchemy.dialects.postgresql import JSON
+
+
+# pylint: disable=E1101
+# pylint: disable=R0903
 
 
 @login_manager.user_loader
@@ -13,7 +17,8 @@ def load_user(user_name):
 
 class User(UserMixin, db.Model):
     """
-    DOCSTRING"""
+    This is ORM for saved Users
+    """
 
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(80))
@@ -26,7 +31,7 @@ class User(UserMixin, db.Model):
 
 class Recipe(db.Model):
     """
-    {'id': [654944, 632778], 'title': ['Pasta With Salmon Cream Sauce', 'Artisan Farfalle Pasta With Smoked Salmon and Cream Sauce'], 'image': ['https://spoonacular.com/recipeImages/654944-312x231.jpg', 'https://spoonacular.com/recipeImages/632778-312x231.jpg']}
+    This is ORM for saved Receipes
 
     """
 

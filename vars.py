@@ -3,8 +3,8 @@
 This file has all the configurations for flask, database and login
 
 """
-import flask
 import os
+import flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from dotenv import load_dotenv, find_dotenv
@@ -23,4 +23,5 @@ bcrypt = Bcrypt(APP)
 login_manager = LoginManager(APP)
 login_manager.login_view = "login_page"
 
-import routes
+# pylint: disable=W0611
+import routes  # pylint: disable=C0413
