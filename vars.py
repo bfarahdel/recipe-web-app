@@ -24,4 +24,5 @@ login_manager = LoginManager(APP)
 login_manager.login_view = "login_page"
 
 # pylint: disable=W0611
+# pylint: disable=R0401
 import routes  # pylint: disable=C0413
