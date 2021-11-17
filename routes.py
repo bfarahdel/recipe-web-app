@@ -3,15 +3,15 @@
 This file has all the route definitions
 
 """
+import sys
+import json
+import flask
+from flask import redirect, url_for, flash, render_template
+from flask_login import login_user, current_user, logout_user
 from vars import APP
 from vars import db
 from vars import bcrypt
-import flask
-from flask import redirect, url_for, flash, render_template, request
-from flask_login import login_user, current_user, login_required, logout_user
-from models import Recipe, User
-import sys
-import json
+from models import User
 from spoon import Spoon
 from forms import registrationForm, loginForm
 from validations import Validation
@@ -48,9 +48,9 @@ def main():
             "index.html",
             data=data,
         )
-    else:
-        print("User not logged in")
-        return flask.redirect(flask.url_for("login_post"))
+
+    print("User not logged in")
+    return flask.redirect(flask.url_for("login_post"))
 
 
 @BP.route("/add_recipe", methods=["GET", "POST"])
@@ -102,6 +102,7 @@ APP.register_blueprint(BP)
 
 @APP.route("/signup", methods=["GET", "POST"])
 def signup_post():
+    """This function deals with sign_up page"""
     if current_user.is_authenticated:
         return redirect(url_for("bp.main"))
     form = registrationForm()
@@ -112,31 +113,34 @@ def signup_post():
             email=form.email.data,
             password=bcrypt.generate_password_hash(form.password.data).decode("utf-8"),
         )
-        db.session.add(user)
-        db.session.commit()
+        db.session.add(user)  # pylint: disable=E1101
+        db.session.commit()  # pylint: disable=E1101
         flash("Your account is now created and you can log in below", "success")
         return redirect(url_for("login_post"))
-    else:
-        USERNAME = form.username.data
-        EMAIL = form.email.data
 
-        if USERNAME != None and EMAIL != None:
-            u = Validation(True)
-            e = Validation(True)
-            print("Username validation: ", u.validation_username(USERNAME))
-            print("Email validation: ", e.validation_email(EMAIL))
+    username_from_form = form.username.data
+    email_from_form = form.email.data
+
+    if username_from_form is not None and email_from_form is not None:
+        u_name = Validation(True)
+        e_mail = Validation(True)
+        print("Username validation: ", u_name.validation_username(username_from_form))
+        print("Email validation: ", e_mail.validation_email(email_from_form))
 
     return render_template("signup.html", form=form)
 
 
 @APP.route("/login", methods=["GET", "POST"])
 def login_post():
+    """This function deals with login page"""
     if current_user.is_authenticated:
         return redirect(url_for("bp.main"))
     form = loginForm()
 
     if form.validate_on_submit():
-        user = User.query.filter_by(email=form.email.data).first()
+        user = User.query.filter_by(  # pylint: disable=E1101
+            email=form.email.data
+        ).first()
         if user:
             is_correct_password = bcrypt.check_password_hash(
                 user.password, form.password.data
@@ -144,8 +148,9 @@ def login_post():
             if is_correct_password:
                 login_user(user)
                 return redirect(url_for("bp.main"))
-            else:
-                flash("Incorrect password", "error")
+
+            flash("Incorrect password", "error")
+
         else:
             flash("User does not exist", "error")
 
@@ -154,5 +159,6 @@ def login_post():
 
 @APP.route("/logout")
 def logout():
+    """This function deals with logging out"""
     logout_user()
     return redirect(url_for("login_post"))
