@@ -11,9 +11,11 @@ import Header from './Header';
 function Main(props) {
   const { ids, names, imgs } = props;
   let { favList } = useContext(GlobalContext);
+
   if (favList.length < 1) {
     favList = ['ADD A RECIPE'];
   }
+
   console.log('(MAIN JS) PROPS id:', ids, 'names', names, 'imgs: ', imgs);
   console.log(' MAINNNN FAV LIST ', favList);
 
