@@ -20,7 +20,7 @@ test.each(links)(
   'Check each navbar href',
   (link) => {
     render(<NavBar />);
-    const linkDom = screen.getByText(link.text);
-    expect(linkDom).toHaveAttribute('href', link.location);
+    const linkNav = screen.getByText(link.text);
+    expect(linkNav).toHaveAttribute('href', link.location);
   },
 );
