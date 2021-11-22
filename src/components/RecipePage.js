@@ -12,9 +12,7 @@ const RecipePage = () => {
   const parsedIng = params.recipeIng.split(',');
   const parsedInstr = params.recipeInstr.split(',');
 
-  const { favList, addRecipe } = useContext(GlobalContext);
-  const storedRecipe = favList.find((o) => o.id === addRecipe.id);
-  const dupRecipe = !!storedRecipe;
+  const { favList, addRecipe, removeRecipe } = useContext(GlobalContext);
 
   console.log('RECIPE PAGE FAV ', favList);
   /*
@@ -45,8 +43,14 @@ const RecipePage = () => {
       <h2 className="recipeTitle">RECIPE PAGE {params.recipeName}</h2>
       <div className="leftSide">
         <div class="btnContainer">
+
           <Button variant="outline-dark" className="favBtn" onClick ={() => addRecipe(params.recipeName) }>
             <Heart /> Add To Favs
+          </Button>
+        </div>
+        <div class="btnContainer">
+        <Button variant="outline-dark" className="remBtn" onClick ={() => removeRecipe(params.id) }>
+            <Heart background-color ='black'/> Remove Favs
           </Button>
         </div>
         <div className="embed-responsive embed-responsive-16by9 ytContainer">

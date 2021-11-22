@@ -95,6 +95,12 @@
   height: 100%;
   margin-top: 45px;
 }
+.remBtn {
+  width: 100%;
+  height: 100%;
+  margin-top: 60px;
+  
+}
 .ytContainer {
   margin: 0 auto;
   width: 48%;
