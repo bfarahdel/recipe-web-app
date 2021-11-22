@@ -13,10 +13,8 @@ const RecipePage = () => {
   const parsedInstr = params.recipeInstr.split(',');
 
   const { favList, addRecipe } = useContext(GlobalContext);
-  // eslint-disable-next-line prefer-const
-  let storedRecipe = favList.find((o) => o.id === addRecipe.id);
-  // eslint-disable-next-line no-unneeded-ternary
-  const dupRecipe = storedRecipe ? true : false;
+  const storedRecipe = favList.find((o) => o.id === addRecipe.id);
+  const dupRecipe = !!storedRecipe;
 
   console.log('RECIPE PAGE FAV ', favList);
   /*
@@ -47,7 +45,7 @@ const RecipePage = () => {
       <h2 className="recipeTitle">RECIPE PAGE {params.recipeName}</h2>
       <div className="leftSide">
         <div class="btnContainer">
-          <Button variant="outline-dark" className="favBtn" disabled={dupRecipe} onClick ={() => addRecipe(params.recipeName) }>
+          <Button variant="outline-dark" className="favBtn" onClick ={() => addRecipe(params.recipeName) }>
             <Heart /> Add To Favs
           </Button>
         </div>
