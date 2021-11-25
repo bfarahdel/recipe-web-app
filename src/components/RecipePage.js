@@ -1,3 +1,5 @@
+/* eslint-disable no-use-before-define */
+/* eslint-disable no-param-reassign */
 import { useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
@@ -15,6 +17,7 @@ const RecipePage = () => {
   const { favList, addRecipe, removeRecipe } = useContext(GlobalContext);
 
   console.log('RECIPE PAGE FAV ', favList);
+
   /*
   Displays the top recipe results to user
 
@@ -48,8 +51,9 @@ const RecipePage = () => {
             <Heart /> Add To Favs
           </Button>
         </div>
+
         <div class="btnContainer">
-        <Button variant="outline-dark" className="remBtn" onClick ={() => removeRecipe(params.id) }>
+        <Button variant="outline-dark" className="remBtn" onClick ={() => removeRecipe(params.id)}>
             <Heart background-color ='black'/> Remove Favs
           </Button>
         </div>
