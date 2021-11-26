@@ -1,8 +1,12 @@
-import { createContext, useReducer } from 'react';
+import { createContext, useReducer, useEffect } from 'react';
 import AppReducer from './AppReducer';
+from vars import db;
+
 
 const initialState = {
-  favList: [],
+  favList: localStorage.getItem('favList') ? JSON.parse(localStorage.getItem('favList'))
+    : [],
+  // favList: [],
 };
 
 export const GlobalContext = createContext(initialState);
@@ -11,6 +15,10 @@ export const GlobalProvider = (props) => {
   // global state for the user's favorite list
   const [state, dispatch] = useReducer(AppReducer, initialState);
   console.log('fav list STATEE', state.favList);
+
+  useEffect(() => {
+   
+  }, [state]);
 
   // Function that gets called when user presses 'Add to Fav' button
   const addRecipe = (recipe) => {
