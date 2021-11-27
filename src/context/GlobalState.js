@@ -1,12 +1,9 @@
-import { createContext, useReducer, useEffect } from 'react';
+import { createContext, useReducer } from 'react';
+// import { responsivePropType } from 'react-bootstrap/esm/createUtilityClasses';
 import AppReducer from './AppReducer';
-from vars import db;
-
 
 const initialState = {
-  favList: localStorage.getItem('favList') ? JSON.parse(localStorage.getItem('favList'))
-    : [],
-  // favList: [],
+  favList: [],
 };
 
 export const GlobalContext = createContext(initialState);
@@ -16,12 +13,27 @@ export const GlobalProvider = (props) => {
   const [state, dispatch] = useReducer(AppReducer, initialState);
   console.log('fav list STATEE', state.favList);
 
-  useEffect(() => {
-   
-  }, [state]);
+  // const handleAdd = () => {
+  //   fetch('/add_recipe', {
+  //     method: 'POST',
+  //     body: JSON.stringify({
+  //       content: state.favList,
+  //     }),
+  //   });
+  // };
 
   // Function that gets called when user presses 'Add to Fav' button
   const addRecipe = (recipe) => {
+    fetch('/add_db_favList', {
+      method: 'POST',
+      body: JSON.stringify({
+        content: recipe,
+      }),
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+      },
+    }).then((response) => response.json()).then((message) => console.log(message));
+
     dispatch({ type: 'ADD_RECIPE_TO_FAV', payload: recipe });
   };
 

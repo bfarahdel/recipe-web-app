@@ -3,6 +3,7 @@
 This file has all the route definitions
 
 """
+import requests
 from vars import APP
 from vars import db
 from vars import bcrypt
@@ -144,3 +145,13 @@ def login_post():
 def logout():
     logout_user()
     return redirect(url_for("login_post"))
+
+@APP.route("/add_db_favList", methods=["POST"])
+def dbAdd():
+    request_data = json.load(requests.data)
+    newFavrecipe = Recipe(content = request_data['content'])
+
+    db.session.add(newFavrecipe)
+    db.session.commit()
+
+    return{'201': 'recipe saved'}
