@@ -46,8 +46,8 @@ function Header(props) {
   return (
     <div>
       <Navbar collapseOnSelect bg="light" expand="xl" className="navBar">
-        <Link to='/'>
-          <Navbar.Brand className="navTitle">
+        <Link className="navLink" to='/'>
+          <Navbar.Brand className="navTitle" bsPrefix="navTitle" >
             <h1>
             RECIPE FINDER
             </h1>
@@ -55,16 +55,20 @@ function Header(props) {
         </Link>
             <Navbar.Text expand='lg' className="justify">
               <Nav
-                className="me-auto my-2 my-lg-3 alignRight"
+                className="me-auto my-2 my-lg-3 justify-content-end"
                 style={{ maxHeight: '170px' }}
                 navbarScroll
               >
-                <Link to="/" className="navLink">HOME</Link>
-                <NavDropdown title="FAVS" className="navLink" id="navbarScrollingDropdown">
+                <Link to="/" className="navLink" bsPrefix="navLink">
+                  <Nav.Item>
+                    HOME
+                  </Nav.Item>
+                </Link>
+                <NavDropdown title="FAVS" className="favLink" bsPrefix="favLink" id="navbarScrollingDropdown">
                   {renderFavs()}
                 </NavDropdown>
-                <Link to="/" className="navLink">
-                  PROFILE
+                <Link to="/" className="navLink" bsPrefix="navLink">
+                    PROFILE
                 </Link>
               </Nav>
             </Navbar.Text>
