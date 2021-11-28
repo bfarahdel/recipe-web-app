@@ -1,7 +1,11 @@
+/* eslint-disable no-use-before-define */
+/* eslint-disable no-param-reassign */
+import { useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import { Heart } from 'react-bootstrap-icons';
 import { ListGroup, Card } from 'react-bootstrap';
+import { GlobalContext } from '../context/GlobalState';
 import Header from './Header';
 
 const RecipePage = () => {
@@ -9,6 +13,10 @@ const RecipePage = () => {
   console.log('PARAMSSSS', params);
   const parsedIng = params.recipeIng.split(',');
   const parsedInstr = params.recipeInstr.split(',');
+
+  const { favList, addRecipe, removeRecipe } = useContext(GlobalContext);
+
+  console.log('RECIPE PAGE FAV ', favList);
 
   /*
   Displays the top recipe results to user
@@ -34,12 +42,19 @@ const RecipePage = () => {
 
   return (
     <div className="recipeBody">
-      <Header />
+      <Header fav={favList} />
       <h2 className="recipeTitle">RECIPE PAGE {params.recipeName}</h2>
       <div className="leftSide">
         <div class="btnContainer">
-          <Button variant="outline-dark" className="favBtn">
+
+          <Button variant="outline-dark" className="favBtn" onClick ={() => addRecipe(params.recipeName) }>
             <Heart /> Add To Favs
+          </Button>
+        </div>
+
+        <div class="btnContainer">
+        <Button variant="outline-dark" className="remBtn" onClick ={() => removeRecipe(params.id)}>
+            <Heart background-color ='black'/> Remove Favs
           </Button>
         </div>
         <div className="embed-responsive embed-responsive-16by9 ytContainer">
