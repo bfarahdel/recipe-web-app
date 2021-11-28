@@ -8,4 +8,4 @@ flask_login
 flask_bcrypt
 WTForms==2.3.3
 Flask-WTF==0.15.1
-pyyoutube
+python-youtube
