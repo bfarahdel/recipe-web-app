@@ -102,8 +102,10 @@ def search_recipe():
 def fav_list():
     fav_recipes = request.json["recipeList"]
     print("RECIPE LIST FAV ", fav_recipes, file=sys.stderr)
-
-    return "return"
+    recipes = {
+        "fav_recipes": fav_recipes,
+    }
+    return recipes
 
 
 APP.register_blueprint(BP)
