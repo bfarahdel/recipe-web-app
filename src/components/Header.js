@@ -2,6 +2,7 @@ import {
   Navbar, Nav, NavDropdown,
 } from 'react-bootstrap';
 import { Link, Outlet } from 'react-router-dom';
+import logo from '../img/logo.png';
 
 function Header(props) {
   let favList = [];
@@ -48,9 +49,7 @@ function Header(props) {
       <Navbar collapseOnSelect bg="light" expand="xl" className="navBar">
         <Link className="navLink" to='/'>
           <Navbar.Brand className="navTitle" bsPrefix="navTitle" >
-            <h1>
-              RECIPE FINDER
-            </h1>
+            <img className="logoImg" src={logo} alt="" />
           </Navbar.Brand>
         </Link>
         <Navbar.Text expand='lg' className="justify">

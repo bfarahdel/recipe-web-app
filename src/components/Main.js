@@ -5,6 +5,8 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { GlobalContext } from '../context/GlobalState';
+import bg from '../img/bgg.png';
+// import block from '../img/block.png';
 
 import Header from './Header';
 
@@ -113,6 +115,22 @@ function Main(props) {
   return (
     <div className="mainBody">
         <Header fav = {favList} />
+
+        <div className="banner">
+          <div className="leftBanner">
+
+            <div className="bannerText">
+              <h2>Stop <span className="textColor">Looking</span> and</h2>
+              <h2 className="start">Start <span className="textColor">Cooking</span> </h2>
+            </div>
+          </div>
+          <div className="rightBanner">
+            <img className="bannerImg" src={bg} alt="" />
+          </div>
+        </div>
+        {/* <div>
+          <img className="blockImg" src={block} alt="" />
+        </div> */}
 
         <div className="sliderContainer">
             <Slider slidesToShow={3} dots={true}>{renderSlides()}</Slider>
