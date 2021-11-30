@@ -6,6 +6,7 @@ This file has all the route definitions
 import sys
 import json
 import flask
+from flask import request
 from flask import redirect, url_for, flash, render_template
 from flask_login import login_user, current_user, logout_user
 from vars import APP
@@ -95,6 +96,14 @@ def search_recipe():
     flask.jsonify({"recipe_ing": recipe_ing})
 
     return recipe_info
+
+
+@BP.route("/fav_list", methods=["GET", "POST"])
+def fav_list():
+    fav_recipes = request.json["recipeList"]
+    print("RECIPE LIST FAV ", fav_recipes, file=sys.stderr)
+
+    return "return"
 
 
 APP.register_blueprint(BP)

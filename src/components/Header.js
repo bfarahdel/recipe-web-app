@@ -60,7 +60,7 @@ function Header(props) {
                 navbarScroll
               >
                 <Link to="/" className="navLink" bsPrefix="navLink">
-                  <Nav.Item>
+                  <Nav.Item className="navLinkName" bsPrefix="navLinkName">
                     HOME
                   </Nav.Item>
                 </Link>

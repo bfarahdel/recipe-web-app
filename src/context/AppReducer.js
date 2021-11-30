@@ -5,6 +5,12 @@ export default (state, action) => {
         ...state,
         favList: [action.payload, ...state.favList],
       };
+    case 'ADD_LINK':
+      return {
+        ...state,
+        recipeLink: [action.payload, ...state.recipeLink],
+      };
+
     case 'REMOVE_RECIPE_FROM_FAV':
       return {
         ...state,
