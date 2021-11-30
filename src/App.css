@@ -11,8 +11,7 @@
   background-image: url("./img/block.png");
   background-repeat: no-repeat;
   background-attachment: fixed;
-  background-position: left;
-  left: 0;
+  background-position: left 0px top 270px;
   padding: 0;
   margin: 0;
 }
@@ -26,7 +25,7 @@
 }
 
 .logoImg {
-  width: 33%;
+  width: 55%;
 }
 .navLink {
   text-decoration: none;
@@ -38,13 +37,11 @@
 
 .navLinkName {
   transition: 0.8s;
-  /* padding-bottom: 50px; */
 }
 .banner {
   height: 400px;
   display: block;
   width: 100%;
-  /* border: 1px solid black; */
 }
 .leftBanner {
   float: left;
@@ -58,24 +55,17 @@
   /* background-image: url("./img/bgg.png"); */
 }
 
-.colorBlock {
-  position: fixed;
-  width: 150px;
-  background-color: #3ab6ae;
-  top: 220;
-  left: 0;
-  border-radius: 50%;
-}
 .bannerImg {
   float: right;
-  width: 74%;
-  padding-right: 200px;
+  width: 71%;
+  padding-right: 280px;
+  /* transform: rotate(-14deg); */
 }
 .bannerText {
   /* font-family: "Bebas Neue", cursive; */
   /* font-size: 80%; */
   margin-top: 65px;
-  margin-left: 95px;
+  margin-left: 175px;
   font-weight: bold;
   margin: 0 auto;
 }
@@ -87,7 +77,7 @@
   line-height: 1;
 }
 .textColor {
-  color: #3ab6ae;
+  color: #af2a2a;
 }
 .favLink {
   padding-right: 25px;
@@ -110,19 +100,22 @@
   width: 70%;
 }
 .savedItem {
-  border: 2px solid black;
-  border-radius: 18px;
   text-align: center;
   background-color: white;
   width: 55%;
   margin: 0 auto;
   padding-bottom: 200px;
 }
+.favName {
+  font-family: "Bebas Neue", cursive;
+  font-size: 35px;
+}
 .searchBar {
   margin: 0 auto;
   width: 85%;
   height: 110px;
   margin-top: 65px;
+  padding-bottom: 100px;
 }
 .searchBar input {
   width: 100%;
@@ -139,9 +132,6 @@
 .recipeGroup {
   color: black;
 }
-.recipeLink {
-  text-decoration: none;
-}
 .resultList {
   width: 60%;
   margin: 0 auto;
@@ -149,11 +139,33 @@
 .listItems {
   border: none;
 }
+.recipeGroup {
+  height: 155px;
+}
 .resultItem {
   text-align: center;
-  background-color: white;
   font-size: 20px;
   font-weight: bolder;
+  margin: 0 auto;
+  display: block;
+  width: 60%;
+}
+.recipeImg {
+  width: 40%;
+  float: left;
+}
+.recipeImg img {
+  width: 60%;
+  float: left;
+  border-radius: 57%;
+}
+.recipeLink {
+  width: 60%;
+  text-decoration: none;
+  color: black;
+  font-family: "Bebas Neue", cursive;
+  font-size: 45px;
+  float: right;
 }
 
 /* ************* RECIPE PAGE ******************** */

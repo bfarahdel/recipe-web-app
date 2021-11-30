@@ -27,8 +27,11 @@ function Main(props) {
   const renderSlides = () => favList.map((fav) => (
     <div className="carousel">
       <div className="savedItem">
+        <div className="favImg">
+
+        </div>
       <Link to="/" className="favLink" bsPrefix="favLink">
-        <h3> {fav}</h3>
+        <h3 className="favName"> {fav}</h3>
       </Link>
       </div>
     </div>
@@ -37,12 +40,12 @@ function Main(props) {
   const [currSearch, setSearch] = useState([]);
   const [recipeIds, setIds] = useState([]);
   const [recipeNames, setNames] = useState([]);
-  const [recipeImgs, setImgs] = useState([]);
+  const [recipeImg, setImgs] = useState([]);
   const [recipeInstr, setInstr] = useState([]);
   const [recipeIng, setIng] = useState([]);
 
   console.log('RECIPE NAMES - ', recipeNames);
-  console.log('RECIPE IMGS - ', recipeImgs);
+  console.log('RECIPE IMGS - ', recipeImg);
 
   console.log('RECIPE IDS - ', recipeIds);
 
@@ -54,6 +57,7 @@ function Main(props) {
       recipeName: recipeNames[0],
       recipeIng: recipeIng[0],
       recipeInstr: recipeInstr[0],
+      recipeImg: recipeImg[0],
     }],
   };
   console.log('INFO', dataInfo);
@@ -64,6 +68,7 @@ function Main(props) {
       recipeName: recipeNames[i],
       recipeIng: recipeIng[i],
       recipeInstr: recipeInstr[i],
+      recipeImg: recipeImg[i],
     });
   }
   console.log('INFO', dataInfo);
@@ -76,6 +81,9 @@ function Main(props) {
     <div>
       <ListGroup.Item className="recipeGroup" bsPrefix="recipeGroup">
         <div className="resultItem" >
+              <div className="recipeImg">
+                <img src={recipe.recipeImg} alt="" />
+              </div>
               <Link
               className="recipeLink" bsPrefix="recipeLink"
               to={`/recipeResults/${recipe.recipeName}/${recipe.recipeIng}/${recipe.recipeInstr}`}
@@ -129,9 +137,6 @@ function Main(props) {
             <img className="bannerImg" src={bg} alt="" />
           </div>
         </div>
-        {/* <div>
-          <img className="blockImg" src={block} alt="" />
-        </div> */}
 
         <div className="sliderContainer">
             <Slider slidesToShow={3} dots={true}>{renderSlides()}</Slider>
