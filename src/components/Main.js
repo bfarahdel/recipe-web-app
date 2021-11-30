@@ -27,7 +27,7 @@ function Main(props) {
   const renderSlides = () => favList.map((fav) => (
     <div className="carousel">
       <div className="savedItem">
-      <Link to="/" >
+      <Link to="/" className="favLink" bsPrefix="favLink">
         <h3> {fav}</h3>
       </Link>
       </div>
@@ -74,9 +74,10 @@ function Main(props) {
   */
   const renderResults = () => dataInfo.recipe.map((recipe) => (
     <div>
-      <ListGroup.Item as="li">
+      <ListGroup.Item className="recipeGroup" bsPrefix="recipeGroup">
         <div className="resultItem" >
               <Link
+              className="recipeLink" bsPrefix="recipeLink"
               to={`/recipeResults/${recipe.recipeName}/${recipe.recipeIng}/${recipe.recipeInstr}`}
               key={recipe.recipeName}
               >
@@ -154,7 +155,7 @@ function Main(props) {
         </div>
 
         <div className="resultList">
-          <ListGroup as="ol" numbered>
+          <ListGroup className="listItems" bsPrefix="listItems" as="ul" >
             {renderResults()}
           </ListGroup>
         </div>

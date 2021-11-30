@@ -46,9 +46,9 @@ function Header(props) {
 
   return (
     <div>
-      <Navbar collapseOnSelect bg="light" expand="xl" className="navBar">
+      <Navbar collapseOnSelect bg="light" expand="xl">
         <Link className="navLink" to='/'>
-          <Navbar.Brand className="navTitle" bsPrefix="navTitle" >
+          <Navbar.Brand>
             <img className="logoImg" src={logo} alt="" />
           </Navbar.Brand>
         </Link>
