@@ -32,14 +32,14 @@ function Header(props) {
       <div className="resultItem" >
 
         <Link
-        to={`/recipeResults/${fav.name}`}
-        key={fav.name}
+          to={`/recipeResults/${fav.name}`}
+          key={fav.name}
         >
-            {fav.name}
+          {fav.name}
         </Link>
 
       </div>
-      <Outlet/>
+      <Outlet />
     </NavDropdown.Item>
   ));
 
@@ -49,25 +49,28 @@ function Header(props) {
         <Link to='/'>
           <Navbar.Brand className="navTitle">
             <h1>
-            RECIPE FINDER
+              RECIPE FINDER
             </h1>
           </Navbar.Brand>
         </Link>
-            <Navbar.Text expand='lg' className="justify">
-              <Nav
-                className="me-auto my-2 my-lg-3 alignRight"
-                style={{ maxHeight: '170px' }}
-                navbarScroll
-              >
-                <Link to="/" className="navLink">HOME</Link>
-                <NavDropdown title="FAVS" className="navLink" id="navbarScrollingDropdown">
-                  {renderFavs()}
-                </NavDropdown>
-                <Link to="/" className="navLink">
-                  PROFILE
-                </Link>
-              </Nav>
-            </Navbar.Text>
+        <Navbar.Text expand='lg' className="justify">
+          <Nav
+            className="me-auto my-2 my-lg-3 alignRight"
+            style={{ maxHeight: '170px' }}
+            navbarScroll
+          >
+            <Link to="/" className="navLink">HOME</Link>
+            <NavDropdown title="FAVS" className="navLink" id="navbarScrollingDropdown">
+              {renderFavs()}
+            </NavDropdown>
+            <Link to="/" className="navLink">
+              PROFILE
+            </Link>
+            <a href="/logout" className="navLink">
+              LOGOUT
+            </a>
+          </Nav>
+        </Navbar.Text>
       </Navbar>
     </div>
   );
