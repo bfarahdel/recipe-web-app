@@ -15,19 +15,42 @@
   font-size: 30px;
   font-weight: bolder;
 }
+
 .navTitle h1 {
   font-size: 50px;
   font-weight: bolder;
   margin-left: 55px;
+  text-decoration: none;
+  color: black;
+  transition: 0.8s;
+}
+.navTitle h1:hover {
+  transform: scale(1.1);
+  color: white;
+  text-shadow: -1px 1px 0 #000, 1px 1px 0 #000, 1px -1px 0 #000,
+    -1px -1px 0 #000;
 }
 .navLink {
+  text-decoration: none;
   height: 100%;
-  /* border: 1px solid black; */
-  margin-right: 60px;
+  color: black;
+  padding-right: 60px;
+  transition: 0.8s;
+}
+
+.navLinkName {
+  transition: 0.8s;
+  /* padding-bottom: 50px; */
+}
+
+.favLink {
+  padding-right: 25px;
+  text-decoration: none;
 }
 .sliderContainer {
   margin: 0 auto;
   border: 2px solid black;
+  background-color: rgba(0, 0, 0, 0.462);
   border-radius: 15px;
   margin-top: 85px;
   padding: 45px;
@@ -99,7 +122,6 @@
   width: 100%;
   height: 100%;
   margin-top: 60px;
-  
 }
 .ytContainer {
   margin: 0 auto;
@@ -126,5 +148,3 @@
 }
 .list-group-ing {
 }
-
-

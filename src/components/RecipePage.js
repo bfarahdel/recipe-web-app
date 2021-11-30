@@ -14,8 +14,13 @@ const RecipePage = () => {
   const parsedIng = params.recipeIng.split(',');
   const parsedInstr = params.recipeInstr.split(',');
 
-  const { favList, addRecipe, removeRecipe } = useContext(GlobalContext);
-
+  const {
+    favList,
+    addRecipe,
+    addLink,
+    removeRecipe,
+  } = useContext(GlobalContext);
+  const currUrl = `/recipeResults/${params.recipeName}/${params.recipeIng}/${params.recipeInstr}`;
   console.log('RECIPE PAGE FAV ', favList);
 
   /*
@@ -40,6 +45,16 @@ const RecipePage = () => {
     </div>
   ));
 
+  function fetchFav(recipeList) {
+    fetch('/fav_list', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ recipeList }),
+    }).then((response) => response.json());
+  }
+
   return (
     <div className="recipeBody">
       <Header fav={favList} />
@@ -47,7 +62,12 @@ const RecipePage = () => {
       <div className="leftSide">
         <div class="btnContainer">
 
-          <Button variant="outline-dark" className="favBtn" onClick ={() => addRecipe(params.recipeName) }>
+          <Button variant="outline-dark" className="favBtn" onClick ={() => {
+            addRecipe(params.recipeName);
+            addLink(currUrl);
+            fetchFav(favList);
+          }
+            }>
             <Heart /> Add To Favs
           </Button>
         </div>

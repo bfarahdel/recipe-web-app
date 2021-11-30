@@ -11,22 +11,23 @@ import Header from './Header';
 function Main(props) {
   const { ids, names, imgs } = props;
   let { favList } = useContext(GlobalContext);
-
+  const { recipeLink } = useContext(GlobalContext);
   if (favList.length < 1) {
     favList = ['ADD A RECIPE'];
   }
 
   console.log('(MAIN JS) PROPS id:', ids, 'names', names, 'imgs: ', imgs);
-  console.log(' MAINNNN FAV LIST ', favList);
+  console.log(' RECIPE LINK  ', recipeLink);
 
-  const checkData = (data) => console.log('SLIDE DATA ', data);
+  // const checkData = (data) => console.log('SLIDE DATA ', data);
   // renders each individual slide/recipe inside the slider component
   // and maps it based off of favortes
   const renderSlides = () => favList.map((fav) => (
     <div className="carousel">
       <div className="savedItem">
-          {checkData(fav)}
-          <h3> {fav}</h3>
+      <Link to="/" >
+        <h3> {fav}</h3>
+      </Link>
       </div>
     </div>
   ));
