@@ -7,7 +7,7 @@
 .mainBody h1 {
   text-align: center;
 }
-/* .mainBody {
+.mainBody {
   background-image: url("./img/block.png");
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -15,7 +15,7 @@
   left: 0;
   padding: 0;
   margin: 0;
-} */
+}
 .justify {
   width: 60%;
   margin: 0 auto;
@@ -25,19 +25,8 @@
   font-weight: bolder;
 }
 
-.navTitle h1 {
-  font-size: 50px;
-  font-weight: bolder;
-  margin-left: 55px;
-  text-decoration: none;
-  color: black;
-  transition: 0.8s;
-}
-.navTitle h1:hover {
-  transform: scale(1.1);
-  color: white;
-  text-shadow: -1px 1px 0 #000, 1px 1px 0 #000, 1px -1px 0 #000,
-    -1px -1px 0 #000;
+.logoImg {
+  width: 33%;
 }
 .navLink {
   text-decoration: none;
