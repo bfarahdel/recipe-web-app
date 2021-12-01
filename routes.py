@@ -6,12 +6,13 @@ This file has all the route definitions
 import sys
 import json
 import flask
+from flask import request
 from flask import redirect, url_for, flash, render_template
 from flask_login import login_user, current_user, logout_user
 from vars import APP
 from vars import db
 from vars import bcrypt
-from models import User
+from models import Recipe, User
 from spoon import Spoon
 from forms import RegistrationForm, LoginForm
 from validations import Validation
@@ -98,6 +99,34 @@ def search_recipe():
 
 
 APP.register_blueprint(BP)
+
+
+@APP.route("/fav_list", methods=["GET", "POST"])
+def fav_list():
+    fav_recipes = flask.request.json.get("recipeList")
+    print("RECIPE LIST FAV ", fav_recipes, file=sys.stderr)
+    recipes = {
+        "fav_recipes": fav_recipes,
+    }
+
+    if len(fav_recipes) > 0:
+        for data in fav_recipes:
+            x = Recipe.query.filter_by(
+                username=current_user.username, recipe_name=data
+            ).first()
+            if x:
+                pass
+            else:
+                db.session.add(
+                    Recipe(
+                        username=current_user.username,
+                        json_field=fav_recipes,
+                        recipe_name=data,
+                    )
+                )
+                db.session.commit()
+
+    return recipes
 
 
 @APP.route("/signup", methods=["GET", "POST"])

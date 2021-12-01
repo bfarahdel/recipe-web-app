@@ -7,6 +7,15 @@
 .mainBody h1 {
   text-align: center;
 }
+.mainBody {
+  background-image: url("./img/block.png");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: left;
+  left: 0;
+  padding: 0;
+  margin: 0;
+}
 .justify {
   width: 60%;
   margin: 0 auto;
@@ -15,21 +24,81 @@
   font-size: 30px;
   font-weight: bolder;
 }
-.navTitle h1 {
-  font-size: 50px;
-  font-weight: bolder;
-  margin-left: 55px;
+
+.logoImg {
+  width: 33%;
 }
 .navLink {
+  text-decoration: none;
   height: 100%;
+  color: black;
+  padding-right: 60px;
+  transition: 0.8s;
+}
+
+.navLinkName {
+  transition: 0.8s;
+  /* padding-bottom: 50px; */
+}
+.banner {
+  height: 400px;
+  display: block;
+  width: 100%;
   /* border: 1px solid black; */
-  margin-right: 60px;
+}
+.leftBanner {
+  float: left;
+  width: 44%;
+  height: 100%;
+}
+.rightBanner {
+  float: left;
+  width: 56%;
+  height: 100%;
+  /* background-image: url("./img/bgg.png"); */
+}
+
+.colorBlock {
+  position: fixed;
+  width: 150px;
+  background-color: #3ab6ae;
+  top: 220;
+  left: 0;
+  border-radius: 50%;
+}
+.bannerImg {
+  float: right;
+  width: 74%;
+  padding-right: 200px;
+}
+.bannerText {
+  /* font-family: "Bebas Neue", cursive; */
+  /* font-size: 80%; */
+  margin-top: 65px;
+  margin-left: 95px;
+  font-weight: bold;
+  margin: 0 auto;
+}
+.bannerText h2 {
+  padding-top: 55px;
+  padding-left: 75px;
+  font-family: "Bebas Neue", cursive;
+  font-size: 105px;
+  line-height: 1;
+}
+.textColor {
+  color: #3ab6ae;
+}
+.favLink {
+  padding-right: 25px;
+  text-decoration: none;
 }
 .sliderContainer {
   margin: 0 auto;
   border: 2px solid black;
+  background-color: rgba(0, 0, 0, 0.462);
   border-radius: 15px;
-  margin-top: 85px;
+  margin-top: 65px;
   padding: 45px;
   width: 55%;
 }
@@ -48,7 +117,7 @@
   margin: 0 auto;
   width: 85%;
   height: 110px;
-  margin-top: 115px;
+  margin-top: 65px;
 }
 .searchBar input {
   width: 100%;
@@ -99,7 +168,6 @@
   width: 100%;
   height: 100%;
   margin-top: 60px;
-  
 }
 .ytContainer {
   margin: 0 auto;
@@ -126,5 +194,3 @@
 }
 .list-group-ing {
 }
-
-
