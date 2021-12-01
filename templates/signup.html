@@ -2,179 +2,235 @@
 
 <head>
     <style>
-        body{
-    margin: 0;
-    padding: 0;
-    font-family: Work Sans;
-    background-color:lightgray;
-}
+    * {
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        margin: 0 !important;
+        padding: 0 !important;
+        font-family: "Bebas Neue", cursive;
+      }
+      .mainBody {
+        display: block;
+        width: 100%;
+      }
+      .left {
+        width: 49%;
+        float: left;
+        height: 100%;
+        background: url("https://www.linkpicture.com/q/Screen-Shot-2021-11-30-at-8.30.14-PM.png");
+        background-repeat: none;
+        background-size: cover;
+      }
+      .right {
+        float: left;
+        height: 100%;
+        width: 48%;
+      }
+      .welcomeText {
+        font-size: 155px;
+        text-align: center;
+        margin-top: 150px;
+        padding-bottom: 20px;
+        color: white;
+      }
+      .welcome {
+        color: #af2a2a;
+        padding-right: 25px;
+        text-shadow: #402929 1px 1px, #402929 -0px 0px, #402929 -1px 1px, #402929 -2px 2px, #402929 -3px 3px, #402929 -4px 4px, #402929 -5px 5px, #402929 -6px 6px, #402929 -7px 7px, #402929 -8px 8px, #402929 -9px 9px, #402929 -10px 10px, #402929 -11px 11px, #402929 -12px 12px, #402929 -13px 13px, #402929 -14px 14px, #402929 -15px 15px, #402929 -16px 16px, #402929 -17px 17px, #402929 -18px 18px, #402929 -19px 19px, #402929 -20px 20px, #402929 -21px 21px, #402929 -22px 22px, #402929 -23px 23px, #402929 -24px 24px, #402929 -25px 25px, #402929 -26px 26px, #402929 -27px 27px, #402929 -28px 28px, #402929 -29px 29px;
+      }
+      .finder {
+        color: #af2a2a;
+      }
+      .imgContainer {
+        margin-top: 155px;
+        width: 85%;
+        padding-bottom: 35px;
+        /* border: 1px solid white; */
+        margin: 0 auto;
+      }
+      .logo {
+        width: 80%;
+        margin: 0 auto;
+        padding-left: 50px;
+      }
+      .slogan {
+        /* font-family: "Courgette", cursive; */
+        width: 60%;
+        /* margin-top: 200px; */
+        padding-top: 100px;
+        margin: 0 auto;
+        font-size: 30px;
+        color: white;
+      }
+      .sloganAccent {
+        color: #af2a2a;
+      }
+      .started {
+        font-size: 65px;
+        
+        text-align: center;
+        margin-top: 100px;
+      }
+      .loginMessage {
+        padding-top: 10px;
+        font-size: 28px;
+        color: rgb(99, 98, 98);
+        font-style: italic;
+      }
+      .loginForm {
+        padding-top: 150px;
+        padding-left: 60px;
+        /* border: 1px solid black; */
+        width: 85%;
+        border-radius: 25px;
+        height: 350px;
+        margin: 0 auto;
+      }
+      .userForm {
+          padding-right: 15px;
+      }
+      .form-control {
+        /* border: 1px solid black; */
+        font-size: 48px;
+      }
+      input[type="text"].form-control {
+        /* outline: none; */
+        /* border: none; */
+        width: 60%;
+        /* border-radius: 15px; */
+        padding: 10px;
+      }
+      .icon {
+        width: 5%;
+        
+      }
+      .userForm {
+        padding-right: 48px;
+      }
+      .emailForm {
+        padding-top: 5px;
+        padding-right: 115px;
+      }
+      .passForm {
+        padding-top: 5px;
+        padding-right: 51px;
+      }
+      .emailInput {
+        border-radius: 15px;
+        background-color: grey;
+      }
+      .emailCont {
+        padding-bottom: 55px;
+      }
+      .login-button {
+          width: 100%;
+          height: 98px;
+          font-size: 45px;
+          box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+          background-color: #af2a2a;
+          color: white;
+          font-family: "Bebas Neue", cursive;
+          border-radius: 55px;
+          margin-top: 80px;
+      }
+      .notUser {
+        width: 80%;
+        margin: 0 auto;
+        text-decoration: none;
+        font-size: 28px;
+        text-decoration: none;
+        text-align: center;
+        padding-top: 25px;
 
-
-h1{
-    padding-top: 40px;
-    color: black;
-    text-align: center;
-    font-family: work sans;
-    font-weight: bold;
-    font-size: 50;
-
-}
-h2{
-    color:black;
-    text-align: center;
-}
-.container1{
-    display: flex;
-    flex-direction:  column;
-    align-items: center;
-    justify-content: center;
-   
-    height: 100%;
-    width: 100%;
-   
-
-
-}
-
-.login-box{
-    background-color:lightgray;
-    padding-top: 2px;
-    display: flex;
-    flex-direction: column;
-    align-content: center;
-    align-items: center;
-    width: 600px;
-    height: 400;
-    font-size:25px;
-    border-radius: 10px;
-    font-family: Work Sans;
-    font: bold;
-    
-    box-shadow: 0 0 9px black;
-    
-}
-.input-box{
-    margin-bottom: 20px;
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    align-content: center;
-    align-items: center;
-   
-
-   
-}
-input[type ="text"].form-control{
-    font-size: 16;
-    outline: none;
-    border:none;
-    width: 60% ;
-   
-    border-radius: 20px;
-    padding: 16px;
-    border-radius: 2-x;
-    transition: all 0.3s ease;
-   
-   
-    
-    }
-
-    
- .login-button input{
-    outline: none;
-    border:none;
-    align-items: center;
-    align-content: center;
-    width: 500px;
-    background-color: black;
-    color: #FFF;
-    padding: 20px;
-    display: block;
-    font-size: 20;
-    box-shadow: 0 0 9px black;
-   
-}
-
-.input-box i{
-    margin: 15 100 -100px -160px;
-    position: absolute;
-}
+      }
     </style>
-    <script src="https://kit.fontawesome.com/c7f3da47f3.js" crossorigin="anonymous"></script>
+     <script src="https://kit.fontawesome.com/c7f3da47f3.js" crossorigin="anonymous"></script>`
 </head>
 
 <body>
+    <div class="left">
+        <h1 class="welcomeText"><span class="welcome"> WELCOME      </span> TO</h1>
+        <div class="imgContainer">
+            <img class="logo" src="https://www.linkpicture.com/q/Screen_Shot_2021-11-30_at_9.06.05_PM-removebg-preview.png" type="image">
+        </div>
+
+        <div class="slogan">
+          <h2>Where we make <span class="sloganAccent">cooking easy </span></h2>
+        </div>
+    </div>
+
+    <div class="right">
+
     {% for mesg in get_flashed_messages() %}
     <spam>{{ mesg }}</spam>
     {% endfor %}
-    <h1>RECIPE FINDER</h1>
-    <div class="container1">
-        <div class="login-box">
-            <h2>SIGNUP</h2>
+    <div class="started">
+        LOGIN TO RECIPE <span class="finder"> FINDER</span>
+        <div class="loginMessage">
+          <p>Stop looking and start cooking !</p>
+        </div>
+    </div>
 
-    <form method="POST" action="">
+    <form class="loginForm" method="POST" action="">
         {{ form.hidden_tag() }}
-        <fieldset class="">
-            <div>
-                <i class="far fa-user"></i>
-                {{ form.username.label(class="form-control") }}
+            <div class="emailCont">
+                <i class="far fa-user fa-2x icon"></i>
+                {{ form.username.label(class="form-control userForm") }}
                 {% if form.username.errors %}
                 {{ form.username(class="form-control") }}
-                <div>
-                    <div class="error">
-                        {% for error in form.username.errors %}
-                        <span> {{ error }}</span>
-                        {% endfor%}
-                    </div>
+            <div>
+            <div class="error">
+                {% for error in form.username.errors %}
+                <span> {{ error }}</span>
+                {% endfor%}
+            </div>
                 </div>
                 {% else %}
-                {{ form.username(class="") }}
+                {{ form.username(class="form-control") }}
                 {% endif %}
             </div>
 
-            <div>
-                <i class="far fa-user"></i>
-                {{ form.email.label(class = "form-control") }}
+            <div class="emailCont">
+                <i class="far fa-user fa-2x icon"></i>
+                {{ form.email.label(class="form-control emailForm") }}
                 {% if form.email.errors %}
                 {{ form.email(class="form-control") }}
-                <div>
+            <!-- <div> -->
                     <div class="error">
                         {% for error in form.email.errors %}
                         <span> {{ error }}</span>
                         {% endfor%}
                     </div>
-                </div>
+                <!-- </div> -->
                 {% else %}
                 {{ form.email(class="form-control") }}
                 {% endif %}
             </div>
-
             <div>
-                <i class="fas fa-lock"></i>
-                {{ form.password.label(class ="form-control") }}
+                <i class="fas fa-lock fa-2x icon"></i>
+                {{ form.password.label(class="form-control passForm")  }}
                 {% if form.password.errors %}
                 {{ form.password(class="form-control") }}
-                <div>
-                    <div class="error">
-                        {% for error in form.password.errors %}
-                        <span class="error"> {{ error }}</span>
-                        {% endfor%}
-                    </div>
+                <div class="error">
+                    {% for error in form.password.errors %}
+                    <span> {{ error }}</span>
+                    {% endfor%}
                 </div>
                 {% else %}
                 {{ form.password(class="form-control") }}
                 {% endif %}
             </div>
-
-        </fieldset>
-        <font size ="3">Already a user? <a href={{ url_for('login_post') }}>Log In</a> </font>
-        <div class="login-button">
-            {{ form.submit(class = "login-button") }}
+        <div class="notUser">
+            <font size ="3">Not a user? <a href={{ url_for('login_post') }}>LOGIN</a></font>
         </div>
+            {{ form.submit(class="login-button") }}
     </form>
-     </div>
-           
+   
     </div>
+    
+
 </body>
 
 </html>
