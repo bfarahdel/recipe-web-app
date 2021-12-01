@@ -33,14 +33,14 @@ function Header(props) {
       <div className="resultItem" >
 
         <Link
-        to={`/recipeResults/${fav.name}`}
-        key={fav.name}
+          to={`/recipeResults/${fav.name}`}
+          key={fav.name}
         >
-            {fav.name}
+          {fav.name}
         </Link>
 
       </div>
-      <Outlet/>
+      <Outlet />
     </NavDropdown.Item>
   ));
 
@@ -56,25 +56,26 @@ function Header(props) {
             <img className="logoImg" src={logo} alt="" />
           </Navbar.Brand>
         </Link>
-            <Navbar.Text expand='lg' className="justify">
-              <Nav
-                className="me-auto my-2 my-lg-3 justify-content-end"
-                style={{ maxHeight: '70px' }}
-                navbarScroll
-              >
-                <Link to="/" className="navLink" bsPrefix="navLink">
-                  <Nav.Item className="navLinkName" bsPrefix="navLinkName">
-                    HOME
-                  </Nav.Item>
-                </Link>
-                <NavDropdown title="FAVS" className="favLink" bsPrefix="favLink" id="navbarScrollingDropdown">
-                  {renderFavs()}
-                </NavDropdown>
-                <Link to="/" className="navLink" bsPrefix="navLink">
-                    PROFILE
-                </Link>
-              </Nav>
-            </Navbar.Text>
+        <Navbar.Text expand='lg' className="justify">
+          <Nav
+            className="me-auto my-2 my-lg-3 justify-content-end"
+            style={{ maxHeight: '170px' }}
+            navbarScroll
+          >
+            <Link to="/" className="navLink" bsPrefix="navLink">
+              <Nav.Item className="navLinkName" bsPrefix="navLinkName">
+                HOME
+              </Nav.Item>
+            </Link>
+            <NavDropdown title="FAVS" className="favLink" bsPrefix="favLink" id="navbarScrollingDropdown">
+              {renderFavs()}
+            </NavDropdown>
+            <Link to="/" className="navLink" bsPrefix="navLink">
+              PROFILE
+            </Link>
+            <a href="/logout" className="navLink">LOGOUT</a>
+          </Nav>
+        </Navbar.Text>
       </Navbar>
     </div>
   );

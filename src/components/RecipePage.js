@@ -46,6 +46,7 @@ const RecipePage = () => {
   // ));
 
   function fetchFav(recipeList) {
+    console.log(recipeList);
     fetch('/fav_list', {
       method: 'POST',
       headers: {
@@ -63,19 +64,19 @@ const RecipePage = () => {
         <h2 className="recipeTitle">RECIPE PAGE {params.recipeName}</h2>
         <div class="btnContainer">
 
-          <Button variant="outline-dark" className="favBtn" onClick ={() => {
+          <Button variant="outline-dark" className="favBtn" onClick={() => {
             addRecipe(params.recipeName);
             addLink(currUrl);
             fetchFav(favList);
           }
-            }>
+          }>
             <Heart /> Add To Favs
           </Button>
         </div>
 
         <div class="btnContainer">
-        <Button variant="outline-dark" className="remBtn" onClick ={() => removeRecipe(params.id)}>
-            <Heart background-color ='black'/> Remove Favs
+          <Button variant="outline-dark" className="remBtn" onClick={() => removeRecipe(params.id)}>
+            <Heart background-color='black' /> Remove Favs
           </Button>
         </div>
         <div className="embed-responsive embed-responsive-16by9 ytContainer">

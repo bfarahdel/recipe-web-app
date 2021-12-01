@@ -38,6 +38,7 @@ class Recipe(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(80), nullable=False)
     json_field = db.Column(JSON)
+    recipe_name = db.Column(db.String(80), nullable=False)
 
     def __repr__(self):
         return f"<Recipe {self.username}, {self.json_field}>"
