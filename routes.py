@@ -8,7 +8,7 @@ from vars import APP
 from vars import db
 from vars import bcrypt
 import flask
-from flask import redirect, url_for, flash, render_template
+from flask import redirect, url_for, flash, render_template, request
 from flask_login import login_user, current_user, login_required, logout_user
 from models import Recipe, User
 import sys
@@ -146,10 +146,10 @@ def logout():
     logout_user()
     return redirect(url_for("login_post"))
 
-@APP.route("/add_db_favList", methods=["POST"])
-def dbAdd():
-    request_data = json.load(requests.data)
-    newFavrecipe = Recipe(content = request_data['content'])
+@APP.route("/add_recipe/add_db_favList", methods=["POST"])
+def add_db_favList():
+    request_data = json.load(request.data)
+    newFavrecipe = Recipe(id = request_data['id'], username = request_data['username'], json_field = request_data['json_field'])
 
     db.session.add(newFavrecipe)
     db.session.commit()

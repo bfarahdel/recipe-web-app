@@ -23,11 +23,14 @@ export const GlobalProvider = (props) => {
   // };
 
   // Function that gets called when user presses 'Add to Fav' button
-  const addRecipe = (recipe) => {
-    fetch('/add_db_favList', {
+  const addRecipe = (recipe, username) => {
+    fetch('/add_recipe/add_db_favList', {
       method: 'POST',
       body: JSON.stringify({
-        content: recipe,
+        id: recipe.id,
+        username,
+        json_field: recipe,
+
       }),
       headers: {
         'Content-type': 'application/json; charset=UTF-8',

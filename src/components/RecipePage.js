@@ -14,7 +14,9 @@ const RecipePage = () => {
   const parsedIng = params.recipeIng.split(',');
   const parsedInstr = params.recipeInstr.split(',');
 
-  const { favList, addRecipe, removeRecipe } = useContext(GlobalContext);
+  const {
+    favList, addRecipe, removeRecipe, username,
+  } = useContext(GlobalContext);
 
   console.log('RECIPE PAGE FAV ', favList);
 
@@ -47,7 +49,7 @@ const RecipePage = () => {
       <div className="leftSide">
         <div class="btnContainer">
 
-          <Button variant="outline-dark" className="favBtn" onClick ={() => addRecipe(params.recipeName) }>
+          <Button variant="outline-dark" className="favBtn" onClick ={() => addRecipe(params.recipeName, username) }>
             <Heart /> Add To Favs
           </Button>
         </div>
