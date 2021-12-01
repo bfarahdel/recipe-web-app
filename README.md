@@ -8,9 +8,9 @@ User can make an account, search recipes based on the name of the recipe, and vi
 
 When accessing the website intially, the login page will be displayed on the website. The user can either login or sign up. In order to sign up on the website, the user must enter a username and password between **2 to 20 characters** in length and will be notified if these specifications are not met. Duplicate usernames are **not** allowed and the user will be notified if the username already exists in the database. The **password** is **encrypted**.
 
-The search query can be based on the name of the recipe, nutritional content (e.g. max fat content 25g), dietary restrictions (e.g. “without nuts”).
+The search query can be based on the name of the recipe, nutritional content (e.g. max fat content 25g), and dietary restrictions (e.g. “without nuts”).
 
-A drop-down list of the search results will appear below the search bar. If I click on one of the search results, a page with the recipe title, ingredients, and instructions will be displayed on the page. When I am on a recipe and I click the ‘Add to Favs’ button, that recipe will be added into my favorites list when I go back to my home page.
+A drop-down list of the search results will appear below the search bar. If one of the search results are clicked on, a page with the recipe title, ingredients, and instructions will be displayed on the page. On this recipe page, when the 'Add to Favs' button is clicked, the recipe name will be added to the favorites list.
 
 ### Pylint Warnings that were disabled
 - pylint: disable=W0613, R0201, W0611  => This was a warning saying one variable is not used but it was necessary to run validation checks.
