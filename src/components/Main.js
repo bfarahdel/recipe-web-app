@@ -4,6 +4,7 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import { Heart } from 'react-bootstrap-icons';
 import { GlobalContext } from '../context/GlobalState';
 import bg from '../img/bgg.png';
 // import block from '../img/block.png';
@@ -28,7 +29,7 @@ function Main(props) {
     <div className="carousel">
       <div className="savedItem">
         <div className="favImg">
-
+          <img src="https://www.slrlounge.com/wp-content/uploads/2016/03/monikawalecka-1.jpg" alt="" />
         </div>
       <Link to="/" className="favLink" bsPrefix="favLink">
         <h3 className="favName"> {fav}</h3>
@@ -114,10 +115,6 @@ function Main(props) {
       setImgs(data.recipe_imgs);
       setInstr(data.recipe_instructions);
       setIng(data.recipe_ing);
-
-      console.log('(data) IDS-  ', data.recipe_ids);
-      console.log('(data) NAMES-  ', data.recipe_names);
-      console.log('(data) IMGS-  ', data.recipe_imgs);
     });
   }
 
@@ -139,10 +136,16 @@ function Main(props) {
         </div>
 
         <div className="sliderContainer">
-            <Slider slidesToShow={3} dots={true}>{renderSlides()}</Slider>
+            <div className="sliderTitle">
+                <h1> <Heart color="#af2a2a"/>  YOUR FAVORITES  </h1>
+            </div>
+            <Slider className="slide" bsPrefix="slide" slidesToShow={3} dots={true}>
+              {renderSlides()}
+            </Slider>
         </div>
 
         <div className="searchBar">
+        <i class="bi bi-search"></i>
               <input
               type="text"
               placeholder=" SEARCH RECIPES......."

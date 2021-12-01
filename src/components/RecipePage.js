@@ -31,7 +31,7 @@ const RecipePage = () => {
   */
   const renderIngredients = () => parsedIng.map((ing) => (
     <div>
-      <ListGroup.Item as="li">
+      <ListGroup.Item className="ingGroup" bsPrefix="ingGroup">
         {ing}
       </ListGroup.Item>
     </div>
@@ -84,14 +84,18 @@ const RecipePage = () => {
         </div>
       </div>
 
+      {/* <div className="blockContainer"> */}
+        {/* <img className="recipeBlock" src={} alt="" /> */}
+      {/* </div> */}
+
       <div className="rightSide">
-        {/* <div className="ingContainer"> */}
+        <div className="ingContainer">
           <Card className="ingCard" bsPrefix="ingCard">
-            <ListGroup variant="flush">
+            <ListGroup >
               {renderIngredients()}
             </ListGroup>
           </Card>
-        {/* </div> */}
+        </div>
         {/* <div className="ingContainer">
           <Card variant="ing">
             <Card.Header>
