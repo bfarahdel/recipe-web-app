@@ -75,10 +75,9 @@ The web application and database are hosted on Heroku, a cloud platform as a ser
 
 ## PostgreSQL Database
 
-Prior to using the application, the database model must be created from `main.py`. To do this, in run the following commands in an interactive Python shell:
+Prior to using the application, the database model must be created from `models.py`. This line has already been included in models.py to initialize a database.
 
 ```
-from main import db
 db.create_all()
 ```
 
