@@ -12,7 +12,7 @@ const RecipePage = () => {
   const params = useParams();
   console.log('PARAMSSSS', params);
   const parsedIng = params.recipeIng.split(',');
-  // const parsedInstr = params.recipeInstr.split(',');
+  const parsedInstr = params.recipeInstr.split(',');
 
   const {
     favList,
@@ -37,13 +37,13 @@ const RecipePage = () => {
     </div>
   ));
 
-  // const renderInstructions = () => parsedInstr.map((instr) => (
-  //   <div>
-  //     <ListGroup.Item as="li">
-  //       {instr}
-  //     </ListGroup.Item>
-  //   </div>
-  // ));
+  const renderInstructions = () => parsedInstr.map((instr) => (
+    <div>
+      <ListGroup.Item as="li">
+        {instr}
+      </ListGroup.Item>
+    </div>
+  ));
 
   function fetchFav(recipeList) {
     console.log(recipeList);
@@ -61,7 +61,7 @@ const RecipePage = () => {
       <Header fav={favList} />
 
       <div className="leftSide">
-        <h2 className="recipeTitle">RECIPE PAGE {params.recipeName}</h2>
+        <h2 className="recipeTitle"> {params.recipeName}</h2>
         <div class="btnContainer">
 
           <Button variant="outline-dark" className="favBtn" onClick={() => {
@@ -97,7 +97,7 @@ const RecipePage = () => {
             </ListGroup>
           </Card>
         </div>
-        {/* <div className="ingContainer">
+        <div className="ingContainer">
           <Card variant="ing">
             <Card.Header>
               INSTRUCTIONS
@@ -106,7 +106,7 @@ const RecipePage = () => {
               {renderInstructions()}
             </ListGroup>
           </Card>
-        </div> */}
+        </div>
       </div>
 
     </div>

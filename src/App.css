@@ -26,6 +26,9 @@
   font-size: 30px;
   font-weight: bolder;
 }
+.navText {
+  margin-top: 75px;
+}
 
 .logoImg {
   width: 55%;
@@ -84,6 +87,7 @@
 }
 .favLink {
   padding-right: 25px;
+  color: black;
   text-decoration: none;
 }
 .sliderContainer {
@@ -198,20 +202,20 @@
 /* ************* RECIPE PAGE ******************** */
 .recipeBody {
   display: block;
-  font-family: "Bebas Neue", cursive;
-  /* background-image: url("./img/colorBlock.png");
-  background-repeat: no-repeat;
-  background-position: center; */
-  /* background-size: auto; */
 }
 .recipeTitle {
+  margin-top: 50px;
+  padding-bottom: 25px;
+  font-family: "Bebas Neue", cursive;
   text-align: center;
 }
 .leftSide {
+  font-family: "Bebas Neue", cursive;
   width: 50%;
   float: left;
 }
 .rightSide {
+  font-family: "Bebas Neue", cursive;
   width: 50%;
   float: right;
 }
@@ -243,7 +247,7 @@
 .ingContainer {
   width: 65%;
   margin: 0 auto;
-  height: 90%;
+  height: 30%;
   overflow: hidden;
   margin-top: 45px;
   border-radius: 34px;
@@ -253,8 +257,8 @@
   display: none;
 }
 .ingCard {
-  height: 70vh;
-  max-height: 85vh;
+  height: 50vh;
+  max-height: 35vh;
   overflow: auto;
   border-radius: 34px;
   font-size: 25px;

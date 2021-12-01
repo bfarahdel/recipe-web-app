@@ -56,7 +56,7 @@ function Header(props) {
             <img className="logoImg" src={logo} alt="" />
           </Navbar.Brand>
         </Link>
-        <Navbar.Text expand='lg' className="justify">
+        <Navbar.Text expand='lg' className="justify navText" bsPrefix="navText">
           <Nav
             className="me-auto my-2 my-lg-3 justify-content-end"
             style={{ maxHeight: '170px' }}

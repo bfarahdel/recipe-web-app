@@ -18,10 +18,25 @@ function Main(props) {
   if (favList.length < 1) {
     favList = ['ADD A RECIPE'];
   }
+  const [currSearch, setSearch] = useState([]);
+  const [recipeIds, setIds] = useState([]);
+  const [recipeNames, setNames] = useState([]);
+  const [recipeImg, setImgs] = useState([]);
+  const [recipeInstr, setInstr] = useState([]);
+  const [recipeIng, setIng] = useState([]);
+  const [savedList, setSaved] = useState([]);
 
   console.log('(MAIN JS) PROPS id:', ids, 'names', names, 'imgs: ', imgs);
   console.log(' RECIPE LINK  ', recipeLink);
 
+  if (savedList) {
+    if (savedList.length > 0) {
+      favList.concat(savedList);
+    }
+  } else {
+    console.log('saved list is empty');
+  }
+  console.log('SAVED LIST', savedList);
   // const checkData = (data) => console.log('SLIDE DATA ', data);
   // renders each individual slide/recipe inside the slider component
   // and maps it based off of favortes
@@ -37,13 +52,6 @@ function Main(props) {
       </div>
     </div>
   ));
-
-  const [currSearch, setSearch] = useState([]);
-  const [recipeIds, setIds] = useState([]);
-  const [recipeNames, setNames] = useState([]);
-  const [recipeImg, setImgs] = useState([]);
-  const [recipeInstr, setInstr] = useState([]);
-  const [recipeIng, setIng] = useState([]);
 
   console.log('RECIPE NAMES - ', recipeNames);
   console.log('RECIPE IMGS - ', recipeImg);
@@ -115,6 +123,8 @@ function Main(props) {
       setImgs(data.recipe_imgs);
       setInstr(data.recipe_instructions);
       setIng(data.recipe_ing);
+      setSaved(data.recipeNames_LIST);
+      console.log('saved recipes', savedList);
     });
   }
 
