@@ -69,6 +69,7 @@ function Header(props) {
             <Link to="/" className="navLink" bsPrefix="navLink">
               PROFILE
             </Link>
+            <a href="/logout" className="navLink">LOGOUT</a>
           </Nav>
         </Navbar.Text>
       </Navbar>
