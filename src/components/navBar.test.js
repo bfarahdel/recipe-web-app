@@ -1,7 +1,7 @@
 // navBar.test.js
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import NavBar from './Header';
+import NavBar from './navBar';
 
 // Testing if navbar section titles exist
 test('navBar sections', () => {
