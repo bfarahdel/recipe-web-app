@@ -19,9 +19,6 @@ function Header() {
                 <Nav.Link title="FAVS" className="navLink" id="navbarScrollingDropdown">
                 FAVS
                 </Nav.Link>
-                <Nav.Link href="#" className="navLink">
-                  PROFILE
-                </Nav.Link>
               </Nav>
             </Navbar.Text>
       </Navbar>
