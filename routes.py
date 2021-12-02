@@ -27,7 +27,12 @@ def main():
     print("ENTEREDD MAIN FUNCRTION!!", file=sys.stderr)
 
     if current_user.is_authenticated:
+        recipeNames = Recipe.query.filter_by(username=current_user.username).all()
+        recipeNames_LIST = []
+        for data in recipeNames:
+            recipeNames_LIST.append(data.recipe_name)
 
+        print(recipeNames_LIST)
         searched = search_recipe()
         recipe_ids = searched["recipe_ids"]
         recipe_names = searched["recipe_names"]
@@ -41,6 +46,7 @@ def main():
             "recipeImgs": recipe_imgs,
             "recipeIng": recipe_ing,
             "recipeInstr": recipe_instr,
+            "savedRecipe": recipeNames_LIST,
         }
 
         data = json.dumps(data_info)
