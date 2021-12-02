@@ -11,11 +11,13 @@
   background-image: url("./img/block.png");
   background-repeat: no-repeat;
   background-attachment: fixed;
-  background-position: left;
-  left: 0;
+  background-position: left 0px top 270px;
   padding: 0;
   margin: 0;
 }
+/* .container {
+  background-color: #f2f3f4;
+} */
 .justify {
   width: 60%;
   margin: 0 auto;
@@ -24,9 +26,12 @@
   font-size: 30px;
   font-weight: bolder;
 }
+.navText {
+  margin-top: 75px;
+}
 
 .logoImg {
-  width: 33%;
+  width: 55%;
 }
 .navLink {
   text-decoration: none;
@@ -38,13 +43,11 @@
 
 .navLinkName {
   transition: 0.8s;
-  /* padding-bottom: 50px; */
 }
 .banner {
   height: 400px;
   display: block;
   width: 100%;
-  /* border: 1px solid black; */
 }
 .leftBanner {
   float: left;
@@ -58,24 +61,17 @@
   /* background-image: url("./img/bgg.png"); */
 }
 
-.colorBlock {
-  position: fixed;
-  width: 150px;
-  background-color: #3ab6ae;
-  top: 220;
-  left: 0;
-  border-radius: 50%;
-}
 .bannerImg {
   float: right;
-  width: 74%;
-  padding-right: 200px;
+  width: 71%;
+  padding-right: 280px;
+  /* transform: rotate(-14deg); */
 }
 .bannerText {
   /* font-family: "Bebas Neue", cursive; */
   /* font-size: 80%; */
   margin-top: 65px;
-  margin-left: 95px;
+  margin-left: 175px;
   font-weight: bold;
   margin: 0 auto;
 }
@@ -87,55 +83,120 @@
   line-height: 1;
 }
 .textColor {
-  color: #3ab6ae;
+  color: #af2a2a;
 }
 .favLink {
   padding-right: 25px;
+  color: black;
   text-decoration: none;
 }
 .sliderContainer {
+  display: block;
   margin: 0 auto;
-  border: 2px solid black;
-  background-color: rgba(0, 0, 0, 0.462);
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+  /* border: 2px solid black; */
+  background-color: rgba(0, 0, 0, 0);
   border-radius: 15px;
-  margin-top: 65px;
-  padding: 45px;
-  width: 55%;
+  margin-top: 45px;
+  padding: 15px;
+  height: 240px;
+  overflow: hidden;
+  width: 60%;
+}
+.sliderTitle {
+  width: 100%;
+  text-align: center;
+  color: black;
+}
+.sliderTitle h1 {
+  font-size: 21px;
 }
 .carousel {
+  display: block;
   width: 70%;
 }
 .savedItem {
-  border: 2px solid black;
-  border-radius: 18px;
   text-align: center;
   background-color: white;
   width: 55%;
   margin: 0 auto;
+  /* border: 1px solid black; */
+  padding-bottom: 200px;
+}
+.favName {
+  font-family: "Bebas Neue", cursive;
+  font-size: 35px;
 }
 .searchBar {
   margin: 0 auto;
   width: 85%;
   height: 110px;
+
   margin-top: 65px;
+  padding-bottom: 100px;
 }
 .searchBar input {
   width: 100%;
+  border: none;
   background-color: white;
   height: 85px;
   font-size: 19px;
   text-align: center;
   border-radius: 15px;
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+}
+.favLink {
+  text-decoration: none;
+  padding-bottom: 100px;
+}
+.favImg {
+  padding-bottom: 15px;
+}
+.favImg img {
+  width: 108px;
+  height: 108px;
+  border-radius: 50%;
+  /* padding-bottom: 25px; */
+  margin: 0 auto;
+  /* padding-left: 25px; */
+}
+.recipeGroup {
+  color: black;
 }
 .resultList {
   width: 60%;
   margin: 0 auto;
 }
+.listItems {
+  border: none;
+}
+.recipeGroup {
+  height: 155px;
+}
 .resultItem {
   text-align: center;
-  background-color: white;
   font-size: 20px;
   font-weight: bolder;
+  margin: 0 auto;
+  display: block;
+  width: 60%;
+}
+.recipeImg {
+  width: 40%;
+  float: left;
+}
+.recipeImg img {
+  width: 60%;
+  float: left;
+  border-radius: 57%;
+}
+.recipeLink {
+  width: 60%;
+  text-decoration: none;
+  color: black;
+  font-family: "Bebas Neue", cursive;
+  font-size: 45px;
+  float: right;
 }
 
 /* ************* RECIPE PAGE ******************** */
@@ -143,16 +204,20 @@
   display: block;
 }
 .recipeTitle {
+  margin-top: 50px;
+  padding-bottom: 25px;
+  font-family: "Bebas Neue", cursive;
   text-align: center;
 }
 .leftSide {
+  font-family: "Bebas Neue", cursive;
   width: 50%;
   float: left;
 }
 .rightSide {
+  font-family: "Bebas Neue", cursive;
   width: 50%;
   float: right;
-  /* border: 1px solid black; */
 }
 .btnContainer {
   margin: 0 auto;
@@ -180,17 +245,41 @@
   border-radius: 15px;
 }
 .ingContainer {
-  width: 75%;
+  width: 65%;
   margin: 0 auto;
-  height: 250px;
-  overflow: auto;
+  height: 30%;
+  overflow: hidden;
   margin-top: 45px;
+  border-radius: 34px;
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 13px 20px, rgba(0, 0, 0, 0.23) 0px 9px 9px;
 }
-.card-ing {
-  max-height: 250px;
+.ingContainer::-webkit-scrollbar {
+  display: none;
+}
+.ingCard {
+  height: 50vh;
+  max-height: 35vh;
   overflow: auto;
+  border-radius: 34px;
   font-size: 25px;
+  background-color: white;
   width: 100%;
+  padding: 10px;
 }
-.list-group-ing {
+.ingCard::-webkit-scrollbar {
+  display: none;
+}
+.ingGroup {
+  border: none;
+  outline: none;
+  background: transparent;
+}
+.recipeBlock {
+  /* position: absolute; */
+  width: 600px;
+  position: fixed;
+  top: 48%;
+  left: 50%;
+  /* bring your own prefixes */
+  transform: translate(-50%, -50%);
 }

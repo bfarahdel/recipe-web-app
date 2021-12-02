@@ -31,7 +31,7 @@ const RecipePage = () => {
   */
   const renderIngredients = () => parsedIng.map((ing) => (
     <div>
-      <ListGroup.Item as="li">
+      <ListGroup.Item className="ingGroup" bsPrefix="ingGroup">
         {ing}
       </ListGroup.Item>
     </div>
@@ -59,8 +59,9 @@ const RecipePage = () => {
   return (
     <div className="recipeBody">
       <Header fav={favList} />
-      <h2 className="recipeTitle">RECIPE PAGE {params.recipeName}</h2>
+
       <div className="leftSide">
+        <h2 className="recipeTitle"> {params.recipeName}</h2>
         <div class="btnContainer">
 
           <Button variant="outline-dark" className="favBtn" onClick={() => {
@@ -84,13 +85,14 @@ const RecipePage = () => {
         </div>
       </div>
 
+      {/* <div className="blockContainer"> */}
+        {/* <img className="recipeBlock" src={} alt="" /> */}
+      {/* </div> */}
+
       <div className="rightSide">
         <div className="ingContainer">
-          <Card variant="ing">
-            <Card.Header>
-              INGREDIENTS
-            </Card.Header>
-            <ListGroup variant="flush">
+          <Card className="ingCard" bsPrefix="ingCard">
+            <ListGroup >
               {renderIngredients()}
             </ListGroup>
           </Card>

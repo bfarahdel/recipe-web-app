@@ -46,13 +46,17 @@ function Header(props) {
 
   return (
     <div>
-      <Navbar collapseOnSelect bg="light" expand="xl" className="navBar">
+      <Navbar collapseOnSelect bg="light" expand="xl" style={{
+        maxHeight: '120px',
+        backgroundColor: 'white',
+        boxShadow: 'rgba(0, 0, 0, 0.19) 0px 6px 12px, rgba(0, 0, 0, 0.23) 0px 4.5px 4.5px',
+      }}>
         <Link className="navLink" to='/'>
-          <Navbar.Brand className="navTitle" bsPrefix="navTitle" >
+          <Navbar.Brand>
             <img className="logoImg" src={logo} alt="" />
           </Navbar.Brand>
         </Link>
-        <Navbar.Text expand='lg' className="justify">
+        <Navbar.Text expand='lg' className="justify navText" bsPrefix="navText">
           <Nav
             className="me-auto my-2 my-lg-3 justify-content-end"
             style={{ maxHeight: '170px' }}
