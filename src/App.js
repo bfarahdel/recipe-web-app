@@ -4,6 +4,8 @@ in order to user React Router
 */
 
 import './App.css';
+import { useState } from 'react';
+
 import { Routes, Route } from 'react-router-dom';
 import RecipePage from './components/RecipePage';
 import RecipeInfo from './components/RecipeInfo';
@@ -24,11 +26,13 @@ function App() {
     recipeImgs,
     recipeIng,
     recipeInstr);
+
+  const [recipeYT, setYT] = useState([]);
   return (
     <GlobalProvider>
       <Routes>
-        <Route path='/' element= {<Main ids={recipeIds} names={recipeNames} imgs={recipeImgs} /> }/>
-        <Route path='recipeResults' element={<RecipePage ing={recipeIng} instr={recipeInstr} />}>
+        <Route path='/' element= {<Main ids={recipeIds} names={recipeNames} imgs={recipeImgs} setYt={setYT}/> }/>
+        <Route path='recipeResults' element={<RecipePage ing={recipeIng} instr={recipeInstr} imgs={recipeImgs} yt={recipeYT}/>}>
           <Route path=':recipeName/:recipeIng/:recipeInstr' element={<RecipeInfo />}/>
         </Route>
       </Routes>

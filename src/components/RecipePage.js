@@ -8,7 +8,7 @@ import { ListGroup, Card } from 'react-bootstrap';
 import { GlobalContext } from '../context/GlobalState';
 import Header from './Header';
 
-const RecipePage = () => {
+const RecipePage = (props) => {
   const params = useParams();
   console.log('PARAMSSSS', params);
   const parsedIng = params.recipeIng.split(',');
@@ -20,7 +20,7 @@ const RecipePage = () => {
     addLink,
     removeRecipe,
   } = useContext(GlobalContext);
-  const currUrl = `/recipeResults/${params.recipeName}/${params.recipeIng}/${params.recipeInstr}`;
+  const currUrl = `/recipeResults/${params.recipeName}/${params.recipeIng}/${params.recipeInstr}.`;
   console.log('RECIPE PAGE FAV ', favList);
 
   /*
@@ -44,7 +44,7 @@ const RecipePage = () => {
       </ListGroup.Item>
     </div>
   ));
-
+  console.log('YT LINK PROP ', props.yt);
   function fetchFav(recipeList) {
     console.log(recipeList);
     fetch('/fav_list', {

@@ -14,6 +14,7 @@ from vars import db
 from vars import bcrypt
 from models import Recipe, User
 from spoon import Spoon
+from youtube import YT
 from forms import RegistrationForm, LoginForm
 from validations import Validation
 
@@ -39,6 +40,7 @@ def main():
         recipe_imgs = searched["recipe_imgs"]
         recipe_ing = searched["recipe_ing"]
         recipe_instr = searched["recipe_instructions"]
+        recipe_yt = YT().video_search(searched["recipe_names"], 1)[0]["embed"]
 
         data_info = {
             "recipeIds": recipe_ids,
@@ -47,6 +49,7 @@ def main():
             "recipeIng": recipe_ing,
             "recipeInstr": recipe_instr,
             "savedRecipe": recipeNames_LIST,
+            "recipe_yt": recipe_yt,
         }
 
         data = json.dumps(data_info)
@@ -78,6 +81,7 @@ def search_recipe():
     recipe_imgs = []
     recipe_instructions = []
     recipe_ing = []
+    recipe_yt = []
 
     for index in range(0, 5):
         recipe_ids.append(search_results["id"][index])
@@ -86,6 +90,9 @@ def search_recipe():
         recipe_ing.append(instructions_ing["ingredients"])
         recipe_names.append(search_results["title"][index])
         recipe_imgs.append(search_results["image"][index])
+        recipe_yt.append(
+            YT().video_search(search_results["title"][index], 1)[0]["embed"]
+        )
 
     recipe_info = {
         "recipe_ids": recipe_ids,
@@ -93,6 +100,7 @@ def search_recipe():
         "recipe_imgs": recipe_imgs,
         "recipe_instructions": recipe_instructions,
         "recipe_ing": recipe_ing,
+        "recipe_yt": recipe_yt,
     }
 
     flask.jsonify({"recipe_names": recipe_names})
@@ -100,6 +108,7 @@ def search_recipe():
     flask.jsonify({"recipe_ids": recipe_ids})
     flask.jsonify({"recipe_instructions": recipe_instructions})
     flask.jsonify({"recipe_ing": recipe_ing})
+    flask.jsonify({"recipe_yt": recipe_yt})
 
     return recipe_info
 

@@ -12,7 +12,12 @@ import bg from '../img/bgg.png';
 import Header from './Header';
 
 function Main(props) {
-  const { ids, names, imgs } = props;
+  const {
+    ids,
+    names,
+    imgs,
+    setYt,
+  } = props;
   let { favList } = useContext(GlobalContext);
   const { recipeLink } = useContext(GlobalContext);
   if (favList.length < 1) {
@@ -25,6 +30,7 @@ function Main(props) {
   const [recipeInstr, setInstr] = useState([]);
   const [recipeIng, setIng] = useState([]);
   const [savedList, setSaved] = useState([]);
+  // const [recipeYt, setYT] = useState([]);
 
   console.log('(MAIN JS) PROPS id:', ids, 'names', names, 'imgs: ', imgs);
   console.log(' RECIPE LINK  ', recipeLink);
@@ -67,6 +73,7 @@ function Main(props) {
       recipeIng: recipeIng[0],
       recipeInstr: recipeInstr[0],
       recipeImg: recipeImg[0],
+      // recipeYt: recipeYt[0],
     }],
   };
   console.log('INFO', dataInfo);
@@ -78,10 +85,10 @@ function Main(props) {
       recipeIng: recipeIng[i],
       recipeInstr: recipeInstr[i],
       recipeImg: recipeImg[i],
+      // recipeYt: recipeYt[i],
     });
   }
-  console.log('INFO', dataInfo);
-
+  // console.log('YOUTUBE ', recipeYt);
   /*
   Displays the top recipe results to user
   The url for each recipe page will be unique url/$recipeName
@@ -95,7 +102,7 @@ function Main(props) {
               </div>
               <Link
               className="recipeLink" bsPrefix="recipeLink"
-              to={`/recipeResults/${recipe.recipeName}/${recipe.recipeIng}/${recipe.recipeInstr}`}
+              to={`/recipeResults/${recipe.recipeName}/${recipe.recipeIng}/${recipe.recipeInstr}...`}
               key={recipe.recipeName}
               >
                   {recipe.recipeName}
@@ -124,6 +131,7 @@ function Main(props) {
       setInstr(data.recipe_instructions);
       setIng(data.recipe_ing);
       setSaved(data.recipeNames_LIST);
+      setYt(data.recipe_yt);
       console.log('saved recipes', savedList);
     });
   }
