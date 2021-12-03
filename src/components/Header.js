@@ -1,3 +1,6 @@
+/* eslint-disable arrow-body-style */
+/* eslint-disable camelcase */
+/* eslint-disable no-unused-vars */
 import {
   Navbar, Nav, NavDropdown,
 } from 'react-bootstrap';
@@ -43,6 +46,8 @@ function Header(props) {
       <Outlet />
     </NavDropdown.Item>
   ));
+  const args = JSON.parse(document.getElementById('data').text);
+  const all_saved_recipes = args.savedRecipe;
 
   return (
     <div>
@@ -68,11 +73,10 @@ function Header(props) {
               </Nav.Item>
             </Link>
             <NavDropdown title="FAVS" className="favLink" bsPrefix="favLink" id="navbarScrollingDropdown">
-              {renderFavs()}
+              {all_saved_recipes.map((item, index) => {
+                return <NavDropdown.Item key={index} href="#action/3.1">{item}</NavDropdown.Item>;
+              })}
             </NavDropdown>
-            <Link to="/" className="navLink" bsPrefix="navLink">
-              PROFILE
-            </Link>
             <a href="/logout" className="navLink">LOGOUT</a>
           </Nav>
         </Navbar.Text>
