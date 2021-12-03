@@ -55,6 +55,16 @@ const RecipePage = () => {
       body: JSON.stringify({ recipeList }),
     }).then((response) => response.json());
   }
+  function fetchDelete(recipeName) {
+    console.log('FETCH DELETE', recipeName);
+    fetch('/fav_delete', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ recipeName }),
+    }).then((response) => response.json());
+  }
 
   function fetchYoutube(ytTitle) {
     fetch('/get_youtube', {
@@ -88,7 +98,7 @@ const RecipePage = () => {
         <div class="btnContainer">
           <Button variant="outline-dark" className="remBtn" onClick={() => {
             removeRecipe(params.recipeName);
-            fetchFav(favList);
+            fetchDelete(params.recipeName);
           }
           }>
             <Heart background-color='black' /> Remove Favs
