@@ -6,7 +6,7 @@ This file has all the route definitions
 import sys
 import json
 import flask
-from flask import request
+from flask import request, jsonify
 from flask import redirect, url_for, flash, render_template
 from flask_login import login_user, current_user, logout_user
 from vars import APP
@@ -208,4 +208,4 @@ def get_youtube():
     embed = result["embed"]
     print("YOUTUBE EMBED", embed)
 
-    return embed
+    return jsonify({"youtube_embed": embed})

@@ -1,6 +1,6 @@
 /* eslint-disable no-use-before-define */
 /* eslint-disable no-param-reassign */
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import { Heart } from 'react-bootstrap-icons';
@@ -14,6 +14,7 @@ const RecipePage = () => {
   console.log('PARAMSSSS', params);
   const parsedIng = params.recipeIng.split(',');
   const parsedInstr = params.recipeInstr.split(',');
+  const [ytEmbed, setEmbed] = useState('');
 
   const {
     favList,
@@ -64,7 +65,10 @@ const RecipePage = () => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({ ytTitle }),
-    }).then((response) => response.json());
+    }).then((response) => response.json()).then((data) => {
+      console.log(data.youtube_embed);
+      setEmbed(data.youtube_embed);
+    });
   }
 
   return (
@@ -90,7 +94,8 @@ const RecipePage = () => {
           </Button>
         </div>
         <div className="embed-responsive embed-responsive-16by9 ytContainer">
-          <>{ReactHtmlParser(fetchYoutube('Pasta Margherita'))}</>
+          {fetchYoutube('Pasta Margherita')}
+          {ReactHtmlParser(ytEmbed)}
           {/* <iframe title="Embeds Page" className="embed-responsive-item yt" src="https://www.youtube.com/embed/v674KOxKVLVg"
             allowfullscreen></iframe> */}
         </div>
