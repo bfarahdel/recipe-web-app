@@ -89,7 +89,7 @@ const RecipePage = () => {
         </div>
 
         <div class="btnContainer">
-          <Button variant="outline-dark" className="remBtn" onClick={() => removeRecipe(params.id)}>
+          <Button variant="outline-dark" className="remBtn" onClick={() => removeRecipe(params.recipeName)}>
             <Heart background-color='black' /> Remove Favs
           </Button>
         </div>
