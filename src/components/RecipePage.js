@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import { Heart } from 'react-bootstrap-icons';
 import { ListGroup, Card } from 'react-bootstrap';
+import ReactHtmlParser from 'react-html-parser';
 import { GlobalContext } from '../context/GlobalState';
 import Header from './Header';
 
@@ -56,10 +57,19 @@ const RecipePage = () => {
     }).then((response) => response.json());
   }
 
+  function fetchYoutube(ytTitle) {
+    fetch('/get_youtube', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ ytTitle }),
+    }).then((response) => response.json());
+  }
+
   return (
     <div className="recipeBody">
       <Header fav={favList} />
-
       <div className="leftSide">
         <h2 className="recipeTitle"> {params.recipeName}</h2>
         <div class="btnContainer">
@@ -80,8 +90,9 @@ const RecipePage = () => {
           </Button>
         </div>
         <div className="embed-responsive embed-responsive-16by9 ytContainer">
-          <iframe title="Embeds Page" className="embed-responsive-item yt" src="https://www.youtube.com/embed/v674KOxKVLVg"
-            allowfullscreen></iframe>
+          <>{ReactHtmlParser(fetchYoutube('Pasta Margherita'))}</>
+          {/* <iframe title="Embeds Page" className="embed-responsive-item yt" src="https://www.youtube.com/embed/v674KOxKVLVg"
+            allowfullscreen></iframe> */}
         </div>
       </div>
 
