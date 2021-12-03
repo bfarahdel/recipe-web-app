@@ -42,6 +42,7 @@ function Main(props) {
       favList = ['ADD A RECIPE'];
       console.log('saved list is empty');
     }
+    // setSearch(' ');
   }, []);
 
   console.log('SAVED LIST', savedRecipes);
@@ -130,14 +131,11 @@ function Main(props) {
       body: JSON.stringify({ recipe: recipeName }),
     }).then((response) => response.json()).then((data) => {
       // Sets all of the recipe info states
-
       setId(data.recipe_ids);
       setNames(data.recipe_names);
       setImgs(data.recipe_imgs);
       setInstr(data.recipe_instructions);
       setIng(data.recipe_ing);
-      // setSaved(data.recipeNames_LIST);
-      // console.log('saved recipes', savedList);
     });
   }
 
