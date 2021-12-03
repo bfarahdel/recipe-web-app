@@ -94,7 +94,7 @@ const RecipePage = () => {
           </Button>
         </div>
         <div className="embed-responsive embed-responsive-16by9 ytContainer">
-          {fetchYoutube('Pasta Margherita')}
+          {fetchYoutube(params.recipeName)}
           {ReactHtmlParser(ytEmbed)}
           {/* <iframe title="Embeds Page" className="embed-responsive-item yt" src="https://www.youtube.com/embed/v674KOxKVLVg"
             allowfullscreen></iframe> */}
