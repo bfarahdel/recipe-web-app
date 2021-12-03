@@ -139,7 +139,15 @@ def fav_list():
 @APP.route("/fav_delete", methods=["GET", "POST"])
 def fav_delete():
     recipe_remove = flask.request.json.get("recipeName")
+    x = Recipe.query.filter_by(
+        username=current_user.username, recipe_name=recipe_remove
+    ).first()
+    if x:
+        db.session.delete(x)
+        db.session.commit()
+
     print("RECIPE Remove name", recipe_remove, file=sys.stderr)
+
     return recipe_remove
 
 
