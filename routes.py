@@ -6,7 +6,7 @@ This file has all the route definitions
 import sys
 import json
 import flask
-from flask import request
+from flask import request, jsonify
 from flask import redirect, url_for, flash, render_template
 from flask_login import login_user, current_user, logout_user
 from vars import APP
@@ -16,6 +16,7 @@ from models import Recipe, User
 from spoon import Spoon
 from forms import RegistrationForm, LoginForm
 from validations import Validation
+from youtube import YT
 
 BP = flask.Blueprint("bp", __name__, template_folder="./build")
 
@@ -135,6 +136,13 @@ def fav_list():
     return recipes
 
 
+@APP.route("/fav_delete", methods=["GET", "POST"])
+def fav_delete():
+    recipe_remove = flask.request.json.get("recipeName")
+    print("RECIPE Remove name", recipe_remove, file=sys.stderr)
+    return recipe_remove
+
+
 @APP.route("/signup", methods=["GET", "POST"])
 def signup_post():
     """This function deals with sign_up page"""
@@ -197,3 +205,14 @@ def logout():
     """This function deals with logging out"""
     logout_user()
     return redirect(url_for("login_post"))
+
+
+@APP.route("/get_youtube", methods=["GET", "POST"])
+def get_youtube():
+    query = flask.request.json.get("ytTitle")
+    print("RECIPE YOUTUBE TITLE ", query, file=sys.stderr)
+    result = YT().video_search(query, 1)[0]
+    embed = result["embed"]
+    print("YOUTUBE EMBED", embed)
+
+    return jsonify({"youtube_embed": embed})

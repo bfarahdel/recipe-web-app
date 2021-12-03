@@ -22,8 +22,8 @@ export const GlobalProvider = (props) => {
     dispatch({ type: 'ADD_LINK', payload: link });
   };
 
-  const removeRecipe = (id) => {
-    dispatch({ type: 'REMOVE_RECIPE_FROM_FAV', payload: id });
+  const removeRecipe = (recipe) => {
+    dispatch({ type: 'REMOVE_RECIPE_FROM_FAV', payload: recipe });
   };
 
   return (

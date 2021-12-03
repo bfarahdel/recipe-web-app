@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { Link, Outlet } from 'react-router-dom';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Slider from 'react-slick';
@@ -15,28 +15,40 @@ function Main(props) {
   const { ids, names, imgs } = props;
   let { favList } = useContext(GlobalContext);
   const { recipeLink } = useContext(GlobalContext);
-  if (favList.length < 1) {
-    favList = ['ADD A RECIPE'];
-  }
+  // if (favList.length < 1) {
+  //   favList = ['ADD A RECIPE'];
+  // }
+  const args = JSON.parse(document.getElementById('data').text);
+  const savedRecipes = args.savedRecipe;
+
   const [currSearch, setSearch] = useState([]);
-  const [recipeIds, setIds] = useState([]);
+  const [recipeId, setId] = useState([]);
   const [recipeNames, setNames] = useState([]);
   const [recipeImg, setImgs] = useState([]);
   const [recipeInstr, setInstr] = useState([]);
   const [recipeIng, setIng] = useState([]);
-  const [savedList, setSaved] = useState([]);
+  // const [savedList, setSaved] = useState([]);
 
   console.log('(MAIN JS) PROPS id:', ids, 'names', names, 'imgs: ', imgs);
   console.log(' RECIPE LINK  ', recipeLink);
 
-  if (savedList) {
-    if (savedList.length > 0) {
-      favList.concat(savedList);
+  useEffect(() => {
+    if (savedRecipes.length > 0) {
+      for (let i = 0; i < savedRecipes.length; i += 1) {
+        favList[i] = savedRecipes[i];
+      }
+      console.log('FAV LIST in effect ', favList);
+    } else {
+      favList = ['ADD A RECIPE'];
+      console.log('saved list is empty');
     }
-  } else {
-    console.log('saved list is empty');
-  }
-  console.log('SAVED LIST', savedList);
+    // setSearch(' ');
+  }, []);
+
+  console.log('SAVED LIST', savedRecipes);
+
+  console.log('Current FAV LIST ', favList);
+
   // const checkData = (data) => console.log('SLIDE DATA ', data);
   // renders each individual slide/recipe inside the slider component
   // and maps it based off of favortes
@@ -56,13 +68,14 @@ function Main(props) {
   console.log('RECIPE NAMES - ', recipeNames);
   console.log('RECIPE IMGS - ', recipeImg);
 
-  console.log('RECIPE IDS - ', recipeIds);
+  console.log('RECIPE IDS - ', recipeId);
 
   console.log('RECIPE Instr - ', recipeInstr);
   console.log('RECIPE IDS - ', recipeIng);
 
   const dataInfo = {
     recipe: [{
+      recipeId: recipeId[0],
       recipeName: recipeNames[0],
       recipeIng: recipeIng[0],
       recipeInstr: recipeInstr[0],
@@ -74,6 +87,7 @@ function Main(props) {
   // eslint-disable-next-line no-plusplus
   for (let i = 1; i < 5; i++) {
     dataInfo.recipe.push({
+      recipeId: recipeId[i],
       recipeName: recipeNames[i],
       recipeIng: recipeIng[i],
       recipeInstr: recipeInstr[i],
@@ -95,8 +109,8 @@ function Main(props) {
               </div>
               <Link
               className="recipeLink" bsPrefix="recipeLink"
-              to={`/recipeResults/${recipe.recipeName}/${recipe.recipeIng}/${recipe.recipeInstr}`}
-              key={recipe.recipeName}
+              to={`/recipeResults/${recipe.recipeId}/${recipe.recipeName}/${recipe.recipeIng}/${recipe.recipeInstr}`}
+              key={recipe.recipeId}
               >
                   {recipe.recipeName}
               </Link>
@@ -117,14 +131,11 @@ function Main(props) {
       body: JSON.stringify({ recipe: recipeName }),
     }).then((response) => response.json()).then((data) => {
       // Sets all of the recipe info states
-
-      setIds(data.recipe_ids);
+      setId(data.recipe_ids);
       setNames(data.recipe_names);
       setImgs(data.recipe_imgs);
       setInstr(data.recipe_instructions);
       setIng(data.recipe_ing);
-      setSaved(data.recipeNames_LIST);
-      console.log('saved recipes', savedList);
     });
   }
 
@@ -149,7 +160,10 @@ function Main(props) {
             <div className="sliderTitle">
                 <h1> <Heart color="#af2a2a"/>  YOUR FAVORITES  </h1>
             </div>
-            <Slider className="slide" bsPrefix="slide" slidesToShow={3} dots={true}>
+            {/* <div className="slide">
+              {renderSlides()}
+            </div> */}
+            <Slider className="slide" bsPrefix="slide" slidesToShow={5} dots={true}>
               {renderSlides()}
             </Slider>
         </div>
