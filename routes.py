@@ -136,6 +136,13 @@ def fav_list():
     return recipes
 
 
+@APP.route("/fav_delete", methods=["GET", "POST"])
+def fav_delete():
+    recipe_remove = flask.request.json.get("recipeName")
+    print("RECIPE Remove name", recipe_remove, file=sys.stderr)
+    return recipe_remove
+
+
 @APP.route("/signup", methods=["GET", "POST"])
 def signup_post():
     """This function deals with sign_up page"""
@@ -204,7 +211,7 @@ def logout():
 def get_youtube():
     query = flask.request.json.get("ytTitle")
     print("RECIPE YOUTUBE TITLE ", query, file=sys.stderr)
-    result = YT().video_search(query,1)[0]
+    result = YT().video_search(query, 1)[0]
     embed = result["embed"]
     print("YOUTUBE EMBED", embed)
 

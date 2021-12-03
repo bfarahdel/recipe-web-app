@@ -19,10 +19,8 @@ const RecipePage = () => {
   const {
     favList,
     addRecipe,
-    addLink,
     removeRecipe,
   } = useContext(GlobalContext);
-  const currUrl = `/recipeResults/${params.recipeName}/${params.recipeIng}/${params.recipeInstr}`;
   console.log('RECIPE PAGE FAV ', favList);
 
   /*
@@ -48,13 +46,23 @@ const RecipePage = () => {
   ));
 
   function fetchFav(recipeList) {
-    console.log(recipeList);
+    console.log('FETCH FAV', recipeList);
     fetch('/fav_list', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({ recipeList }),
+    }).then((response) => response.json());
+  }
+  function fetchDelete(recipeName) {
+    console.log('FETCH DELETE', recipeName);
+    fetch('/fav_delete', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ recipeName }),
     }).then((response) => response.json());
   }
 
@@ -80,7 +88,6 @@ const RecipePage = () => {
 
           <Button variant="outline-dark" className="favBtn" onClick={() => {
             addRecipe(params.recipeName);
-            addLink(currUrl);
             fetchFav(favList);
           }
           }>
@@ -89,7 +96,11 @@ const RecipePage = () => {
         </div>
 
         <div class="btnContainer">
-          <Button variant="outline-dark" className="remBtn" onClick={() => removeRecipe(params.id)}>
+          <Button variant="outline-dark" className="remBtn" onClick={() => {
+            removeRecipe(params.recipeName);
+            fetchDelete(params.recipeName);
+          }
+          }>
             <Heart background-color='black' /> Remove Favs
           </Button>
         </div>

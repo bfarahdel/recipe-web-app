@@ -14,7 +14,7 @@ export default (state, action) => {
     case 'REMOVE_RECIPE_FROM_FAV':
       return {
         ...state,
-        favList: state.favList.filter((recipe) => recipe.id !== action.payload),
+        favList: state.favList.filter((recipe) => recipe !== action.payload),
       };
     default:
       return state;
