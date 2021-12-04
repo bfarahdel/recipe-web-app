@@ -1,3 +1,4 @@
+Css 
 /* Global */
 
 /* ************* LOGIN PAGE ******************** */
@@ -27,7 +28,7 @@
   font-weight: bolder;
 }
 .navText {
-  margin-top: 75px;
+  margin-top: 40px;
 }
 
 .logoImg {
@@ -99,7 +100,7 @@
   border-radius: 15px;
   margin-top: 45px;
   padding: 15px;
-  height: 240px;
+  height: 250px;
   overflow: hidden;
   width: 60%;
 }
@@ -107,6 +108,8 @@
   width: 100%;
   text-align: center;
   color: black;
+  font-weight: bold;
+  padding-bottom: 5px;
 }
 .sliderTitle h1 {
   font-size: 21px;
@@ -125,25 +128,31 @@
 }
 .favName {
   font-family: "Bebas Neue", cursive;
-  font-size: 35px;
+  font-size: 27px;
 }
 .searchBar {
   margin: 0 auto;
   width: 85%;
   height: 110px;
-
   margin-top: 65px;
   padding-bottom: 100px;
 }
 .searchBar input {
   width: 100%;
   border: none;
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.784);
   height: 85px;
   font-size: 19px;
   text-align: center;
   border-radius: 15px;
   box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+  transition: 0.8s;
+}
+.search {
+  width: 100%;
+}
+.searchBar input:focus {
+  border: 3px solid #af2a2a;
 }
 .favLink {
   text-decoration: none;
@@ -201,13 +210,20 @@
 
 /* ************* RECIPE PAGE ******************** */
 .recipeBody {
-  display: block;
+  /* display: block; */
+  background-image: url("./img/block.png");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: left 0px top 95px;
 }
 .recipeTitle {
   margin-top: 50px;
   padding-bottom: 25px;
   font-family: "Bebas Neue", cursive;
-  text-align: center;
+  /* text-align: center; */
+  margin-left: 70px;
+  font-size: 135px;
+  width: 60%;
 }
 .leftSide {
   font-family: "Bebas Neue", cursive;
@@ -224,62 +240,130 @@
   width: 30%;
   height: 78px;
 }
-.favBtn {
-  width: 100%;
-  height: 100%;
-  margin-top: 45px;
-}
+
 .remBtn {
   width: 100%;
   height: 100%;
   margin-top: 60px;
 }
 .ytContainer {
-  margin: 0 auto;
-  width: 48%;
-  margin-top: 80px;
+  /* margin: 0 auto; */
+  width: 65%;
+  /* height: 350; */
+  margin-top: 30px;
+  margin-left: 100px;
 }
 .yt {
   width: 100%;
   height: 100%;
   border-radius: 15px;
 }
+iframe {
+  border-radius: 15px;
+  margin-top: 55px;
+  margin-right: 50px;
+  box-shadow: rgba(134, 112, 112, 0.19) 0px 13px 20px,
+    rgba(0, 0, 0, 0.23) 0px 9px 9px;
+}
 .ingContainer {
-  width: 65%;
+  width: 85%;
   margin: 0 auto;
-  height: 30%;
+  height: 30vh;
   overflow: hidden;
-  margin-top: 45px;
+  margin-top: 80px;
   border-radius: 34px;
-  box-shadow: rgba(0, 0, 0, 0.19) 0px 13px 20px, rgba(0, 0, 0, 0.23) 0px 9px 9px;
+  box-shadow: rgba(134, 112, 112, 0.19) 0px 13px 20px,
+    rgba(0, 0, 0, 0.23) 0px 9px 9px;
 }
 .ingContainer::-webkit-scrollbar {
   display: none;
 }
 .ingCard {
-  height: 50vh;
-  max-height: 35vh;
+  height: 30vh;
+  max-height: 40vh;
   overflow: auto;
   border-radius: 34px;
-  font-size: 25px;
   background-color: white;
   width: 100%;
   padding: 10px;
 }
+.instrGroup {
+  width: 88%;
+  margin: 0 auto;
+}
+.cardTitle {
+  font-size: 31px;
+}
 .ingCard::-webkit-scrollbar {
   display: none;
 }
-.ingGroup {
+.ingItem {
   border: none;
+  padding-bottom: 8px;
   outline: none;
   background: transparent;
 }
+.ingItem p {
+  font-size: 20px;
+}
+.ingGroup {
+  width: 39%;
+  text-align: center;
+  margin-top: 125px;
+  margin: 0 auto;
+}
+
 .recipeBlock {
   /* position: absolute; */
   width: 600px;
   position: fixed;
-  top: 48%;
+  top: 30%;
   left: 50%;
   /* bring your own prefixes */
-  transform: translate(-50%, -50%);
+  transform: translate(-30%, -50%);
+}
+.recImg {
+  width: 100%;
+  /* position: fixed; */
+  /* top: 48%; */
+  /* left: 50%; */
+  /* bring your own prefixes */
+  /* transform: translate(-50%, -50%); */
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 13px 20px, rgba(0, 0, 0, 0.23) 0px 9px 9px;
+  border-radius: 50%;
+}
+.item {
+  width: 280px;
+  height: 200px;
+  display: inline-block;
+  position: fixed;
+  top: 28%;
+  left: 50%;
+  transform: translate(-20%, -50%);
+}
+.notify-badge {
+  position: absolute;
+  right: -17px;
+  top: -5px;
+  /* padding: 5px 10px; */
+}
+.notify-badge2 {
+  position: absolute;
+  right: 17px;
+  top: 2px;
+  /* padding: 5px 10px; */
+}
+.favBtn {
+  transition: 0.9s;
+}
+.favBtn:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+}
+.cardTitle p {
+  text-align: center;
+  font-size: 52px;
+  padding-bottom: 10px;
+  color: #af2a2a;
+  text-shadow: 0.8px 0.8px 1.3px rgb(31, 30, 30);
 }

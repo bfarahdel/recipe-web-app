@@ -3,7 +3,6 @@ import AppReducer from './AppReducer';
 
 const initialState = {
   favList: [],
-  recipeLink: [],
 };
 
 export const GlobalContext = createContext(initialState);
@@ -17,11 +16,6 @@ export const GlobalProvider = (props) => {
     dispatch({ type: 'ADD_RECIPE_TO_FAV', payload: recipe });
   };
 
-  const addLink = (link) => {
-    console.log('LINK', link);
-    dispatch({ type: 'ADD_LINK', payload: link });
-  };
-
   const removeRecipe = (recipe) => {
     dispatch({ type: 'REMOVE_RECIPE_FROM_FAV', payload: recipe });
   };
@@ -30,9 +24,7 @@ export const GlobalProvider = (props) => {
     <GlobalContext.Provider
       value={{
         favList: state.favList,
-        recipeLink: state.recipeLink,
         addRecipe,
-        addLink,
         removeRecipe,
       }}
     >

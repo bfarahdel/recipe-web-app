@@ -81,7 +81,7 @@ def search_recipe():
     recipe_instructions = []
     recipe_ing = []
 
-    for index in range(0, 5):
+    for index in range(0, 4):
         recipe_ids.append(search_results["id"][index])
         instructions_ing = Spoon().ingredients_instructions(search_results["id"][index])
         recipe_instructions.append(instructions_ing["instructions"])
@@ -224,5 +224,18 @@ def get_youtube():
     query = flask.request.json.get("ytTitle")
     result = YT().video_search(query, 1)[0]
     embed = result["embed"]
+    # img = ""
+    img = Spoon().complex_search(query)["image"][0]
+    print("RECIPE YOUTUBE TITLE ", query, file=sys.stderr)
+    result = YT().video_search(query, 1)[0]
+    embed = result["embed"]
+    print("YOUTUBE EMBED", embed)
+    print("IMAGE LINK ", img)
+    details = {
+        "youtube_embed": embed,
+        "img": img,
+    }
+    jsonify({"img": img})
+    jsonify({"youtube_embed": embed})
 
-    return jsonify({"youtube_embed": embed})
+    return jsonify(details)
