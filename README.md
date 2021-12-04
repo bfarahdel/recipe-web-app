@@ -10,7 +10,7 @@ When accessing the website intially, the login page will be displayed on the web
 
 The search query can be based on the name of the recipe, nutritional content (e.g. max fat content 25g), and dietary restrictions (e.g. “without nuts”).
 
-A drop-down list of the search results will appear below the search bar. If one of the search results are clicked on, a page with the recipe title, ingredients, and instructions will be displayed on the page. On this recipe page, when the 'Add to Favs' button is clicked, the recipe name will be added to the favorites list.
+A drop-down list of the search results will appear below the search bar. If one of the search results are clicked on, a page with the recipe title, ingredients, and instructions will be displayed on the page. On this recipe page, when the **heart-shaped button** is clicked, the recipe name will be added to the favorites list. When the **X** button is clicked, the recipe will be removed from the favorites list.
 
 ### Pylint Warnings that were disabled
 - pylint: disable=W0613, R0201, W0611  => This was a warning saying one variable is not used but it was necessary to run validation checks.
