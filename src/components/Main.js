@@ -163,6 +163,7 @@ function Main() {
 
         <div className="searchBar">
         <i class="bi bi-search"></i>
+            <div className="search">
               <input
               type="text"
               placeholder=" SEARCH RECIPES......."
@@ -175,8 +176,9 @@ function Main() {
                 setSearch('');
                 submitSearch(currSearch);
               }
-            }}
-            />
+            }}/>
+          </div>
+
         </div>
 
         <div className="resultList">

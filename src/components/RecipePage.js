@@ -2,8 +2,7 @@
 /* eslint-disable no-param-reassign */
 import { useContext, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import Button from 'react-bootstrap/Button';
-import { Heart } from 'react-bootstrap-icons';
+import { Heart, XLg } from 'react-bootstrap-icons';
 import { ListGroup, Card } from 'react-bootstrap';
 import ReactHtmlParser from 'react-html-parser';
 import { GlobalContext } from '../context/GlobalState';
@@ -12,7 +11,7 @@ import Header from './Header';
 const RecipePage = () => {
   const params = useParams();
   const parsedIng = params.recipeIng.split(',');
-  // const parsedInstr = params.recipeInstr.split(',');
+  const parsedInstr = params.recipeInstr.split(',');
   const [ytEmbed, setEmbed] = useState('');
   const [image, setImg] = useState('');
 
@@ -30,18 +29,18 @@ const RecipePage = () => {
   const renderIngredients = () => parsedIng.map((ing) => (
     <div>
       <ListGroup.Item className="ingItem" bsPrefix="ingItem">
-        {ing}
+        <p>{ing} </p>
       </ListGroup.Item>
     </div>
   ));
 
-  // const renderInstructions = () => parsedInstr.map((instr) => (
-  //   <div>
-  //     <ListGroup.Item as="li">
-  //       {instr}
-  //     </ListGroup.Item>
-  //   </div>
-  // ));
+  const renderInstructions = () => parsedInstr.map((instr) => (
+    <div>
+      <ListGroup.Item className="ingItem" bsPrefix="ingItem">
+        <p>{instr}</p>
+      </ListGroup.Item>
+    </div>
+  ));
 
   function fetchFav(recipeList) {
     console.log('FETCH FAV', recipeList);
@@ -85,26 +84,27 @@ const RecipePage = () => {
 
       <div className="leftSide">
         <h2 className="recipeTitle"> {params.recipeName}</h2>
-        <div class="btnContainer">
+        <div class="item">
+          {/* <a href="#"> */}
+            <span class="notify-badge">
+              <Heart className="favBtn" bsPrefix="favBtn" size={70} onClick={() => {
+                favList.push(params.recipeName);
+                addRecipe(params.recipeName);
+                fetchFav(favList);
+              }}> </Heart>
+            </span>
+            <span >
+              <XLg size={70} className="favBtn" bsPrefix="favBtn" onClick={() => {
+                removeRecipe(params.recipeName);
+                fetchDelete(params.recipeName);
+              }}>
+              </XLg>
+            </span>
+            <img className="recImg" src={image} alt="" />
+          {/* </a> */}
+        </div>
+          {/* <img className="recImg" src={image} alt="" /> */}
 
-          <Button variant="outline-dark" className="favBtn" onClick={() => {
-            favList.push(params.recipeName);
-            addRecipe(params.recipeName);
-            fetchFav(favList);
-          }}>
-            <Heart /> Add To Favs
-          </Button>
-        </div>
-          <img className="recImg" src={image} alt="" />
-        <div class="btnContainer">
-          <Button variant="outline-dark" className="remBtn" onClick={() => {
-            removeRecipe(params.recipeName);
-            fetchDelete(params.recipeName);
-          }
-          }>
-            <Heart background-color='black' /> Remove Favs
-          </Button>
-        </div>
         <div className="embed-responsive embed-responsive-16by9 ytContainer">
           {fetchYoutube(params.recipeName)}
           {ReactHtmlParser(ytEmbed)}
@@ -114,22 +114,26 @@ const RecipePage = () => {
       <div className="rightSide">
         <div className="ingContainer">
           <Card className="ingCard" bsPrefix="ingCard">
-            <Card.Title className="cardTitle" bsPrefix="cardTitle"> INGREDIENTS</Card.Title>
+            <Card.Title className="cardTitle" bsPrefix="cardTitle">
+              <p>INGREDIENTS</p>
+            </Card.Title>
             <ListGroup className="ingGroup" bsPrefix="ingGroup" >
               {renderIngredients()}
             </ListGroup>
           </Card>
         </div>
-        {/* <div className="ingContainer">
-          <Card variant="ing">
-            <Card.Header>
+        <div className="ingContainer">
+          <Card className="ingCard" bsPrefix="ingCard">
+          <Card.Title className="cardTitle" bsPrefix="cardTitle">
+            <p>
               INSTRUCTIONS
-            </Card.Header>
-            <ListGroup variant="flush">
+            </p>
+          </Card.Title>
+            <ListGroup className="instrGroup" bsPrefix="ingGroup">
               {renderInstructions()}
             </ListGroup>
           </Card>
-        </div> */}
+        </div>
       </div>
 
     </div>
