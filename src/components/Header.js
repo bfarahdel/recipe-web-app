@@ -8,28 +8,6 @@ import { Link, Outlet } from 'react-router-dom';
 import logo from '../img/logo.png';
 
 function Header(props) {
-  let favList = [];
-  // Test data to mimick data from API
-  if ((props.fav) === undefined) {
-    favList = ['ADD A RECIPE'];
-  } else {
-    favList = props.fav;
-  }
-  console.log('HEADER PROPS ', props.fav, 'HEADER FAV LIST', favList);
-  // const testData = [
-  //   {
-  //     name: 'PIZZA',
-  //     calores: 550,
-  //   },
-  //   {
-  //     name: 'NY PIZZA',
-  //     calories: 200,
-  //   },
-  //   {
-  //     name: 'DEEP DISH PIZZA',
-  //     calories: 203,
-  //   },
-  // ];
   // Renders each Drop downn item for the favorites tab as Links
   const renderFavs = () => props.fav.map((fav) => (
     <NavDropdown.Item as="li" href="">
@@ -67,16 +45,13 @@ function Header(props) {
             style={{ maxHeight: '170px' }}
             navbarScroll
           >
-            <Link to="/" className="navLink" bsPrefix="navLink">
+            <a href="/" className="navLink">HOME</a>
+
+            {/* <Link to="/" className="navLink" bsPrefix="navLink">
               <Nav.Item className="navLinkName" bsPrefix="navLinkName">
                 HOME
               </Nav.Item>
-            </Link>
-            <NavDropdown title="FAVS" className="favLink" bsPrefix="favLink" id="navbarScrollingDropdown">
-              {all_saved_recipes.map((item, index) => {
-                return <NavDropdown.Item key={index} href="#action/3.1">{item}</NavDropdown.Item>;
-              })}
-            </NavDropdown>
+            </Link> */}
             <a href="/logout" className="navLink">LOGOUT</a>
           </Nav>
         </Navbar.Text>

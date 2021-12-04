@@ -11,39 +11,37 @@ import Header from './Header';
 
 const RecipePage = () => {
   const params = useParams();
-  console.log('PARAMSSSS', params);
   const parsedIng = params.recipeIng.split(',');
-  const parsedInstr = params.recipeInstr.split(',');
+  // const parsedInstr = params.recipeInstr.split(',');
   const [ytEmbed, setEmbed] = useState('');
+  const [image, setImg] = useState('');
 
   const {
     favList,
     addRecipe,
     removeRecipe,
   } = useContext(GlobalContext);
-  console.log('RECIPE PAGE FAV ', favList);
 
   /*
   Displays the top recipe results to user
-
   The url for each recipe page will be unique followed by
   the some attributme (name)
   */
   const renderIngredients = () => parsedIng.map((ing) => (
     <div>
-      <ListGroup.Item className="ingGroup" bsPrefix="ingGroup">
+      <ListGroup.Item className="ingItem" bsPrefix="ingItem">
         {ing}
       </ListGroup.Item>
     </div>
   ));
 
-  const renderInstructions = () => parsedInstr.map((instr) => (
-    <div>
-      <ListGroup.Item as="li">
-        {instr}
-      </ListGroup.Item>
-    </div>
-  ));
+  // const renderInstructions = () => parsedInstr.map((instr) => (
+  //   <div>
+  //     <ListGroup.Item as="li">
+  //       {instr}
+  //     </ListGroup.Item>
+  //   </div>
+  // ));
 
   function fetchFav(recipeList) {
     console.log('FETCH FAV', recipeList);
@@ -76,25 +74,28 @@ const RecipePage = () => {
     }).then((response) => response.json()).then((data) => {
       console.log(data.youtube_embed);
       setEmbed(data.youtube_embed);
+      setImg(data.img);
     });
   }
 
   return (
     <div className="recipeBody">
+
       <Header fav={favList} />
+
       <div className="leftSide">
         <h2 className="recipeTitle"> {params.recipeName}</h2>
         <div class="btnContainer">
 
           <Button variant="outline-dark" className="favBtn" onClick={() => {
+            favList.push(params.recipeName);
             addRecipe(params.recipeName);
             fetchFav(favList);
-          }
-          }>
+          }}>
             <Heart /> Add To Favs
           </Button>
         </div>
-
+          <img className="recImg" src={image} alt="" />
         <div class="btnContainer">
           <Button variant="outline-dark" className="remBtn" onClick={() => {
             removeRecipe(params.recipeName);
@@ -110,19 +111,16 @@ const RecipePage = () => {
         </div>
       </div>
 
-      {/* <div className="blockContainer"> */}
-        {/* <img className="recipeBlock" src={} alt="" /> */}
-      {/* </div> */}
-
       <div className="rightSide">
         <div className="ingContainer">
           <Card className="ingCard" bsPrefix="ingCard">
-            <ListGroup >
+            <Card.Title className="cardTitle" bsPrefix="cardTitle"> INGREDIENTS</Card.Title>
+            <ListGroup className="ingGroup" bsPrefix="ingGroup" >
               {renderIngredients()}
             </ListGroup>
           </Card>
         </div>
-        <div className="ingContainer">
+        {/* <div className="ingContainer">
           <Card variant="ing">
             <Card.Header>
               INSTRUCTIONS
@@ -131,7 +129,7 @@ const RecipePage = () => {
               {renderInstructions()}
             </ListGroup>
           </Card>
-        </div>
+        </div> */}
       </div>
 
     </div>

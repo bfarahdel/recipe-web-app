@@ -11,13 +11,11 @@ import bg from '../img/bgg.png';
 
 import Header from './Header';
 
-function Main(props) {
-  const { ids, names, imgs } = props;
+function Main() {
   let { favList } = useContext(GlobalContext);
-  const { recipeLink } = useContext(GlobalContext);
-  // if (favList.length < 1) {
-  //   favList = ['ADD A RECIPE'];
-  // }
+
+  console.log('Current FAV LIST ', favList);
+
   const args = JSON.parse(document.getElementById('data').text);
   const savedRecipes = args.savedRecipe;
 
@@ -29,9 +27,6 @@ function Main(props) {
   const [recipeIng, setIng] = useState([]);
   // const [savedList, setSaved] = useState([]);
 
-  console.log('(MAIN JS) PROPS id:', ids, 'names', names, 'imgs: ', imgs);
-  console.log(' RECIPE LINK  ', recipeLink);
-
   useEffect(() => {
     if (savedRecipes.length > 0) {
       for (let i = 0; i < savedRecipes.length; i += 1) {
@@ -42,12 +37,10 @@ function Main(props) {
       favList = ['ADD A RECIPE'];
       console.log('saved list is empty');
     }
-    // setSearch(' ');
+    setSearch(' ');
   }, []);
 
   console.log('SAVED LIST', savedRecipes);
-
-  console.log('Current FAV LIST ', favList);
 
   // const checkData = (data) => console.log('SLIDE DATA ', data);
   // renders each individual slide/recipe inside the slider component
