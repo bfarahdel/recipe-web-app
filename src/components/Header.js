@@ -8,22 +8,6 @@ import { Link, Outlet } from 'react-router-dom';
 import logo from '../img/logo.png';
 
 function Header(props) {
-  // Renders each Drop downn item for the favorites tab as Links
-  const renderFavs = () => props.fav.map((fav) => (
-    <NavDropdown.Item as="li" href="">
-      <div className="resultItem" >
-
-        <Link
-          to={`/recipeResults/${fav.name}`}
-          key={fav.name}
-        >
-          {fav.name}
-        </Link>
-
-      </div>
-      <Outlet />
-    </NavDropdown.Item>
-  ));
   const args = JSON.parse(document.getElementById('data').text);
   const all_saved_recipes = args.savedRecipe;
 
@@ -34,11 +18,11 @@ function Header(props) {
         backgroundColor: 'white',
         boxShadow: 'rgba(0, 0, 0, 0.19) 0px 6px 12px, rgba(0, 0, 0, 0.23) 0px 4.5px 4.5px',
       }}>
-        <Link className="navLink" to='/'>
+        <a href="/" className="navLink">
           <Navbar.Brand>
             <img className="logoImg" src={logo} alt="" />
           </Navbar.Brand>
-        </Link>
+        </a>
         <Navbar.Text expand='lg' className="justify navText" bsPrefix="navText">
           <Nav
             className="me-auto my-2 my-lg-3 justify-content-end"
