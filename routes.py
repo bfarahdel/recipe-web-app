@@ -6,8 +6,7 @@ This file has all the route definitions
 import sys
 import json
 import flask
-from flask import request, jsonify
-from flask import redirect, url_for, flash, render_template
+from flask import redirect, url_for, flash, render_template, jsonify
 from flask_login import login_user, current_user, logout_user
 from vars import APP
 from vars import db
@@ -17,6 +16,8 @@ from spoon import Spoon
 from forms import RegistrationForm, LoginForm
 from validations import Validation
 from youtube import YT
+
+# pylint: disable=E1101
 
 BP = flask.Blueprint("bp", __name__, template_folder="./build")
 
@@ -28,12 +29,12 @@ def main():
     print("ENTEREDD MAIN FUNCRTION!!", file=sys.stderr)
 
     if current_user.is_authenticated:
-        recipeNames = Recipe.query.filter_by(username=current_user.username).all()
-        recipeNames_LIST = []
-        for data in recipeNames:
-            recipeNames_LIST.append(data.recipe_name)
+        recipe_names = Recipe.query.filter_by(username=current_user.username).all()
+        recipe_names_list = []
+        for data in recipe_names:
+            recipe_names_list.append(data.recipe_name)
 
-        print(recipeNames_LIST)
+        print(recipe_names_list)
         searched = search_recipe()
         recipe_ids = searched["recipe_ids"]
         recipe_names = searched["recipe_names"]
@@ -43,11 +44,11 @@ def main():
 
         data_info = {
             "recipeIds": recipe_ids,
-            "recipeNames": recipe_names,
+            "recipe_names": recipe_names,
             "recipeImgs": recipe_imgs,
             "recipeIng": recipe_ing,
             "recipeInstr": recipe_instr,
-            "savedRecipe": recipeNames_LIST,
+            "savedRecipe": recipe_names_list,
         }
 
         data = json.dumps(data_info)
@@ -110,6 +111,7 @@ APP.register_blueprint(BP)
 
 @APP.route("/fav_list", methods=["GET", "POST"])
 def fav_list():
+    """Updates user's favs list in the database"""
     fav_recipes = flask.request.json.get("recipeList")
     print("RECIPE LIST FAV ", fav_recipes, file=sys.stderr)
     recipes = {
@@ -117,18 +119,18 @@ def fav_list():
     }
 
     if len(fav_recipes) > 0:
-        for data in fav_recipes:
-            x = Recipe.query.filter_by(
-                username=current_user.username, recipe_name=data
+        for recipe in fav_recipes:
+            recipe_query = Recipe.query.filter_by(
+                username=current_user.username, recipe_name=recipe
             ).first()
-            if x:
+            if recipe_query:
                 pass
             else:
                 db.session.add(
                     Recipe(
                         username=current_user.username,
                         json_field=fav_recipes,
-                        recipe_name=data,
+                        recipe_name=recipe,
                     )
                 )
                 db.session.commit()
@@ -138,12 +140,13 @@ def fav_list():
 
 @APP.route("/fav_delete", methods=["GET", "POST"])
 def fav_delete():
+    """Remove recipes from the user's favs"""
     recipe_remove = flask.request.json.get("recipeName")
-    x = Recipe.query.filter_by(
+    recipe_query = Recipe.query.filter_by(
         username=current_user.username, recipe_name=recipe_remove
     ).first()
-    if x:
-        db.session.delete(x)
+    if recipe_query:
+        db.session.delete(recipe_query)
         db.session.commit()
 
     print("RECIPE Remove name", recipe_remove, file=sys.stderr)
@@ -217,10 +220,9 @@ def logout():
 
 @APP.route("/get_youtube", methods=["GET", "POST"])
 def get_youtube():
+    """Get the YouTube embed for the recipe in React"""
     query = flask.request.json.get("ytTitle")
-    print("RECIPE YOUTUBE TITLE ", query, file=sys.stderr)
     result = YT().video_search(query, 1)[0]
     embed = result["embed"]
-    print("YOUTUBE EMBED", embed)
 
     return jsonify({"youtube_embed": embed})
